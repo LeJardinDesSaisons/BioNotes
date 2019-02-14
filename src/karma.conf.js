@@ -25,7 +25,13 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['WindowsChrome'],
+    customLaunchers: {
+      WindowsChrome: {
+        base: 'Chrome',
+        chromeDataDir: 'C:\\Users\\fouge\\Documents\\projects\\TEST'
+      }
+    },
     singleRun: false
   });
 };
