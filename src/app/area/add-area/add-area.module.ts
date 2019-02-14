@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { AddAreaPage } from './add-area.page';
+import { FormAreaComponent } from '../form-area/form-area.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -19,8 +21,10 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
   ],
-  declarations: [AddAreaPage]
+  declarations: [AddAreaPage, FormAreaComponent]
 })
 export class AddAreaPageModule {}

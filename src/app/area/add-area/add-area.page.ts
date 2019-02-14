@@ -1,3 +1,4 @@
+import { Area } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddAreaPage implements OnInit {
 
-  constructor(private areaDbService: AreaDbService) { }
+  private area: Area;
+
+  constructor(private areaDbService: AreaDbService) {
+    this.area = new Area();
+  }
 
   ngOnInit() {
   }
 
-  confirm() {
-    // areaDbService.add();
+  /**
+   * Submit the new area to the database
+   */
+  submit() {
+    this.areaDbService.addArea(this.area);
   }
 
 }

@@ -5,5 +5,8 @@
 </ion-header>
 
 <ion-content padding>
-  <area-form></area-form>
+  <form-area [area]="area"></form-area>
+  <p>L'espace suivant va être ajouté :</p>
+  <p><span *ngIf="area.parent">{{ area.parent.name }} > </span>{{ area.name }}</p>
+  <ion-button (click)="submit()">Submit</ion-button>
 </ion-content>

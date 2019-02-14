@@ -1,4 +1,4 @@
-export interface Area {
+export class Area {
     id: Number;
     number: Number;
     type: String;
