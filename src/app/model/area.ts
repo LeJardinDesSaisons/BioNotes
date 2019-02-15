@@ -3,5 +3,5 @@ export class Area {
     number: Number;
     type: String;
     name: String;
-    parent: Area | null;
+    parentId: Number | null;
 }

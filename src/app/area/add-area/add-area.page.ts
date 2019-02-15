@@ -1,6 +1,7 @@
 import { Area } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-area',
@@ -10,12 +11,18 @@ import { Component, OnInit } from '@angular/core';
 export class AddAreaPage implements OnInit {
 
   private area: Area;
+  private parentNames: String[];
 
-  constructor(private areaDbService: AreaDbService) {
+  constructor(private areaDbService: AreaDbService, private route: ActivatedRoute) {
     this.area = new Area();
   }
 
   ngOnInit() {
+    const parentId: String = this.route.snapshot.paramMap.get('parentid');
+    if (parentId) {
+      this.area.parentId = +parentId;
+      this.areaDbService.getParentNames(this.area).then((names: String[]) => this.parentNames = names);
+    }
   }
 
   /**

@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'area/add',
     component: AddAreaPage,
   },
+  {
+    path: 'area/add/:parentid',
+    component: AddAreaPage,
+  },
 ];
 
 @NgModule({
