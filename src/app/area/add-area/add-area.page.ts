@@ -1,4 +1,4 @@
-import { Area } from '../../model/area';
+import { Area, Type } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +15,7 @@ export class AddAreaPage implements OnInit {
 
   constructor(private areaDbService: AreaDbService, private route: ActivatedRoute) {
     this.area = new Area();
+    this.area.type = new Type();
   }
 
   ngOnInit() {
@@ -29,7 +30,10 @@ export class AddAreaPage implements OnInit {
    * Submit the new area to the database
    */
   submit() {
-    this.areaDbService.addArea(this.area);
+    this.areaDbService.addType(this.area.type).then((type: Type) => {
+      this.area.type = type;
+      this.areaDbService.addArea(this.area);
+    });
   }
 
 }

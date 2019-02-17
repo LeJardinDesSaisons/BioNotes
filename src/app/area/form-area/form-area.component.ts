@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AreaDbService } from '../area-db.service';
-import { Area } from '../../model/area';
+import { Area, Type } from '../../model/area';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ export class FormAreaComponent implements OnInit {
 
   @Input() area: Area;
 
-  private areaTypes: String[];
+  private areaTypes: Type[];
   private isNameModifiedByUser: boolean;
 
   constructor(private areaDbService: AreaDbService, private formBuilder: FormBuilder) { }
@@ -20,17 +20,17 @@ export class FormAreaComponent implements OnInit {
   ngOnInit() {
     this.isNameModifiedByUser = false;
 
-    this.areaDbService.getAreaTypes().then((areas) => this.areaTypes = areas);
+    this.areaDbService.getTypes().then((types) => this.areaTypes = types);
   }
 
   /**
    * Update the name field based on the type and area number
    */
   updateName() {
-    if ((!this.isNameModifiedByUser) && this.area.type
+    if ((!this.isNameModifiedByUser) && this.area.type.name
                                      && this.area.number !== undefined
                                      && this.area.number !== null) {
-      this.area.name = `${this.area.type} ${this.area.number}`;
+      this.area.name = `${this.area.type.name} ${this.area.number}`;
     }
   }
 

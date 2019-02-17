@@ -1,3 +1,4 @@
+import { Type } from './../model/area';
 import { Injectable } from '@angular/core';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
@@ -19,6 +20,11 @@ export class AreaDbService {
         this.storage.set('area', []);
       }
     });
+    this.storage.get('type').then((types) => {
+      if (types === null) {
+        this.storage.set('type', []);
+      }
+    });
   }
 
   /**
@@ -29,11 +35,10 @@ export class AreaDbService {
   }
 
   /**
-   * Get every type of area currently in Storage
+   * Get every type of area stored
    */
-  async getAreaTypes(): Promise<String[]> {
-    const areas = await this.storage.get('area');
-    return areas.map((area: Area) => area.type);
+  async getTypes(): Promise<Type[]> {
+    return this.storage.get('type');
   }
 
   /**
@@ -65,11 +70,28 @@ export class AreaDbService {
   }
 
   /**
+   * Add a type to the Storage if it does not exist and retrieve its ID
+   * @param typeName the name of the type to add
+   */
+  async addType(type: Type) {
+    const types: Type[] = await this.storage.get('type');
+    const typeInStorage = types.filter((currType: Type) => currType.name === type.name)[0];
+    if (typeInStorage) {
+      return typeInStorage;
+    } else {
+      type.id = types.length + 1;
+      types.push(type);
+      this.storage.set('type', types);
+      return type;
+    }
+  }
+
+  /**
    * Add an area to the Storage
    * @param area the area to add
    */
   addArea(area: Area) {
-    this.storage.get('area').then((areas) => {
+    this.storage.get('area').then((areas: Area[]) => {
       area.id = areas.length + 1;
       areas.push(area);
       this.storage.set('area', areas);

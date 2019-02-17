@@ -13,5 +13,6 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {
     this.areaDbService.getAreas().then(areas => console.log(areas));
+    this.areaDbService.getTypes().then(types => console.log(types));
   }
 }

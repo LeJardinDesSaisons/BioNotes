@@ -1,7 +1,12 @@
 export class Area {
     id: Number;
     number: Number;
-    type: String;
+    type: Type;
     name: String;
     parentId: Number | null;
+}
+
+export class Type {
+    id: Number;
+    name: String;
 }
