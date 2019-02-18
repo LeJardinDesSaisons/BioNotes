@@ -5,7 +5,7 @@
         </ion-buttons>
     <ion-title>areas-arborescence</ion-title>
         <ion-buttons slot="end">
-          <ion-button  (clic)="clicValid()">
+          <ion-button  (clic)="clicValid()" size="large">
               <ion-icon name="more"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -17,16 +17,21 @@
   <ion-list>
   <!--example of a mockup clickable card-->
     <ion-card>
-      <ion-item href="#" class="areaList">
+      <ion-item href="#" class="arealist">
         <ion-card-header>
           <ion-card-title>parcelle1</ion-card-title>
         </ion-card-header>
         <!--add a clicable button-->
-        <ion-button href='##' (click)="clicValid()" slot="end" class="listeButtons">
+        <ion-button href='##' (click)="clicValid()" slot="end" class="listebuttons">
             <ion-icon name="more"></ion-icon>
         </ion-button>
       </ion-item>
-      
     </ion-card>
-  </ion-list>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button [routerLink]="['/tabs/tab2/area/add']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

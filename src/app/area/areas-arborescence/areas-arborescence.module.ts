@@ -10,7 +10,7 @@ import { AreasArborescencePage } from './areas-arborescence.page';
 
 const routes: Routes = [
   {
-    path: 'area/areas-arborescence',
+    path: 'area/list',
     component: AreasArborescencePage
   }
 ];
