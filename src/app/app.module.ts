@@ -10,16 +10,22 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+// Angular Material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
     AppRoutingModule,
-    IonicStorageModule.forRoot(),
+    BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,

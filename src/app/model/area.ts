@@ -6,7 +6,12 @@ export class Area {
     parentId: Number | null;
 }
 
-export class Type {
+export interface AutoSuggested {
+    id: Number;
+    name: String;
+}
+
+export class Type implements AutoSuggested {
     id: Number;
     name: String;
 }

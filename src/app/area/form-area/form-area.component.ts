@@ -34,4 +34,8 @@ export class FormAreaComponent implements OnInit {
     }
   }
 
+  choosenOptionChanged(value: String) {
+    this.area.type.name = value;
+    this.updateName();
+  }
 }
