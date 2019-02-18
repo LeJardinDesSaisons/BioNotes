@@ -2,6 +2,7 @@ import { Area, Type } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-add-area',
@@ -13,7 +14,7 @@ export class AddAreaPage implements OnInit {
   private area: Area;
   private parentNames: String[];
 
-  constructor(private areaDbService: AreaDbService, private route: ActivatedRoute) {
+  constructor(private areaDbService: AreaDbService, private route: ActivatedRoute, private location: Location) {
     this.area = new Area();
     this.area.type = new Type();
   }
@@ -30,10 +31,13 @@ export class AddAreaPage implements OnInit {
    * Submit the new area to the database
    */
   submit() {
-    this.areaDbService.addType(this.area.type).then((type: Type) => {
-      this.area.type = type;
-      this.areaDbService.addArea(this.area);
-    });
+    if (this.area.name) {
+      this.areaDbService.addType(this.area.type).then((type: Type) => {
+        this.area.type = type;
+        this.areaDbService.addArea(this.area);
+        this.location.back();
+      });
+    }
   }
 
 }
