@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { AutoSuggested } from '../../model/area';
 
 /**
  * @title Display value autocomplete
@@ -13,36 +12,28 @@ import { AutoSuggested } from '../../model/area';
   styleUrls: ['./autocomplete-bar.component.scss']
 })
 export class AutocompleteBarComponent implements OnInit {
-  @Output() choosenOptionChanged = new EventEmitter<AutoSuggested>();
-  @Input() suggestions: AutoSuggested;
-
-  choosenOption: AutoSuggested;
+  @Output() choosenOptionChanged = new EventEmitter<string>();
+  @Input() suggestions: string[];
 
   myControl = new FormControl();
-  options: AutoSuggested[] = [
-    {id: 1, name: 'Jardin'},
-    {id: 2, name: 'Plant'},
-    {id: 3, name: 'Serre'}
-  ];
-  filteredOptions: Observable<AutoSuggested[]>;
+  choosenOption: string;
+  filteredOptions: Observable<string[]>;
 
   ngOnInit() {
+    if (this.suggestions === undefined) {
+      this.suggestions = [];
+    }
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
-        startWith<string | AutoSuggested>(''),
-        map(value => typeof value === 'string' ? value : value.name),
-        map(name => name ? this._filter(name) : this.options.slice())
+        startWith(''),
+        map(value => this._filter(value))
       );
   }
 
-  displayFn(item?: AutoSuggested): String | undefined {
-    return item ? item.name : undefined;
-  }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
 
-  private _filter(name: String): AutoSuggested[] {
-    const filterValue = name.toLowerCase();
-
-    return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.suggestions.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   onChange() {
