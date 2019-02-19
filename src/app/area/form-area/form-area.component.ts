@@ -12,10 +12,10 @@ export class FormAreaComponent implements OnInit {
 
   @Input() area: Area;
 
-  private areaTypes: Type[];
-  private isNameModifiedByUser: boolean;
+  areaTypes: Type[];
+  isNameModifiedByUser: boolean;
 
-  constructor(private areaDbService: AreaDbService, private formBuilder: FormBuilder) { }
+  constructor(private areaDbService: AreaDbService) { }
 
   ngOnInit() {
     this.isNameModifiedByUser = false;
