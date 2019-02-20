@@ -1,0 +1,18 @@
+ //--------Arborescence des espaces--------\\
+
+  //ion-item 
+  .arealist{
+    --background:var(--ion-color-tertiary);
+    --highlight-height:2px; 
+    --inner-border-width:0px;
+  }
+
+  //bouton : des choix dans areas arboresence
+  .listebuttons{
+    --background:var(--ion-color-tertiary);
+    --box-shadow:unset;
+    font-size:14px;
+    --color:var(--ion-color-tertiary-contrast);
+    margin-inline-end:-16px;
+    height:40px;    
+  }

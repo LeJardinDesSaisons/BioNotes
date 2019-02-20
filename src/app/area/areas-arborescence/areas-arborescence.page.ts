@@ -10,6 +10,7 @@ export class AreasArborescencePage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
