@@ -6,16 +6,20 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
+import { AreaDbService } from './area/area-db.service';
 
 describe('AppComponent', () => {
 
   let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
+  let dbServiceSpy;
 
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+
+    dbServiceSpy = jasmine.createSpyObj('AreaDbService', ['initAreas']);
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -24,6 +28,7 @@ describe('AppComponent', () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
+        { provide: AreaDbService, useValue: dbServiceSpy },
       ],
     }).compileComponents();
   }));
@@ -42,6 +47,9 @@ describe('AppComponent', () => {
     expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 
-  // TODO: add more tests!
-
+  it('should initialize the area related keys', async () => {
+    TestBed.createComponent(AppComponent);
+    await platformReadySpy;
+    expect(dbServiceSpy.initAreas).toHaveBeenCalled();
+  });
 });
