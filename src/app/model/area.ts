@@ -1,7 +1,12 @@
-export interface Area {
+export class Area {
     id: Number;
     number: Number;
-    type: String;
+    type: Type;
     name: String;
-    parent: Area | null;
+    parentId: Number | null;
+}
+
+export class Type {
+    id: Number;
+    name: String;
 }
