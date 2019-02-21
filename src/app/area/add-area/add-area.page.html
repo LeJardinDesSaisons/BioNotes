@@ -16,7 +16,7 @@
   <form-area [area]="area"></form-area>
   <div class="helper-text" *ngIf="area.name">
     <p>L'espace suivant va être ajouté :</p>
-    <p id="path">
+    <p>
       <span *ngIf="parentNames">
         <span *ngFor="let name of parentNames">
           {{ name }} <span class="right-arrow">></span>

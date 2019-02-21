@@ -1,6 +1,5 @@
 import { AddAreaPage } from './add-area.po';
-import { browser, by , element } from 'protractor';
-
+import { browser, Key } from 'protractor';
 
 describe ('add-area view', function() {
     let page: AddAreaPage;
@@ -9,6 +8,10 @@ describe ('add-area view', function() {
         page = new AddAreaPage();
     });
 
+    /* test if the form returns the path
+    * with how input works
+    * we can't check what is inside of it
+    */
     it('should return the path', () => {
         page.navigateTo();
 
@@ -16,8 +19,7 @@ describe ('add-area view', function() {
 
         page.fillNumber();
 
-        expect(page.getResult()).toContain('Jardin 1');
+        expect(page.getResult()).toContain('L\'espace suivant va être ajouté :\nJardin 1');
       });
-
 
 });
