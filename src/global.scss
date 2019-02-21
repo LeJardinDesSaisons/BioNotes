@@ -9,3 +9,62 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+/** ---------------------Mat-form-field--------------------- */
+// Wrapper
+.mat-form-field-wrapper {
+    bottom: -16px;
+}
+// Underline
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: var(--ion-color-secondary);
+}
+
+// Underline when field is focused
+.mat-form-field-ripple {
+    background-color: var(--ion-color-danger);
+    transition: 0 !important;
+}
+
+// Underline when field is focused / content is valid
+.mat-form-field.mat-focused:not(.mat-form-field-invalid) .mat-form-field-ripple {
+    background-color: var(--ion-color-success);
+}
+
+// Underline when field is not focused / content is invalid
+.mat-form-field-appearance-legacy.mat-form-field-invalid:not(.mat-focused) .mat-form-field-ripple {
+    height: 2px !important;
+}
+
+// Text
+.mat-input-element {
+    caret-color: black;
+}
+
+// Text when content is invalid
+.mat-form-field-invalid .mat-input-element {
+    caret-color: black;
+}
+
+// Placeholder
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: black;
+}
+
+// Placeholder when field is focused
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: black;
+}
+
+// Placeholder when field is focused / content is invalid
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+    color: black;
+}
+
+
+
+/** ---------------------ion-item--------------------- */
+.item .item-inner {
+    padding-left: 0px;
+}
+
