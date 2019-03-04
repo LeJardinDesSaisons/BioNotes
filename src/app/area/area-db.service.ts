@@ -2,6 +2,7 @@ import { Type } from './../model/area';
 import { Injectable } from '@angular/core';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
+import * as data from '../../assets/testDb.json';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,43 @@ export class AreaDbService {
         this.storage.set('type', []);
       }
     });
+      // this.putInit();
+    
+  }
+
+  async putInit() {
+    for (const t in data.Types) {
+      if (data.Types[t]) {
+        const type = new Type();
+        type.name = data.Types[t].name;
+        // this.addType(type);
+        // console.log('type ' + type.name);
+      }
+    }
+
+    console.log('type');
+    const listType: Type[] = await this.storage.get('type');
+    listType.forEach((value: Type, index: Number, array: Type[]) =>
+    console.log(value)
+    );
+    
+
+    for (const a in data.Areas) {
+      if (data.Areas[a]) {
+        const area = new Area();
+        area.name = data.Areas[a].name;
+        area.number = data.Areas[a].number;
+        // console.log(area);
+        // this.addArea(area);
+      }
+    }
+    console.log('areas');
+    // const listArea: Area[] = await this.storage.get('area');
+    let listArea: Area[];
+    this.getAreas().then( (areas: Area[]) => listArea = areas );
+    listArea.forEach((value: Area, Index: number, array: Area[])=>
+    console.log(value)
+    );
   }
 
   /**
@@ -48,6 +86,15 @@ export class AreaDbService {
   async getAreaById(id: Number): Promise<Area> {
     const areas = await this.storage.get('area');
     return areas.filter((area: Area) => area.id === id)[0];
+  }
+
+  /**
+   * Get every childs of an area
+   * @param id
+   */
+  async getChildAreaById(id: number): Promise <Area[]> {
+    const areas = await this.storage.get('area');
+    return areas.filter((currArea: Area) => currArea.parentId = id );
   }
 
   /**
@@ -97,5 +144,6 @@ export class AreaDbService {
       this.storage.set('area', areas);
     });
   }
+
 
 }

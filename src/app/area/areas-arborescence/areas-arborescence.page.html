@@ -2,35 +2,50 @@
   <ion-toolbar>
       <ion-buttons slot="start">
           <ion-back-button defaultHref=""></ion-back-button>
-        </ion-buttons>
-      <!-- <ion-title>title</ion-title> -->
-      <ion-title>{{ parentid }}</ion-title>
-        <ion-buttons slot="end">
-          <ion-button  (clic)="clicValid()" size="large">
-              <ion-icon name="more"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+      </ion-buttons>
+
+      <ng-container *ngIf="area; else noArea">
+          <ion-title>{{ area.id }}</ion-title>
+      </ng-container>
+      <ng-template #noArea>
+        <ion-title>{{ title }}</ion-title>
+      </ng-template>
+      
+      
+      <ion-buttons slot="end">
+        <ion-button  (clic)="clicValid()" size="large">
+            <ion-icon name="more"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <div *ngFor="let item of areas">
-      <ion-card>
-        <ion-item [routerLink]="'tab2/area/list/' +  item.id " [routerDirection]="forward" class="arealist">
-          <ion-card-header>
-            <ion-card-title>{{item.id}}</ion-card-title>
-          </ion-card-header> 
-          <!-- add a clicable button -->
-           <ion-button href='##' (click)="clicValid()" slot="end" class="listebuttons">
-              <ion-icon name="more"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-card>
-    </div>
-  </ion-list>
-
   
+    <!-- need ng if for check null areas and add message -->
+    <ng-container *ngIf="areas; else elseTemplate">
+      <ion-list>
+        <div *ngFor="let item of areas">
+        <ion-card>
+          <ion-item [routerLink]="'tab2/area/list/' +  item.id " [routerDirection]="forward" class="arealist">
+            <ion-card-header>
+              <ion-card-title>{{item.id}}</ion-card-title>
+            </ion-card-header> 
+            <!-- add a clicable button -->
+             <ion-button href='##' (click)="clicValid()" slot="end" class="listebuttons">
+                <ion-icon name="more"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-card>
+      </div>
+    </ion-list>
+    </ng-container>
+
+    <ng-template #elseTemplate>
+      <p>pas trouvé</p>
+    </ng-template>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button [routerLink]="['/tabs/tab2/area/add']">
       <ion-icon name="add"></ion-icon>

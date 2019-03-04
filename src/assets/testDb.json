@@ -1,0 +1,18 @@
+{
+    "Areas":[
+        {
+            "number":1,
+            "name":"Jardin 1"
+        },
+        {
+            "number":2,
+            "name":"Jardin 2"
+        }
+
+    ],
+    "Types":[
+        {
+            "name":"Jardin"
+        }
+    ]
+}
