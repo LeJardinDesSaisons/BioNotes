@@ -12,22 +12,17 @@ export class Operation {
 
 export class Label {
     id: Number;
-    label: String;
+    name: String;
 }
 
 export class Vegetable {
     id: Number;
-    variety: String;
+    variety: String; //variété
     category: Category;
-    name: VegetableName;
+    name: String; //nom spécifique de la variété
 }
 
 export class Category {
-    id: Number;
-    name: String;
-}
-
-export class VegetableName {
     id: Number;
     name: String;
 }
