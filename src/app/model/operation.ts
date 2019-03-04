@@ -1,4 +1,5 @@
 import { Area } from './area';
+import { Vegetable } from './vegetable';
 import { NAMED_ENTITIES } from '@angular/compiler';
 
 export class Operation {
@@ -15,15 +16,5 @@ export class Label {
     name: String;
 }
 
-export class Vegetable {
-    id: Number;
-    variety: String; //variété
-    category: Category;
-    name: String; //nom spécifique de la variété
-}
 
-export class Category {
-    id: Number;
-    name: String;
-}
 

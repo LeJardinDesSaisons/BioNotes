@@ -1,4 +1,5 @@
 import { OperationDbService } from './operations-db.service';
+import { Area } from '../model/area';
 import { async, fakeAsync, tick } from '@angular/core/testing';
 
 describe('OperationDbService', () => {
@@ -30,10 +31,42 @@ describe('OperationDbService', () => {
   ];
 
   const vegetables: any[] = [
-    {id: 1, variety: 'Courge Butternut', category: categories[4].name, name: 'Waltham'}, //butternut
-    {id: 2, variety: 'Chicorée Frisée', category: categories[6].name, name: 'Wallone'}, //chicorée frisée
-    {id: 3, variety: 'Laitue', category: categories[6].name, name: 'Batavia'}, //laitue
+    {id: 1, variety: 'Courge Butternut', category: categories[4].name, name: 'Waltham'},
+    {id: 2, variety: 'Chicorée Frisée', category: categories[6].name, name: 'Wallone'},
+    {id: 3, variety: 'Laitue', category: categories[6].name, name: 'Batavia'},
     {id: 4, variety: 'Ail', category: categories[2].name, name: 'Blanc'}
   ];
+
+  const operations: any[] = [
+    {id: 1, date: '2019-03-13', label: labels[0].name, vegetable: vegetables[0].variety, area: areas[2].name},
+    {id: 2, date: '2019-03-15', label: labels[1].name, vegetable: vegetables[1].variety, area: areas[2].name},
+    {id: 3, date: '2019-03-20', label: labels[2].name, vegetable: vegetables[2].variety, area: areas[2].name},
+    {id: 4, date: '2019-03-25', label: labels[3].name, vegetable: vegetables[3].variety, area: areas[2].name}
+  ];
+
+  beforeEach(() => {
+    const storageSpy = jasmine.createSpyObj('Storage', ['get', 'set']);
+    getStub = storageSpy.get;
+    setStub = storageSpy.set;
+    service = new OperationDbService(storageSpy);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should initialize an empty operation', fakeAsync(() => {
+    getStub = getStub.and.returnValue(Promise.resolve(null));
+    service.initOperations();
+    tick();
+    expect(setStub).toHaveBeenCalledTimes(5);
+  }));
+
+  it('should not initialize an empty operation', fakeAsync(() => {
+    getStub = getStub.and.returnValue(Promise.resolve(operations));
+    service.initOperations();
+    tick();
+    expect(setStub).not.toHaveBeenCalled();
+  }));
 
 });

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Operation, Label, Vegetable, Category } from '../model/operations';
+import { Operation, Label} from '../model/operation';
+import { Vegetable, Category } from '../model/vegetable';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
 
