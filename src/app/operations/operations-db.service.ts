@@ -43,6 +43,7 @@ export class OperationDbService {
     });
   }
 
+
   /**
   * Get every operation stored
   */
@@ -67,6 +68,12 @@ export class OperationDbService {
   async getCategories(): Promise<Category[]> {
     return this.storage.get('category');
   }
+  /**
+  * Get every area stored
+  */
+  async getAreas(): Promise<Area[]> {
+    return this.storage.get('area');
+  }
 
   /**
    * Get an operation by its id
@@ -76,6 +83,5 @@ export class OperationDbService {
     const operations = await this.storage.get('operation');
     return operations.filter((operation: Operation) => operation.id === id)[0];
   }
-
 
 }
