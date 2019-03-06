@@ -4,6 +4,18 @@ import { Vegetable, Category } from '../model/vegetable';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
 
+
+//pas réussi à exporter depuis spec
+const defaultcategories: Category[] = [
+  {id: 1, name: 'Solanacée'},
+  {id: 2, name: 'Brassicacée'},
+  {id: 3, name: 'Alliacée'},
+  {id: 4, name: 'Apiacée'},
+  {id: 5, name: 'Curcubitacée'},
+  {id: 6, name: 'Crucifère'},
+  {id: 7, name: 'Astéracées'}
+];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,16 +45,11 @@ export class OperationDbService {
     });
     this.storage.get('category').then((categories) => {
       if (categories === null) {
-        this.storage.set('category', []);
+        this.storage.set('category', defaultcategories);
       }
     });
-    this.storage.get('area').then((areas) => {
-      if (areas === null) {
-        this.storage.set('area', []);
-      }
-    });
-  }
 
+  }
 
   /**
   * Get every operation stored

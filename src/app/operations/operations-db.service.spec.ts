@@ -1,6 +1,8 @@
 import { OperationDbService } from './operations-db.service';
-import { Area } from '../model/area';
 import { async, fakeAsync, tick } from '@angular/core/testing';
+import { Category, Vegetable } from '../model/vegetable';
+import { Label, Operation } from '../model/operation';
+
 
 describe('OperationDbService', () => {
 
@@ -13,14 +15,14 @@ describe('OperationDbService', () => {
     {id: 3, name: 'Jardin 1', parentId: 2},
   ];
 
-  const labels: any[] = [
+  const labels: Label[] = [
     {id: 1, name: 'Amendement'},
     {id: 2, name: 'Semis'},
     {id: 3, name: 'Désherbage'},
     {id: 4, name: 'Récolte'}
   ];
 
-  const categories: any[] = [
+  const defaultcategories: Category[] = [
     {id: 1, name: 'Solanacée'},
     {id: 2, name: 'Brassicacée'},
     {id: 3, name: 'Alliacée'},
@@ -30,18 +32,18 @@ describe('OperationDbService', () => {
     {id: 7, name: 'Astéracées'}
   ];
 
-  const vegetables: any[] = [
-    {id: 1, variety: 'Courge Butternut', category: categories[4].name, name: 'Waltham'},
-    {id: 2, variety: 'Chicorée Frisée', category: categories[6].name, name: 'Wallone'},
-    {id: 3, variety: 'Laitue', category: categories[6].name, name: 'Batavia'},
-    {id: 4, variety: 'Ail', category: categories[2].name, name: 'Blanc'}
+  const vegetables: Vegetable[] = [
+    {id: 1, variety: 'Courge Butternut', category: defaultcategories[4], name: 'Waltham'},
+    {id: 2, variety: 'Chicorée Frisée', category: defaultcategories[6], name: 'Wallone'},
+    {id: 3, variety: 'Laitue', category: defaultcategories[6], name: 'Batavia'},
+    {id: 4, variety: 'Ail', category: defaultcategories[2], name: 'Blanc'}
   ];
 
-  const operations: any[] = [
-    {id: 1, date: '2019-03-13', label: labels[0].name, vegetable: vegetables[0].variety, area: areas[2].name},
-    {id: 2, date: '2019-03-15', label: labels[1].name, vegetable: vegetables[1].variety, area: areas[2].name},
-    {id: 3, date: '2019-03-20', label: labels[2].name, vegetable: vegetables[2].variety, area: areas[2].name},
-    {id: 4, date: '2019-03-25', label: labels[3].name, vegetable: vegetables[3].variety, area: areas[2].name}
+  const operations: Operation[] = [
+    {id: 1, date: 20190313, label: labels[0], vegetable: vegetables[0], area: areas[2].name, observations: ''},
+    {id: 2, date: 20190315, label: labels[1], vegetable: vegetables[1], area: areas[2].name, observations: ''},
+    {id: 3, date: 20190320, label: labels[2], vegetable: vegetables[2], area: areas[2].name, observations: ''},
+    {id: 4, date: 20190325, label: labels[3], vegetable: vegetables[3], area: areas[2].name, observations: ''}
   ];
 
   beforeEach(() => {
@@ -59,7 +61,7 @@ describe('OperationDbService', () => {
     getStub = getStub.and.returnValue(Promise.resolve(null));
     service.initOperations();
     tick();
-    expect(setStub).toHaveBeenCalledTimes(5);
+    expect(setStub).toHaveBeenCalledTimes(4);
   }));
 
   it('should not initialize an empty operation', fakeAsync(() => {
