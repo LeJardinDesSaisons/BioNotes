@@ -1,18 +1,26 @@
 {
     "Areas":[
         {
+            "id": 1,
             "number":1,
-            "name":"Jardin 1"
+            "name":"JardinT 1"
         },
         {
+            "id":2 ,
             "number":2,
-            "name":"Jardin 2"
+            "name":"JardinT 2"
+        },
+        {
+            "id": 3,
+            "number": 3,
+            "name": "SJardinT 1",
+            "parentId": 1
         }
 
     ],
     "Types":[
         {
-            "name":"Jardin"
+            "name":"JardinT"
         }
     ]
 }

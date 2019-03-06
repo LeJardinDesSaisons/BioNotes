@@ -19,51 +19,25 @@ export class AreaDbService {
     this.storage.get('area').then((areas) => {
       if (areas === null) {
         this.storage.set('area', []);
-      }
+        this.initTestArea();
+      } 
     });
     this.storage.get('type').then((types) => {
       if (types === null) {
         this.storage.set('type', []);
+          this.initTestType();
       }
     });
-      // this.putInit();
-    
   }
 
-  async putInit() {
-    for (const t in data.Types) {
-      if (data.Types[t]) {
-        const type = new Type();
-        type.name = data.Types[t].name;
-        // this.addType(type);
-        // console.log('type ' + type.name);
-      }
-    }
-
-    console.log('type');
-    const listType: Type[] = await this.storage.get('type');
-    listType.forEach((value: Type, index: Number, array: Type[]) =>
-    console.log(value)
-    );
-    
-
-    for (const a in data.Areas) {
-      if (data.Areas[a]) {
-        const area = new Area();
-        area.name = data.Areas[a].name;
-        area.number = data.Areas[a].number;
-        // console.log(area);
-        // this.addArea(area);
-      }
-    }
-    console.log('areas');
-    // const listArea: Area[] = await this.storage.get('area');
-    let listArea: Area[];
-    this.getAreas().then( (areas: Area[]) => listArea = areas );
-    listArea.forEach((value: Area, Index: number, array: Area[])=>
-    console.log(value)
-    );
+  async initTestType() {
+    this.storage.set('type', data.Types);
   }
+
+  async initTestArea(){
+    this.storage.set('area', data.Areas);
+  }
+
 
   /**
    * Get every area stored
@@ -94,7 +68,15 @@ export class AreaDbService {
    */
   async getChildAreaById(id: number): Promise <Area[]> {
     const areas = await this.storage.get('area');
-    return areas.filter((currArea: Area) => currArea.parentId = id );
+    return areas.filter((currArea: Area) => currArea.parentId === id );
+  }
+
+  /**
+   * Get areas without parent
+   */
+  async getRootArea(): Promise <Area[]> {
+    const areas = await this.storage.get('area');
+    return areas.filter( (currArea: Area) => !currArea.parentId );
   }
 
   /**

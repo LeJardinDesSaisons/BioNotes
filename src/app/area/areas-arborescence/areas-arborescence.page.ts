@@ -14,10 +14,6 @@ export class AreasArborescencePage implements OnInit {
   childAreas: Area[] ;
   area: Area ;
   title: String = 'Arborescence';
-  // mock version
-  // private list = [ 'Parcelle1' , 'Parcelle2' ];
-  // private list: Array<{ id: string }> = [];
-  // myParcel = this.list[0];
 
   /**
    * 
@@ -34,13 +30,7 @@ export class AreasArborescencePage implements OnInit {
       this.areaDBService.getChildAreaById(+parentId).then( (areas: Area[]) => this.childAreas);
     } else {
       console.log('no parentId');
-      this.areaDBService.getAreas().then((areas: Area[] ) => this.childAreas = areas);
-      if(this.childAreas){
-        console.log('childArea not null');
-      }
-      else{
-        console.log('childArea  null');
-      }
+      this.areaDBService.getRootArea().then( (areas: Area[] ) => this.childAreas = areas);
     }
   }
 

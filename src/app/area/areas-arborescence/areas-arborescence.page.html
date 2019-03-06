@@ -24,11 +24,11 @@
 <ion-content padding>
   
     <!-- need ng if for check null areas and add message -->
-    <ng-container *ngIf="areas; else elseTemplate">
+    <ng-container *ngIf="childAreas; else elseTemplate">
       <ion-list>
-        <div *ngFor="let item of areas">
+        <div *ngFor="let item of childAreas">
         <ion-card>
-          <ion-item [routerLink]="'tab2/area/list/' +  item.id " [routerDirection]="forward" class="arealist">
+          <ion-item [routerLink]="'tab2/area/list/' + item.id " [routerDirection]="forward" class="arealist">
             <ion-card-header>
               <ion-card-title>{{item.id}}</ion-card-title>
             </ion-card-header> 
