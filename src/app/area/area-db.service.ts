@@ -47,7 +47,7 @@ export class AreaDbService {
    */
   async getAreaById(id: Number): Promise<Area> {
     const areas = await this.storage.get('area');
-    return areas.filter((area: Area) => area.id = id)[0];
+    return areas.filter((area: Area) => area.id === id)[0];
   }
 
   /**

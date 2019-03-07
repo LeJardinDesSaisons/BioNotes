@@ -1,2 +1,2 @@
 # BioNotes
-Application mobile permettant le suivi d'un jardin maraîcher
+Mobile application for monitoring a market garden

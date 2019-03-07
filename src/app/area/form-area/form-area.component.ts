@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AreaDbService } from '../area-db.service';
-import { Area, Type } from '../../model/area';
-import { FormBuilder } from '@angular/forms';
+import { Area } from '../../model/area';
 
 @Component({
   selector: 'form-area',
@@ -15,7 +14,7 @@ export class FormAreaComponent implements OnInit {
   areaTypes: String[];
   isNameModifiedByUser: boolean;
 
-  constructor(private areaDbService: AreaDbService, private formBuilder: FormBuilder) { }
+  constructor(private areaDbService: AreaDbService) { }
 
   ngOnInit() {
     this.isNameModifiedByUser = false;

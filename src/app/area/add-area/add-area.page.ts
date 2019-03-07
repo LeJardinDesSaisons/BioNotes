@@ -11,8 +11,8 @@ import { Location } from '@angular/common';
 })
 export class AddAreaPage implements OnInit {
 
-  private area: Area;
-  private parentNames: String[];
+  area: Area;
+  parentNames: String[];
 
   constructor(private areaDbService: AreaDbService, private route: ActivatedRoute, private location: Location) {
     this.area = new Area();
