@@ -15,7 +15,7 @@ const routes: Routes = [
     component: AreasArborescencePage
   },
   {
-    path: 'area/list/:parentId',
+    path: 'area/list/:parentid',
     component: AreasArborescencePage
   }
 ];

@@ -30,11 +30,11 @@ export class AreaDbService {
     });
   }
 
-  async initTestType() {
+  initTestType() {
     this.storage.set('type', data.Types);
   }
 
-  async initTestArea(){
+  initTestArea(){
     this.storage.set('area', data.Areas);
   }
 

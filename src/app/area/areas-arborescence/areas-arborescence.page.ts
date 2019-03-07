@@ -10,10 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AreasArborescencePage implements OnInit {
 
-  @Input() parentid: Number;
   childAreas: Area[] ;
   area: Area ;
   title: String = 'Arborescence';
+  parentId: String;
 
   /**
    * 
@@ -23,11 +23,11 @@ export class AreasArborescencePage implements OnInit {
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    const parentId: String = this.route.snapshot.paramMap.get('parentid');
-    if (parentId) {
+    this.parentId = this.route.snapshot.paramMap.get('parentid');
+    if (this.parentId) {
       // get child of the area
-      this.areaDBService.getAreaById(+parentId).then((area: Area) => this.area = area);
-      this.areaDBService.getChildAreaById(+parentId).then( (areas: Area[]) => this.childAreas);
+      this.areaDBService.getAreaById(+this.parentId).then((area: Area) => this.area = area);
+      this.areaDBService.getChildAreaById(+this.parentId).then( (areas: Area[]) => this.childAreas = areas);
     } else {
       console.log('no parentId');
       this.areaDBService.getRootArea().then( (areas: Area[] ) => this.childAreas = areas);
