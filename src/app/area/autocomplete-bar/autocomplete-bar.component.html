@@ -1,10 +1,10 @@
-<form #suggForm="ngForm" class="suggestion-form">
+<form class="suggestion-form">
   <mat-form-field class="suggestion-full-width" [hideRequiredMarker]="true">
-    <input class="testing-suginput" type="text" placeholder="Type" aria-label="Type" required
-    [(ngModel)]="choosenOption" (ngModelChange)="onChange($event)"
-    matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <input type="text" placeholder="Type" aria-label="Type" required
+    [(ngModel)]="fieldContent" name="fieldContent" (ngModelChange)="modelChanged()"
+    matInput [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      <mat-option *ngFor="let option of filteredOptions" [value]="option">
         {{ option }}
       </mat-option>
     </mat-autocomplete>

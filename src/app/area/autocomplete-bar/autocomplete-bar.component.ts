@@ -1,7 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
 
 /**
  * @title Display value autocomplete
@@ -13,30 +10,46 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class AutocompleteBarComponent implements OnInit {
   @Output() choosenOptionChanged = new EventEmitter<string>();
+
+  /**
+   * List of all possible suggestions that can be displayed below the field.
+   */
   @Input() suggestions: string[];
 
-  myControl = new FormControl();
-  choosenOption: string;
-  filteredOptions: Observable<string[]>;
+  /**
+   * Content of the field that was typed or selected by the user
+   */
+  fieldContent: string;
+  /**
+   * List of the suggestions that will be displayed below the field
+   */
+  filteredOptions: string[];
 
   ngOnInit() {
     if (this.suggestions === undefined) {
       this.suggestions = [];
     }
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
   }
 
-  private _filter(value: string): string[] {
+  /**
+   * Automatically called when the ngModel (choosenOption) changes.
+   * Updates the suggested values.
+   */
+  modelChanged() {
+    if (this.fieldContent) {
+      this.filteredOptions = this.filterOptions(this.fieldContent);
+    } else {
+      this.filteredOptions = this.suggestions;
+    }
+    this.choosenOptionChanged.emit(this.fieldContent);
+  }
+
+  /**
+   * Filters the suggestions based on the value the user typed inside the field.
+   * @param value Value that will be used to filter the list
+   */
+  filterOptions(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.suggestions.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  onChange() {
-    this.choosenOptionChanged.emit(this.choosenOption);
   }
 }
