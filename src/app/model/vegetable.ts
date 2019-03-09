@@ -3,7 +3,7 @@ import { NAMED_ENTITIES } from '@angular/compiler';
 export class Vegetable {
     id: Number;
     variety: String; //variété
-    category: Category;
+    category: Category; 
     name: String; //nom spécifique de la variété
 }
 

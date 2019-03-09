@@ -4,10 +4,10 @@ import { NAMED_ENTITIES } from '@angular/compiler';
 
 export class Operation {
     id: Number;
-    date: Number;
-    label: Label;
-    vegetable: Vegetable;
-    area: Area;
+    date: String;
+    label: Label;  
+    vegetable: Vegetable; 
+    area: Area; 
     observations: String;
 }
 

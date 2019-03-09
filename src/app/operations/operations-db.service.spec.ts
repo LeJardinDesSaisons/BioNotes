@@ -29,7 +29,7 @@ describe('OperationDbService', () => {
     {id: 4, name: 'Apiacée'},
     {id: 5, name: 'Curcubitacée'},
     {id: 6, name: 'Crucifère'},
-    {id: 7, name: 'Astéracées'}
+    {id: 7, name: 'Astéracée'}
   ];
 
   const vegetables: Vegetable[] = [
@@ -40,10 +40,10 @@ describe('OperationDbService', () => {
   ];
 
   const operations: Operation[] = [
-    {id: 1, date: 20190313, label: labels[0], vegetable: vegetables[0], area: areas[2].name, observations: ''},
-    {id: 2, date: 20190315, label: labels[1], vegetable: vegetables[1], area: areas[2].name, observations: ''},
-    {id: 3, date: 20190320, label: labels[2], vegetable: vegetables[2], area: areas[2].name, observations: ''},
-    {id: 4, date: 20190325, label: labels[3], vegetable: vegetables[3], area: areas[2].name, observations: ''}
+    {id: 1, date: '2019-03-13', label: labels[0], vegetable: vegetables[0], area: areas[2], observations: ''},
+    {id: 2, date: '2019-03-15', label: labels[1], vegetable: vegetables[1], area: areas[2], observations: ''},
+    {id: 3, date: '2019-03-20', label: labels[2], vegetable: vegetables[2], area: areas[2], observations: ''},
+    {id: 4, date: '2019-03-25', label: labels[3], vegetable: vegetables[3], area: areas[2], observations: ''}
   ];
 
   beforeEach(() => {
@@ -61,7 +61,7 @@ describe('OperationDbService', () => {
     getStub = getStub.and.returnValue(Promise.resolve(null));
     service.initOperations();
     tick();
-    expect(setStub).toHaveBeenCalledTimes(4);
+    expect(setStub).toHaveBeenCalledTimes(5);
   }));
 
   it('should not initialize an empty operation', fakeAsync(() => {

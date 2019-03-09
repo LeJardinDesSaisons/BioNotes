@@ -10,10 +10,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { PlanningComponent } from './operations/planning/planning.component';
 
 @NgModule({
-  declarations: [AppComponent, PlanningComponent],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
