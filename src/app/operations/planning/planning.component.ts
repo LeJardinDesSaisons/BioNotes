@@ -5,8 +5,6 @@ import { Operation, Label } from '../../model/operation';
 import { Vegetable, Category } from '../../model/vegetable';
 import { Area } from '../../model/area';
 import * as moment from 'moment';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-planning',
@@ -18,7 +16,6 @@ export class PlanningComponent implements OnInit {
   operation: Operation;
   operationsStored: Operation[];
   dates = new Array();
-  areaTree = new Array();
 
   constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService) {
       this.operation = new Operation();
