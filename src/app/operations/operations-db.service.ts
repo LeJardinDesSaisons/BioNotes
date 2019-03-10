@@ -38,10 +38,10 @@ const mockVegetables: Vegetable[] = [
 ];
 
 const mockOperations: Operation[] = [
-  {id: 1, date: '2019-03-13', label: mockLabels[0], vegetable: mockVegetables[0], area: mockAreas[2], observations: ''},
-  {id: 2, date: '2019-03-15', label: mockLabels[1], vegetable: mockVegetables[1], area: mockAreas[2], observations: ''},
-  {id: 3, date: '2019-03-20', label: mockLabels[2], vegetable: mockVegetables[2], area: mockAreas[2], observations: ''},
-  {id: 4, date: '2019-03-25', label: mockLabels[3], vegetable: mockVegetables[3], area: mockAreas[2], observations: ''}
+  {id: 1, date: '2019-03-10', label: mockLabels[0], vegetable: mockVegetables[0], area: mockAreas[2], observations: '', done: true},
+  {id: 2, date: '2019-03-15', label: mockLabels[1], vegetable: mockVegetables[1], area: mockAreas[2], observations: '', done: false},
+  {id: 3, date: '2019-03-20', label: mockLabels[2], vegetable: mockVegetables[2], area: mockAreas[2], observations: '', done: false},
+  {id: 4, date: '2019-03-25', label: mockLabels[3], vegetable: mockVegetables[3], area: mockAreas[2], observations: '', done: false}
 ];
 
 @Injectable({

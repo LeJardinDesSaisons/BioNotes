@@ -8,6 +8,7 @@ export class Operation {
     vegetable: Vegetable;
     area: Area;
     observations: String;
+    done: Boolean;
 }
 
 export class Label {

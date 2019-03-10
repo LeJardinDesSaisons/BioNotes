@@ -40,10 +40,10 @@ describe('OperationDbService', () => {
   ];
 
   const operations: Operation[] = [
-    {id: 1, date: '2019-03-13', label: labels[0], vegetable: vegetables[0], area: areas[2], observations: ''},
-    {id: 2, date: '2019-03-15', label: labels[1], vegetable: vegetables[1], area: areas[2], observations: ''},
-    {id: 3, date: '2019-03-20', label: labels[2], vegetable: vegetables[2], area: areas[2], observations: ''},
-    {id: 4, date: '2019-03-25', label: labels[3], vegetable: vegetables[3], area: areas[2], observations: ''}
+    {id: 1, date: '2019-03-10', label: labels[0], vegetable: vegetables[0], area: areas[2], observations: '', done: true},
+    {id: 2, date: '2019-03-15', label: labels[1], vegetable: vegetables[1], area: areas[2], observations: '', done: false},
+    {id: 3, date: '2019-03-20', label: labels[2], vegetable: vegetables[2], area: areas[2], observations: '', done: false},
+    {id: 4, date: '2019-03-25', label: labels[3], vegetable: vegetables[3], area: areas[2], observations: '', done: false}
   ];
 
   beforeEach(() => {

@@ -3,7 +3,7 @@
         <span *ngFor="let operations of operationsStored">
                 <ion-card *ngIf="date.string === operations.date">
                     <ion-card-title>{{ operations.label.name }} {{ operations.vegetable.variety }} {{ operations.vegetable.name }}</ion-card-title>
-                    <ion-card-subtitle>{{ operations.area.name}}</ion-card-subtitle>
+                    <ion-card-subtitle> {{operations.area.name}} </ion-card-subtitle>
                 </ion-card>
             </span>
     </div>
