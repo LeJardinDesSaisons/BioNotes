@@ -1,12 +1,11 @@
-<span *ngFor="let Date of dates">
-    <div><p>{{ Date }}</p>
-
+<span *ngFor="let date of dates">
+    <div><p>{{ date }}</p>
+        <span *ngFor="let operations of operationsStored">
+                <ion-card>
+                    <ion-card-title>{{ operations.label.name }} {{ operations.vegetable.variety }} {{ operations.vegetable.name }}</ion-card-title>
+                    <ion-card-subtitle>{{ operations.area.name}}</ion-card-subtitle>
+                </ion-card>
+            </span>
     </div>
 </span>
 
-<span *ngFor="let operations of operationsStored">
-        <ion-card>
-            <ion-card-title>{{ operations.label.name }} {{ operations.vegetable.variety }} {{ operations.vegetable.name }}</ion-card-title>
-            <ion-card-subtitle>{{ operations.area.name}}</ion-card-subtitle>
-        </ion-card>
-    </span>

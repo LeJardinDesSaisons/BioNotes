@@ -14,7 +14,7 @@ export class PlanningComponent implements OnInit {
 
   operation: Operation;
   operationsStored: Operation[];
-  dates: Date[];
+  dates: string[];
 
   constructor(private operationDbService: OperationDbService) {
       this.operation = new Operation();
@@ -27,7 +27,11 @@ export class PlanningComponent implements OnInit {
 
       this.operationsStored.forEach(operasto => {
         const dateString = operasto.date.toString();
-        this.dates.push(moment(dateString, "YYYY-MM-DD").toDate());
+        //const date = moment(dateString, 'YYYY-MM-DD','fr').toDate();
+       // const convertTime = moment(dateString, 'YYYY-MM-DD').format('MMMM YYYY');
+        const formatDates = moment(dateString, 'YYYY-MM-DD', 'fr').format("Do MMMM YYYY");
+        //const convertTimeObject = new Date(formatDates);
+        this.dates.push(formatDates);
       });
 
     });
