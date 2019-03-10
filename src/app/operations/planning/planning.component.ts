@@ -3,6 +3,7 @@ import { OperationDbService } from '../operations-db.service';
 import { Operation, Label } from '../../model/operation';
 import { Vegetable, Category } from '../../model/vegetable';
 import { Area } from '../../model/area';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-planning',
@@ -13,18 +14,26 @@ export class PlanningComponent implements OnInit {
 
   operation: Operation;
   operationsStored: Operation[];
-  test: 'test';
+  dates: Date[];
 
   constructor(private operationDbService: OperationDbService) {
       this.operation = new Operation();
-      this.operation.area = new Area ();
-      this.operation.label = new Label ();
-      this.operation.vegetable = new Vegetable ();
-      this.operation.vegetable.category = new Category();
    }
 
   ngOnInit() {
-    this.operationDbService.getOperations().then((operations) => this.operationsStored = operations);
+    this.operationDbService.getOperations().then((operations) => {
+      this.operationsStored = operations;
+      this.dates = [];
+
+      this.operationsStored.forEach(operasto => {
+        const dateString = operasto.date.toString();
+        this.dates.push(moment(dateString, "YYYY-MM-DD").toDate());
+      });
+
+    });
+
+
+
   }
 
 }

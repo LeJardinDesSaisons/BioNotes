@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AreaDbService } from './area/area-db.service';
+import { OperationDbService } from './operations/operations-db.service';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private areaDbService: AreaDbService,
+    private operationDbService: OperationDbService
   ) {
     this.initializeApp();
   }
@@ -25,6 +27,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.areaDbService.initAreas();
+      this.operationDbService.initMocks(); //to replace with init operations
     });
   }
 }

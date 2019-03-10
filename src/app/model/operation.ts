@@ -4,9 +4,9 @@ import { Vegetable } from './vegetable';
 export class Operation {
     id: Number;
     date: String;
-    label: Label;  
-    vegetable: Vegetable; 
-    area: Area; 
+    label: Label;
+    vegetable: Vegetable;
+    area: Area;
     observations: String;
 }
 

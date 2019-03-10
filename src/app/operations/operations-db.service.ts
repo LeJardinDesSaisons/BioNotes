@@ -157,4 +157,6 @@ export class OperationDbService {
     return operations.filter((operation: Operation) => operation.id === id)[0];
   }
 
+
+
 }
