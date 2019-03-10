@@ -14,7 +14,7 @@ export class PlanningComponent implements OnInit {
 
   operation: Operation;
   operationsStored: Operation[];
-  dates: string[];
+  dates = new Array();
 
   constructor(private operationDbService: OperationDbService) {
       this.operation = new Operation();
@@ -23,15 +23,17 @@ export class PlanningComponent implements OnInit {
   ngOnInit() {
     this.operationDbService.getOperations().then((operations) => {
       this.operationsStored = operations;
+
       this.dates = [];
 
       this.operationsStored.forEach(operasto => {
-        const dateString = operasto.date.toString();
-        //const date = moment(dateString, 'YYYY-MM-DD','fr').toDate();
-       // const convertTime = moment(dateString, 'YYYY-MM-DD').format('MMMM YYYY');
-        const formatDates = moment(dateString, 'YYYY-MM-DD', 'fr').format("Do MMMM YYYY");
-        //const convertTimeObject = new Date(formatDates);
-        this.dates.push(formatDates);
+        const dateString = operasto.date.toString(); // date into the string format
+        const formatDates = moment(dateString, 'YYYY-MM-DD', 'fr').format("Do MMMM YYYY"); // date formatted for display
+        const stockedDate = { // object that will be sent to the view
+          string: dateString,
+          format: formatDates
+        };
+        this.dates.push(stockedDate);
       });
 
     });
