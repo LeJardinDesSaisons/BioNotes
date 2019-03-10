@@ -12,19 +12,19 @@ import { Area } from '../../model/area';
 export class PlanningComponent implements OnInit {
 
   operation: Operation;
-  operationsStored : Operation[];
+  operationsStored: Operation[];
   test: 'test';
 
-  constructor(private OperationDbService: OperationDbService) {
+  constructor(private operationDbService: OperationDbService) {
       this.operation = new Operation();
       this.operation.area = new Area ();
       this.operation.label = new Label ();
       this.operation.vegetable = new Vegetable ();
-      this.operation.vegetable.category = new Category ();
+      this.operation.vegetable.category = new Category();
    }
 
   ngOnInit() {
-    this.OperationDbService.getOperations().then((operations) => this.operationsStored = operations);
+    this.operationDbService.getOperations().then((operations) => this.operationsStored = operations);
   }
 
 }

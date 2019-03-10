@@ -1,6 +1,5 @@
 import { Area } from './area';
 import { Vegetable } from './vegetable';
-import { NAMED_ENTITIES } from '@angular/compiler';
 
 export class Operation {
     id: Number;
