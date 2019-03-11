@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AreaDbService } from '../area-db.service';
-import { Area, Type } from '../../model/area';
-import { FormBuilder } from '@angular/forms';
+import { Area } from '../../model/area';
 
 @Component({
   selector: 'form-area',
@@ -12,7 +11,7 @@ export class FormAreaComponent implements OnInit {
 
   @Input() area: Area;
 
-  areaTypes: Type[];
+  areaTypes: String[];
   isNameModifiedByUser: boolean;
 
   constructor(private areaDbService: AreaDbService) { }
@@ -20,7 +19,7 @@ export class FormAreaComponent implements OnInit {
   ngOnInit() {
     this.isNameModifiedByUser = false;
 
-    this.areaDbService.getTypes().then((types) => this.areaTypes = types);
+    this.areaDbService.getTypes().then((types) => this.areaTypes = types.map(type => type.name));
   }
 
   /**
@@ -34,4 +33,12 @@ export class FormAreaComponent implements OnInit {
     }
   }
 
+  /**
+   * Updates the name of the area when its type is changed via autocompletion.
+   * @param value New type
+   */
+  choosenOptionChanged(value: String) {
+    this.area.type.name = value;
+    this.updateName();
+  }
 }

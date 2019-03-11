@@ -1,6 +1,8 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 /** Ionic CSS Variables **/
 :root {
 
@@ -89,8 +91,8 @@
   }
 
   ion-tab-button {
-    --color: var(--ion-color-primary-shade);   
-    --color-selected: var(--ion-color-secondary); 
+    --color: var(--ion-color-primary-shade);
+    --color-selected: var(--ion-color-secondary);
   }
 
   ion-toolbar {
@@ -110,10 +112,11 @@
     --color : var(--ion-color-primary-contrast);
   }
 
-  ion-item { 
+  ion-item {
     --color : var(--ion-color-primary-contrast);
     --border-color : var(--ion-color-secondary);
     --highlight-color-focused : var(--ion-color-secondary);
+    --padding-start : 0px;
   }
 
   ion-back-button {
