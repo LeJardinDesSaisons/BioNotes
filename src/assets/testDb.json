@@ -3,35 +3,31 @@
         {
             "id": 1,
             "number":1,
-            "type": [
-                {
+            "type":{
                     "id":1,
                     "name":"JardinType"
-                }
-            ],
+                },
             "name":"JardinT 1"
 
         },
         {
             "id":2 ,
             "number":2,
-            "type": [
-                {
+            "type":{
                     "id":1,
                     "name":"JardinType"
                 }
-            ],
+            ,
             "name":"JardinT 2"
         },
         {
             "id": 3,
             "number": 3,
-            "type": [
-                {
+            "type":{
                     "id":1,
                     "name":"JardinType"
                 }
-            ],
+            ,
             "name": "SJardinT 1",
             "parentId": 1
         }

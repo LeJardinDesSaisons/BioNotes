@@ -16,7 +16,7 @@ export class AreasArborescencePage implements OnInit {
   parentId: String;
 
   /**
-   * 
+   *
    * @param areaDBService : the service
    * @param route
    */

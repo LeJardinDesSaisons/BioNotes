@@ -1,6 +1,25 @@
  //--------Arborescence des espaces--------\\
 
-  //ion-item 
+  /**=================================================================**/
+  /**------------------Modifications du thème ------------------------**/
+ ion-card{
+  box-shadow:none !important;
+  height:48px;  
+
+}
+
+ion-card-title{
+  --color:var(--ion-color-tertiary-contrast);
+  text-transform: capitalize;
+  margin:-4px;
+  margin-right: 0px;
+
+}
+
+
+
+   /**=================================================================**/
+  /**------------------ion item ------------------------**/
   .arealist{
     --background:var(--ion-color-tertiary);
     --highlight-height:2px; 
