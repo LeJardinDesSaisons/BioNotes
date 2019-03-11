@@ -5,7 +5,7 @@ import { AutocompleteBarComponent } from './autocomplete-bar.component';
 import { MatAutocompleteModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-fdescribe('AutocompleteBarComponent', () => {
+describe('AutocompleteBarComponent', () => {
   let component: AutocompleteBarComponent;
   let fixture: ComponentFixture<AutocompleteBarComponent>;
 

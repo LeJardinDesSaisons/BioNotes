@@ -33,6 +33,10 @@ export class FormAreaComponent implements OnInit {
     }
   }
 
+  /**
+   * Updates the name of the area when its type is changed via autocompletion.
+   * @param value New type
+   */
   choosenOptionChanged(value: String) {
     this.area.type.name = value;
     this.updateName();

@@ -2,17 +2,17 @@ import { browser, by, element} from 'protractor';
 
 export class AddAreaPage {
 
-    /** navigate to the add area page */
+    /** Navigates to the add area page. */
     navigateTo() {
         return browser.get('/tabs/tab2/area/add');
     }
 
-    /** navigate to the area list page */
+    /** Navigates to the area list page. */
     navigateToList() {
         return browser.get('/tabs/tab2/area/list');
     }
 
-    /** fill the type input*/
+    /** Fills the type input. */
     fillType() {
         element(by.css('#mat-input-0')).click();
         browser.sleep(500);
@@ -20,7 +20,10 @@ export class AddAreaPage {
         browser.sleep(500);
     }
 
-    /** fill the number input*/
+    /**
+     * Types a specific number in the number field.
+     * @param value Number that will be typed within the field
+     */
     fillNumber(value: number) {
         element(by.name('number')).click();
         browser.sleep(500);
@@ -28,24 +31,24 @@ export class AddAreaPage {
         browser.sleep(500);
     }
 
-    /** check if the result of the 2 inputs is correct*/
+    /** Checks if the result of the 2 inputs is correct. */
     getResult() {
         return element(by.css('.helper-text')).getText();
     }
 
-    /** Opens the add area form */
+    /** Opens the add area form. */
     clickFab() {
         element(by.css('ion-fab-button')).click();
         browser.sleep(500);
     }
 
-    /** Confirms the content of the form */
+    /** Confirms the content of the form. */
     validate() {
         element(by.css('ion-button')).click();
         browser.sleep(500);
     }
 
-    /** Types a single letter, then tries to use the autocomplete feature */
+    /** Types a single letter, then tries to use the autocomplete feature. */
     autocompleteType() {
         element(by.css('#mat-input-1')).click();
         browser.sleep(500);
