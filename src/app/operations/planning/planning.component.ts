@@ -29,14 +29,14 @@ export class PlanningComponent implements OnInit {
       this.operationsStored = operations;
 
       this.operationsStored.sort((op1,op2) =>{
-        const momop1=moment("" + op1.date, 'YYYY-MM-DD');
-        const momop2=moment("" + op2.date, 'YYYY-MM-DD');
+        const momop1 = moment("" + op1.date, 'YYYY-MM-DD');
+        const momop2 = moment("" + op2.date, 'YYYY-MM-DD');
         if (momop1.isBefore(momop2)) {return -1; }
-        else {
-          if (momop1.isAfter(momop2)) {return 1; }
           else {
-            return 0;
-          }
+            if (momop1.isAfter(momop2)) {return 1; }
+            else {
+              return 0;
+            }
         }
       });
       let previousDate;
