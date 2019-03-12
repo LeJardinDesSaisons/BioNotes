@@ -1,17 +1,28 @@
 <ion-header>
   <ion-toolbar>
       <ion-buttons slot="start">
-          <ion-back-button defaultHref=""></ion-back-button>
-        </ion-buttons>
-    <ion-title>Ajout d'espace</ion-title>    
+        <ion-back-button defaultHref=""></ion-back-button>
+      </ion-buttons>
+    <ion-title>Ajout d'espace</ion-title>
     <ion-buttons slot="end">
-        <ion-button (click)="clickValid">
-            <ion-icon name="checkmark" ></ion-icon>
-        </ion-button>
+      <ion-button (click)="submit()">
+        <ion-icon name="checkmark" ></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content padding>
- </ion-content>
+  <form-area [area]="area"></form-area>
+  <div class="helper-text" *ngIf="area.name">
+    <p>L'espace suivant va être ajouté :</p>
+    <p>
+      <span *ngIf="parentNames">
+        <span *ngFor="let name of parentNames">
+          {{ name }} <span class="right-arrow">></span>
+        </span>
+      </span>
+      {{ area.name }}
+    </p>
+  </div>
+</ion-content>

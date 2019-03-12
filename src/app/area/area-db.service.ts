@@ -20,12 +20,12 @@ export class AreaDbService {
       if (areas === null) {
         this.storage.set('area', []);
         this.initTestArea();
-      } 
+      }
     });
     this.storage.get('type').then((types) => {
       if (types === null) {
         this.storage.set('type', []);
-          this.initTestType();
+        this.initTestType();
       }
     });
   }

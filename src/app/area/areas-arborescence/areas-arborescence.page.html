@@ -23,7 +23,6 @@
 
 <ion-content padding>
   
-    <!-- need ng if for check null or empty areas and add message -->
     <ng-container *ngIf="childAreas && childAreas.length; else elseTemplate">
       <ion-list>
         <div *ngFor="let item of childAreas">

@@ -1,0 +1,14 @@
+<form #areaForm="ngForm">
+  <app-autocomplete-bar
+    (choosenOptionChanged)="choosenOptionChanged($event)"
+    [suggestions]="areaTypes">
+  </app-autocomplete-bar>
+  <ion-item>
+    <ion-label position="floating">Numéro</ion-label>
+    <ion-input type="number" [(ngModel)]="area.number" name="number" required (keyup)="updateName()"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nom complet</ion-label>
+    <ion-input type="text" [(ngModel)]="area.name" name="name" required (input)="isNameModifiedByUser = true"></ion-input>
+  </ion-item>
+</form>
