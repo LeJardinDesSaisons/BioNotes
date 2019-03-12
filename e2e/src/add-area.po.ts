@@ -1,4 +1,4 @@
-import { browser, by, element} from 'protractor';
+import { browser, by, element, protractor} from 'protractor';
 
 export class AddAreaPage {
 
@@ -20,6 +20,7 @@ export class AddAreaPage {
         element(by.name('number')).click();
         browser.sleep(500);
         element(by.css('input[type="number"]')).sendKeys(1);
+        element(by.css('input[type="number"]')).sendKeys( );
         browser.sleep(500);
     }
 

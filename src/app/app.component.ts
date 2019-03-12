@@ -26,7 +26,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.areaDbService.initAreas();
+      //this.areaDbService.initAreas();
       this.operationDbService.initMocks(); //to replace with init operations
     });
   }
