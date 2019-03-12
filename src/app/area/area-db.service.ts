@@ -64,7 +64,7 @@ export class AreaDbService {
 
   /**
    * Get every childs of an area
-   * @param id
+   * @param id the id of the parent area
    */
   async getChildAreaById(id: number): Promise <Area[]> {
     const areas = await this.storage.get('area');

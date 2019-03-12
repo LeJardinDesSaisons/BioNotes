@@ -13,7 +13,7 @@ export class AreasArborescencePage implements OnInit {
   childAreas: Area[] ;
   parentArea: Area ;
   title: String = 'Arborescence';
-  parentId: String;
+  parentId: number;
 
   /**
    *
@@ -23,13 +23,16 @@ export class AreasArborescencePage implements OnInit {
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.parentId = this.route.snapshot.paramMap.get('parentid');
+    this.parentId = +this.route.snapshot.paramMap.get('parentid');
     if (this.parentId) {
       // get child of the area
-      this.areaDBService.getAreaById(+this.parentId).then((area: Area) => this.parentArea = area);
-      this.areaDBService.getChildAreaById(+this.parentId).then( (areas: Area[]) => {
+      this.areaDBService.getAreaById(this.parentId).then((area: Area) => {
+        console.log(area);
+        this.parentArea = area;
+      });
+      this.areaDBService.getChildAreaById(this.parentId).then( (areas: Area[]) => {
         this.childAreas = areas;
-        console.log(areas);
+        //console.log(areas);
       });
     } else {
       console.log('no parentId');
