@@ -55,22 +55,28 @@ export class AreaDbService {
    * @param area the area whose parents we want to know
    */
   async getParentNames(area: Area): Promise<String[]> {
+    let parentNames: String[];
+
     const areas = await this.storage.get('area');
+    const fullArea = await this.getAreaById(area.id) || area;
+    let currParent: Area = areas.filter((currArea: Area) => currArea.id === fullArea.parentId)[0];
 
-    let currParent: Area = areas.filter((currArea: Area) => currArea.id === area.parentId)[0];
-    const parentNames: String[] = [currParent.name];
+    if (currParent) {
+      parentNames = [currParent.name];
 
-    while (currParent) {
-      currParent = areas.filter((currArea: Area) => currArea.id === currParent.parentId)[0];
-      if (currParent) {
-        parentNames.unshift(currParent.name);
+      while (currParent) {
+        currParent = areas.filter((currArea: Area) => currArea.id === currParent.parentId)[0];
+        if (currParent) {
+          parentNames.unshift(currParent.name);
+        }
       }
     }
+
     return parentNames;
   }
 
   /**
-   * Add a type to the Storage if it does not exist and retrieve its ID
+   * Add a type to the Storage if its name does not exist and retrieve its ID
    * @param typeName the name of the type to add
    */
   async addType(type: Type) {
@@ -95,6 +101,20 @@ export class AreaDbService {
       area.id = areas.length + 1;
       areas.push(area);
       this.storage.set('area', areas);
+    });
+  }
+
+  /**
+   * Edit an area from the Storage
+   * @param area the area to edit
+   */
+  editArea(area: Area) {
+    this.storage.get('area').then((areas: Area[]) => {
+      const areaIndex = areas.findIndex((currArea: Area) => currArea.id === area.id);
+      if (areaIndex !== -1) {
+        areas[areaIndex] = area;
+        this.storage.set('area', areas);
+      }
     });
   }
 

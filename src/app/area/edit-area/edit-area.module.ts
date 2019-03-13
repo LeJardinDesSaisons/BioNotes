@@ -2,21 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+
 import { IonicModule } from '@ionic/angular';
 
-import { AddAreaPage } from './add-area.page';
+import { EditAreaPage } from './edit-area.page';
 import { FormAreaModule } from './../form-area/form-area.module';
 
 
 const routes: Routes = [
   {
-    path: 'area/add',
-    component: AddAreaPage,
-  },
-  {
-    path: 'area/add/:parentid',
-    component: AddAreaPage,
-  },
+    path: 'area/edit/:id',
+    component: EditAreaPage
+  }
 ];
 
 @NgModule({
@@ -27,6 +24,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormAreaModule,
   ],
-  declarations: [AddAreaPage]
+  declarations: [EditAreaPage]
 })
-export class AddAreaPageModule {}
+export class EditAreaPageModule {}

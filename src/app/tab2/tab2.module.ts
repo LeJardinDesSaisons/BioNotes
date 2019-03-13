@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { AddAreaPageModule } from '../area/add-area/add-area.module';
+import { EditAreaPageModule } from '../area/edit-area/edit-area.module';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     AddAreaPageModule,
+    EditAreaPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [Tab2Page]

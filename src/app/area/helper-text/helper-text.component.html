@@ -1,0 +1,11 @@
+<div>
+  <p>L'espace suivant va être ajouté :</p>
+  <p>
+    <span *ngIf="parentNames">
+      <span *ngFor="let parentName of parentNames">
+        {{ parentName }} <span class="right-arrow">></span>
+      </span>
+    </span>
+    {{ areaName }}
+  </p>
+</div>
