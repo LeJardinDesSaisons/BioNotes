@@ -86,7 +86,6 @@
   ion-tab-bar {
     border-color : var(--ion-color-primary);
     height : 52px;
-
   }
 
   ion-tab-button {
@@ -99,7 +98,6 @@
     --color : var(--ion-color-primary-contrast);
     --min-height : 48px;
     height : 48px;
-
   }
 
   ion-title {
@@ -136,12 +134,5 @@
   ion-fab-button{
     --background:var(--ion-color-secondary);
     --color:var(--ion-color-secondary-contrast);
-    //margin-right:50px;
   }
-
-
- 
-
-
-
 }

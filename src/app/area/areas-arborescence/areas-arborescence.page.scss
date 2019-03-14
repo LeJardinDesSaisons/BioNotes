@@ -1,11 +1,10 @@
- //--------Arborescence des espaces--------\\
+ //--------Areas Arboresences--------\\
 
   /**=================================================================**/
-  /**------------------Modifications du thème ------------------------**/
+  /**------------------Theme modification ------------------------**/
  ion-card{
   box-shadow:none !important;
-  height:48px;  
-
+  height:48px;
 }
 
 ion-card-title{
@@ -13,25 +12,21 @@ ion-card-title{
   text-transform: capitalize;
   margin:-4px;
   margin-right: 0px;
-
 }
-
-
 
    /**=================================================================**/
   /**------------------ion item ------------------------**/
   .arealist{
     --background:var(--ion-color-tertiary);
-    --highlight-height:2px; 
+    --highlight-height:2px;
     --inner-border-width:0px;
   }
 
-  //bouton : des choix dans areas arboresence
-  .listebuttons{
+  .ellipsis-button{
     --background:var(--ion-color-tertiary);
     --box-shadow:unset;
     font-size:14px;
     --color:var(--ion-color-tertiary-contrast);
     margin-inline-end:-16px;
-    height:40px;    
+    height:40px;
   }

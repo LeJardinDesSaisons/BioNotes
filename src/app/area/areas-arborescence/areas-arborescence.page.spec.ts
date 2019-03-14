@@ -18,6 +18,7 @@ describe('AreasArborescencePage without parentId', () => {
 
   const area1 = data.Areas[0];
   const area2 = data.Areas[1];
+
   beforeEach(async(() => {
     const dbServiceStub = jasmine.createSpyObj('AreaDBService', ['getAreaById', 'getChildAreaById', 'getRootArea']);
     getRootAreaSpy = dbServiceStub.getRootArea.and.returnValue(Promise.resolve([area1, area2]));
@@ -51,7 +52,7 @@ describe('AreasArborescencePage without parentId', () => {
   it('should make the correct calls on initialisation', () => {
     expect(getRootAreaSpy).toHaveBeenCalled();
     expect(getAreaByIdSpy).toHaveBeenCalledTimes(0);
-    expect(getChildAreaByIdSpy).toHaveBeenCalledTimes(0);;
+    expect(getChildAreaByIdSpy).toHaveBeenCalledTimes(0);
   });
 
 
@@ -63,16 +64,10 @@ describe('AreasArborescencePage with parentId', () => {
 
   let getAreaByIdSpy: any, getChildAreaByIdSpy: any, getRootAreaSpy: any;
 
-  const parentId = '1';//data.Areas[0].id; // 1
+  const parentId = '1';
   const area = data.Areas[0];
   const area2 = data.Areas[1];
   const child = data.Areas[2];
-//    const area = {
-//     type: { id: 1, name: 'JardinType'},
-//     number: 1,
-//     id: 1,
-//     name: 'JardinT 1',
-// };
 
 
   beforeEach(async(() => {

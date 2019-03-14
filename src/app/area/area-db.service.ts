@@ -30,10 +30,16 @@ export class AreaDbService {
     });
   }
 
+  /**
+   * Initialise the database with type(s) contained on testDb.json
+   */
   initTestType() {
     this.storage.set('type', data.Types);
   }
 
+  /**
+   * Initialise the database with area(s) contained on testDb.json
+   */
   initTestArea() {
     this.storage.set('area', data.Areas);
   }

@@ -12,42 +12,38 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AreasArborescencePage implements OnInit {
 
-  childAreas: Area[] ;
-  parentArea: Area ;
+  childAreas: Area[] = undefined ;
+  parentArea: Area = undefined ;
   title: String = 'Arborescence';
   parentId: number;
+  /**
+   * This variable permit to check if the page is created (on Initialization) or if we return to it
+   */
   init = true;
 
-  /**
-   *
-   * @param areaDBService : the service
-   * @param route
-   */
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {}
 
   ngOnInit() {
     if (this.init) {
-      // console.log("init");
       this.checkAreas();
     }
   }
 
+  /**
+   * Set the areas based on the parent's ID if it exists
+   * Check if we are on the root's arborescence or not
+   */
   private checkAreas() {
     this.parentId = +this.route.snapshot.paramMap.get('parentid');
-    // console.log("checkAreas");
 
     if (this.parentId) {
-      // get child of the area
       this.areaDBService.getAreaById(this.parentId).then((area: Area) => {
-        console.log(area);
         this.parentArea = area;
       });
       this.areaDBService.getChildAreaById(this.parentId).then((areas: Area[]) => {
         this.childAreas = areas;
-        // console.log(areas);
       });
     } else {
-      // console.log('no parentId');
       this.areaDBService.getRootArea().then((areas: Area[]) => this.childAreas = areas);
     }
   }
@@ -56,16 +52,12 @@ export class AreasArborescencePage implements OnInit {
    */
   ionViewDidEnter() {
     if (!this.init) {
-      // console.log("ionEnter");
       this.checkAreas();
     } else {
       this.init = !this.init;
     }
   }
 
-  /**
-   * TODO : Verification of child area (when touch a parcel )
-   * TODO :
-   */
+  optionsClicked() {}
 
 }
