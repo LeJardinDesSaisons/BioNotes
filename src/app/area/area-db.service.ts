@@ -19,13 +19,13 @@ export class AreaDbService {
     this.storage.get('area').then((areas) => {
       if (areas === null) {
         this.storage.set('area', []);
-        this.initTestArea();
+        // this.initTestArea();
       }
     });
     this.storage.get('type').then((types) => {
       if (types === null) {
         this.storage.set('type', []);
-        this.initTestType();
+        // this.initTestType();
       }
     });
   }
@@ -34,7 +34,7 @@ export class AreaDbService {
     this.storage.set('type', data.Types);
   }
 
-  initTestArea(){
+  initTestArea() {
     this.storage.set('area', data.Areas);
   }
 

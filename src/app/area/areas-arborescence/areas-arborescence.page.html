@@ -10,8 +10,8 @@
       <ng-template #noArea>
         <ion-title>{{ title }}</ion-title>
       </ng-template>
-      
-      
+
+
       <ion-buttons slot="end">
         <ion-button  (clic)="clicValid()" size="large">
             <ion-icon name="more"></ion-icon>
@@ -22,15 +22,15 @@
 </ion-header>
 
 <ion-content padding>
-  
-    <ng-container *ngIf="childAreas && childAreas.length; else elseTemplate">
+
+    <ng-container *ngIf="childAreas && childAreas.length; else noChild">
       <ion-list>
         <div *ngFor="let item of childAreas">
         <ion-card>
           <ion-item [routerLink]="'/tabs/tab2/area/list/' + item.id " class="arealist">
             <ion-card-header>
               <ion-card-title>{{item.name}}</ion-card-title>
-            </ion-card-header> 
+            </ion-card-header>
             <!-- add a clickable button -->
             <ion-button href='##' (click)="clicValid()" slot="end" class="listebuttons">
               <ion-icon name="more"></ion-icon>
@@ -41,14 +41,22 @@
     </ion-list>
     </ng-container>
 
-    <ng-template #elseTemplate>
+    <ng-template #noChild>
       <p>pas trouvé</p>
     </ng-template>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/tabs/tab2/area/add']">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
+    <ng-container *ngIf="parentArea; else noParent">
+      <ion-fab-button [routerLink]="'/tabs/tab2/area/add/' +parentArea.id">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ng-container>
+
+    <ng-template #noParent>
+      <ion-fab-button [routerLink]="'/tabs/tab2/area/add/'">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      </ng-template>
   </ion-fab>
 
 </ion-content>

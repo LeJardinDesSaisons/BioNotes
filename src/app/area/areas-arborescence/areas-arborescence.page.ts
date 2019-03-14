@@ -3,6 +3,8 @@ import { AreaDbService } from '../area-db.service';
 import { Component, OnInit , Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-areas-arborescence',
   templateUrl: './areas-arborescence.page.html',
@@ -14,6 +16,7 @@ export class AreasArborescencePage implements OnInit {
   parentArea: Area ;
   title: String = 'Arborescence';
   parentId: number;
+  init = true;
 
   /**
    *
@@ -23,20 +26,40 @@ export class AreasArborescencePage implements OnInit {
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {}
 
   ngOnInit() {
+    if (this.init) {
+      // console.log("init");
+      this.checkAreas();
+    }
+  }
+
+  private checkAreas() {
     this.parentId = +this.route.snapshot.paramMap.get('parentid');
+    // console.log("checkAreas");
+
     if (this.parentId) {
       // get child of the area
       this.areaDBService.getAreaById(this.parentId).then((area: Area) => {
         console.log(area);
         this.parentArea = area;
       });
-      this.areaDBService.getChildAreaById(this.parentId).then( (areas: Area[]) => {
+      this.areaDBService.getChildAreaById(this.parentId).then((areas: Area[]) => {
         this.childAreas = areas;
-        //console.log(areas);
+        // console.log(areas);
       });
     } else {
-      console.log('no parentId');
-      this.areaDBService.getRootArea().then( (areas: Area[] ) => this.childAreas = areas);
+      // console.log('no parentId');
+      this.areaDBService.getRootArea().then((areas: Area[]) => this.childAreas = areas);
+    }
+  }
+  /**
+   * When we enter in the tabs
+   */
+  ionViewDidEnter() {
+    if (!this.init) {
+      // console.log("ionEnter");
+      this.checkAreas();
+    } else {
+      this.init = !this.init;
     }
   }
 
