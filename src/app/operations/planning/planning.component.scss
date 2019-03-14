@@ -1,11 +1,22 @@
+//https://medium.com/geckoboard-under-the-hood/how-we-made-our-product-more-personalized-with-css-variables-and-react-b29298fde608
+
 ion-card{
     box-shadow:none !important;
+    //@include variable(border-color, --ion-color-secondary);
     border-color: var(--ion-color-secondary);
     border-width: 1px;
     border-style: solid;
     border-radius: 5px;
     padding: 8px;
     margin: 8px 16px;
+}
+
+.done{
+    background-color: var(--ion-color-tertiary);
+}
+
+ion-icon{
+    left: 100px;
 }
 
 ion-card-title{

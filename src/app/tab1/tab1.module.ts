@@ -7,7 +7,6 @@ import { Tab1Page } from './tab1.page';
 import { AddAreaPageModule } from '../area/add-area/add-area.module';
 import { PlanningComponent } from '../operations/planning/planning.component';
 
-
 @NgModule({
   imports: [
     IonicModule,
