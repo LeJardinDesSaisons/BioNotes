@@ -12,16 +12,18 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AreasArborescencePage implements OnInit {
 
-  childAreas: Area[] = undefined ;
-  parentArea: Area = undefined ;
-  title: String = 'Arborescence';
+  childAreas: Area[] ;
+  parentArea: Area ;
+  title: String ;
   parentId: number;
   /**
    * This variable permit to check if the page is created (on Initialization) or if we return to it
    */
   init = true;
 
-  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {}
+  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {
+    this.title = 'Arborescence' ;
+  }
 
   ngOnInit() {
     if (this.init) {
