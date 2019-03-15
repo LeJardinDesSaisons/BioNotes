@@ -1,24 +1,22 @@
 <span #content>
     <span *ngFor="let operation of operationsStored">
+
         <p class="date" *ngIf="operation.date">
             {{ operation.date }}
         </p>
 
         <span *ngIf="operation.done === true; else notDone">
             <ion-card class="done">
-                <div>
-                    <ion-card-title>
-                        {{ operation.label.name }} {{ operation.vegetable.variety }} {{ operation.vegetable.name }}
-                        <ion-icon name="checkmark-circle-outline"></ion-icon>
-                    </ion-card-title>
-
-                </div>
-                    <ion-card-subtitle>
-                        <span *ngFor="let parent of parentAreas[operation.id]">
-                        {{parent}} >
-                        </span>
-                        {{operation.area.name}}
-                    </ion-card-subtitle>
+                <ion-card-title class="donetitle">
+                    {{ operation.label.name }} {{ operation.vegetable.variety }} {{ operation.vegetable.name }}
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                </ion-card-title>
+                <ion-card-subtitle class="donesubtitle">
+                    <span *ngFor="let parent of parentAreas[operation.id]">
+                    {{parent}} >
+                    </span>
+                    {{operation.area.name}}
+                </ion-card-subtitle>
             </ion-card>
         </span>
 

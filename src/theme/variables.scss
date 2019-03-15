@@ -29,7 +29,7 @@
   --ion-color-tertiary-contrast: #3a3d32;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
   --ion-color-tertiary-shade: #c1d677;
---ion-color-tertiary-tint: #dff493;
+  --ion-color-tertiary-tint: #afbe7e;
 
   /** success **/
   --ion-color-success: #20ca20;
@@ -89,8 +89,8 @@
   }
 
   ion-tab-button {
-    --color: var(--ion-color-primary-shade);   
-    --color-selected: var(--ion-color-secondary); 
+    --color: var(--ion-color-primary-shade);
+    --color-selected: var(--ion-color-secondary);
   }
 
   ion-toolbar {
@@ -110,7 +110,7 @@
     --color : var(--ion-color-primary-contrast);
   }
 
-  ion-item { 
+  ion-item {
     --color : var(--ion-color-primary-contrast);
     --border-color : var(--ion-color-secondary);
     --highlight-color-focused : var(--ion-color-secondary);
