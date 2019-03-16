@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+
+      <ng-container *ngIf="parentArea; else noArea">
+          <ion-title>{{ parentArea.name }}</ion-title>
+      </ng-container>
+      <ng-template #noArea>
+        <ion-title>{{ title }}</ion-title>
+      </ng-template>
+
+
+      <ion-buttons slot="end">
+        <ion-button (click)="optionsClicked()" size="large">
+            <ion-icon name="more"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ng-container *ngIf="childAreas && childAreas.length; else noChild">
+      <ion-list>
+        <div *ngFor="let item of childAreas">
+        <ion-card>
+          <ion-item [routerLink]="'/tabs/tab2/area/list/' + item.id " class="arealist">
+            <ion-card-header>
+              <ion-card-title>{{item.name}}</ion-card-title>
+            </ion-card-header>
+            <!-- add a clickable button -->
+            <ion-button href='##' (click)="clicValid()" slot="end" class="ellipsis-button">
+              <ion-icon name="more"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-card>
+      </div>
+    </ion-list>
+    </ng-container>
+
+    <ng-template #noChild>
+      <p>Aucune zone n'a été trouvé</p>
+    </ng-template>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ng-container *ngIf="parentArea; else noParent">
+      <ion-fab-button [routerLink]="'/tabs/tab2/area/add/' +parentArea.id">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ng-container>
+
+    <ng-template #noParent>
+      <ion-fab-button [routerLink]="'/tabs/tab2/area/add/'">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      </ng-template>
+  </ion-fab>
+
+</ion-content>

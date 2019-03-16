@@ -2,6 +2,7 @@ import { Type } from './../model/area';
 import { Injectable } from '@angular/core';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
+import * as data from '../../assets/testDb.json';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,31 @@ export class AreaDbService {
     this.storage.get('area').then((areas) => {
       if (areas === null) {
         this.storage.set('area', []);
+        // this.initTestArea();
       }
     });
     this.storage.get('type').then((types) => {
       if (types === null) {
         this.storage.set('type', []);
+        // this.initTestType();
       }
     });
   }
+
+  /**
+   * Initialise the database with type(s) contained on testDb.json
+   */
+  initTestType() {
+    this.storage.set('type', data.Types);
+  }
+
+  /**
+   * Initialise the database with area(s) contained on testDb.json
+   */
+  initTestArea() {
+    this.storage.set('area', data.Areas);
+  }
+
 
   /**
    * Get every area stored
@@ -48,6 +66,23 @@ export class AreaDbService {
   async getAreaById(id: Number): Promise<Area> {
     const areas = await this.storage.get('area');
     return areas.filter((area: Area) => area.id === id)[0];
+  }
+
+  /**
+   * Get every childs of an area
+   * @param id the id of the parent area
+   */
+  async getChildAreaById(id: number): Promise <Area[]> {
+    const areas = await this.storage.get('area');
+    return areas.filter((currArea: Area) => currArea.parentId === id );
+  }
+
+  /**
+   * Get areas without parent
+   */
+  async getRootArea(): Promise <Area[]> {
+    const areas = await this.storage.get('area');
+    return areas.filter( (currArea: Area) => !currArea.parentId );
   }
 
   /**
