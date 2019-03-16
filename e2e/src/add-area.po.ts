@@ -44,7 +44,7 @@ export class AddAreaPage {
 
     /** Confirms the content of the form. */
     validate() {
-        element(by.css('ion-button')).click();
+        element(by.id('submit')).click();
         browser.sleep(500);
     }
 
@@ -56,5 +56,10 @@ export class AddAreaPage {
         browser.sleep(500);
         element(by.className('mat-option-text')).click();
         browser.sleep(500);
+    }
+
+    /** */
+    getArea() {
+
     }
 }
