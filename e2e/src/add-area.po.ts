@@ -58,8 +58,4 @@ export class AddAreaPage {
         browser.sleep(500);
     }
 
-    /** */
-    getArea() {
-
-    }
 }
