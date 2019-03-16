@@ -4,7 +4,7 @@ import { AreaDbService } from '../../area/area-db.service';
 import { Operation} from '../../model/operation';
 import { Area } from '../../model/area';
 import * as moment from 'moment';
-import { VirtualScrollerModule, VirtualScrollerComponent } from 'ngx-virtual-scroller';
+import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
 
 @Component({
   selector: 'app-planning',
@@ -21,7 +21,6 @@ export class PlanningComponent implements OnInit {
   parentAreas: String[][];
   currentId = null;
   tempDate = '3000-12-12';
-
 
   constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService) {
       this.operation = new Operation();
@@ -61,6 +60,8 @@ export class PlanningComponent implements OnInit {
 
   /**
    * formats the dates to a humanly readable format
+   * compares the dates and get the date of the day or next day
+   * if date of the day doesn't exist
    * then fetches the parents names of the operation
    */
   formatDatesAndGetParentAreas() {
