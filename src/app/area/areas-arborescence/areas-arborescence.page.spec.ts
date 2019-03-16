@@ -1,20 +1,19 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { protractor } from 'protractor';
-
-import { AreasArborescencePage } from './areas-arborescence.page';
-import { AreaDbService } from '../area-db.service';
-import { convertToParamMap, ActivatedRoute } from '@angular/router';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { PopoverController } from '@ionic/angular';
 import * as data from '../../../assets/testDb.json';
-import { Area } from 'src/app/model/area';
-import { CommonModule } from '@angular/common';
+import { AreaDbService } from '../area-db.service';
+import { AreasArborescencePage } from './areas-arborescence.page';
 
 
 describe('AreasArborescencePage without parentId', () => {
   let component: AreasArborescencePage;
   let fixture: ComponentFixture<AreasArborescencePage>;
 
-  let getRootAreaSpy: any, getAreaByIdSpy: any, getChildAreaByIdSpy;
+  let getRootAreaSpy: any, getAreaByIdSpy: any, getChildAreaByIdSpy: any;
+  let createSpy: any;
 
   const area1 = data.Areas[0];
   const area2 = data.Areas[1];
@@ -27,11 +26,16 @@ describe('AreasArborescencePage without parentId', () => {
 
     const routeStub = {snapshot: {paramMap: convertToParamMap({'parentid': '' })}};
 
+    const popoverControllerStub = jasmine.createSpyObj('PopoverController', ['create']);
+    createSpy = popoverControllerStub.create.and.returnValue(Promise.resolve({ present : () => Promise.resolve(null) }));
+
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ AreasArborescencePage ],
       providers: [
         {provide: AreaDbService, useValue: dbServiceStub },
-        {provide: ActivatedRoute, useValue: routeStub}
+        {provide: ActivatedRoute, useValue: routeStub},
+        {provide: PopoverController, useValue: popoverControllerStub}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -42,7 +46,6 @@ describe('AreasArborescencePage without parentId', () => {
     fixture = TestBed.createComponent(AreasArborescencePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
   });
 
   it('should create', () => {
@@ -55,6 +58,10 @@ describe('AreasArborescencePage without parentId', () => {
     expect(getChildAreaByIdSpy).toHaveBeenCalledTimes(0);
   });
 
+  it('should open a popover', fakeAsync(() => {
+    component.presentPopover(null, 0);
+    expect(createSpy).toHaveBeenCalled();
+  }));
 
 });
 
@@ -78,11 +85,15 @@ describe('AreasArborescencePage with parentId', () => {
 
     const routeStub = {snapshot: {paramMap: convertToParamMap({'parentid': parentId })}};
 
+    const popoverControllerStub = jasmine.createSpyObj('PopoverController', ['create']);
+
     TestBed.configureTestingModule({
+      imports: [ RouterTestingModule ],
       declarations: [ AreasArborescencePage ],
       providers: [
         {provide: AreaDbService, useValue: dbServiceStub },
-        {provide: ActivatedRoute, useValue: routeStub}
+        {provide: ActivatedRoute, useValue: routeStub},
+        {provide: PopoverController, useValue: popoverControllerStub}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -93,7 +104,6 @@ describe('AreasArborescencePage with parentId', () => {
     fixture = TestBed.createComponent(AreasArborescencePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
   });
 
   it('should create', () => {
@@ -107,4 +117,3 @@ describe('AreasArborescencePage with parentId', () => {
   });
 
 });
-

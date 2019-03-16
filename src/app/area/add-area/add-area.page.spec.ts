@@ -1,17 +1,17 @@
+import { NavController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { AddAreaPage } from './add-area.page';
 import { AreaDbService } from '../area-db.service';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
-import { Location } from '@angular/common';
 
 describe('AddAreaPage', () => {
   let component: AddAreaPage;
   let fixture: ComponentFixture<AddAreaPage>;
 
   let getParentNamesSpy: any, addTypeSpy: any, addAreaSpy: any;
-  let backSpy: any;
+  let navigateBackSpy: any;
 
   const parentId = '1';
   const area = {
@@ -30,15 +30,15 @@ describe('AddAreaPage', () => {
 
     const routeStub = {snapshot: {paramMap: convertToParamMap({'parentid': parentId})}};
 
-    const locationStub = jasmine.createSpyObj('Location', ['back']);
-    backSpy = locationStub.back;
+    const navControllerStub = jasmine.createSpyObj('NavController', ['navigateBack']);
+    navigateBackSpy = navControllerStub.navigateBack;
 
     TestBed.configureTestingModule({
       declarations: [ AddAreaPage ],
       providers: [
         {provide: AreaDbService, useValue: dbServiceStub},
         {provide: ActivatedRoute, useValue: routeStub},
-        {provide: Location, useValue: locationStub},
+        {provide: NavController, useValue: navControllerStub},
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -69,7 +69,7 @@ describe('AddAreaPage', () => {
     expect(addTypeSpy).toHaveBeenCalledWith(area.type);
     expect(component.area.type).toBe(area.type);
     expect(addAreaSpy).toHaveBeenCalledWith(area);
-    expect(backSpy).toHaveBeenCalled();
+    expect(navigateBackSpy).toHaveBeenCalledWith('/tabs/tab2/area/list/' + area.parentId);
   }));
 
 });

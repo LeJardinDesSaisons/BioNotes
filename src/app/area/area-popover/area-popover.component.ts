@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ViewController } from '@ionic/core';
+import { Component, Input } from '@angular/core';
 import { PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
