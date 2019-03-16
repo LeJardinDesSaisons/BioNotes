@@ -1,8 +1,9 @@
-import { Area, Type } from '../../model/area';
+import { AreaPopoverComponent } from './../area-popover/area-popover.component';
+import { Area } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
-import { Component, OnInit , Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { PopoverController } from '@ionic/angular';
 
 
 @Component({
@@ -21,8 +22,8 @@ export class AreasArborescencePage implements OnInit {
    */
   init = true;
 
-  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {
-    this.title = 'Arborescence' ;
+  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute, public popoverController: PopoverController) {
+    this.title = 'Configuration des espaces';
   }
 
   ngOnInit() {
@@ -49,6 +50,7 @@ export class AreasArborescencePage implements OnInit {
       this.areaDBService.getRootArea().then((areas: Area[]) => this.childAreas = areas);
     }
   }
+
   /**
    * When we enter in the tabs
    */
@@ -58,6 +60,21 @@ export class AreasArborescencePage implements OnInit {
     } else {
       this.init = !this.init;
     }
+  }
+
+  /**
+   * Open a AreaPopoverComponent
+   * @param ev the DOM event
+   * @param areaId the ID of the selected area
+   */
+  async presentPopover(ev: any, areaId: Number) {
+    const popover = await this.popoverController.create({
+      component: AreaPopoverComponent,
+      event: ev,
+      translucent: true,
+      componentProps: { 'areaId' : areaId },
+    });
+    return await popover.present();
   }
 
   optionsClicked() {}
