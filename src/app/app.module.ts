@@ -11,6 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     FormsModule,
+    VirtualScrollerModule
   ],
   providers: [
     StatusBar,

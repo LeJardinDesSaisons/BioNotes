@@ -4,8 +4,7 @@ import { AreaDbService } from '../../area/area-db.service';
 import { Operation} from '../../model/operation';
 import { Area } from '../../model/area';
 import * as moment from 'moment';
-import { IonCard } from '@ionic/angular';
-
+import { VirtualScrollerModule, VirtualScrollerComponent } from 'ngx-virtual-scroller';
 
 @Component({
   selector: 'app-planning',
@@ -14,11 +13,14 @@ import { IonCard } from '@ionic/angular';
 })
 export class PlanningComponent implements OnInit {
 
-  @ViewChild('content') content;
+  @ViewChild(VirtualScrollerComponent)
+  private virtualScroller: VirtualScrollerComponent;
 
   operation: Operation;
   operationsStored: Operation[];
   parentAreas: String[][];
+  currentId = null;
+  tempDate = '3000-12-12';
 
 
   constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService) {
@@ -35,10 +37,7 @@ export class PlanningComponent implements OnInit {
 
       this.formatDatesAndGetParentAreas();
 
-      //this.scrollToElement(this.operationsStored[2].id);
-
-      //this.content.scrollTo(0,500);
-
+      this.virtualScroller.scrollToIndex(this.currentId);
     });
   }
 
@@ -78,10 +77,16 @@ export class PlanningComponent implements OnInit {
         operasto.date = null;
       }
 
+      if ( moment(dateString).isSameOrAfter(moment().format('YYYY-MM-DD')) && moment(dateString).isBefore(this.tempDate) ) {
+        this.tempDate = dateString;
+        this.currentId = operasto.id;
+      }
+
       this.areaDbService.getParentNames(operasto.area).then((names: String[]) => {
         this.parentAreas[+operasto.id] = names;
       });
     });
 
   }
+
 }

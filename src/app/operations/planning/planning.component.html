@@ -1,5 +1,5 @@
-<span #content>
-    <span *ngFor="let operation of operationsStored">
+<virtual-scroller #scroll [items]="operationsStored">
+    <span id="for" *ngFor="let operation of scroll.viewPortItems">
 
         <p class="date" *ngIf="operation.date">
             {{ operation.date }}
@@ -9,7 +9,6 @@
             <ion-card class="done">
                 <ion-card-title class="donetitle">
                     {{ operation.label.name }} {{ operation.vegetable.variety }} {{ operation.vegetable.name }}
-                    <ion-icon name="checkmark-circle-outline"></ion-icon>
                 </ion-card-title>
                 <ion-card-subtitle class="donesubtitle">
                     <span *ngFor="let parent of parentAreas[operation.id]">
@@ -17,6 +16,7 @@
                     </span>
                     {{operation.area.name}}
                 </ion-card-subtitle>
+                <ion-icon name="checkmark-circle-outline"></ion-icon>
             </ion-card>
         </span>
 
@@ -35,4 +35,4 @@
         </ng-template>
 
     </span>
-</span>
+</virtual-scroller>
