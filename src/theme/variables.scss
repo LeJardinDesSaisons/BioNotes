@@ -20,19 +20,18 @@
   /** secondary **/
   --ion-color-secondary: #a2c523;
   --ion-color-secondary-rgb: 12, 209, 232;
-  --ion-color-secondary-contrast: #261f13;
+  --ion-color-secondary-contrast: #2c3220;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #8fad1f;
   --ion-color-secondary-tint: #abcb39;
 
   /** tertiary **/
-  --ion-color-tertiary: #a2c523;
+  --ion-color-tertiary: #ecf8c3;
   --ion-color-tertiary-rgb: 112, 68, 255;
-  --ion-color-tertiary-contrast: #261f13;
+  --ion-color-tertiary-contrast: #3a3d32;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #8fad1f;
-  --ion-color-tertiary-tint: #abcb39;
-
+  --ion-color-tertiary-shade: #c1d677;
+  --ion-color-tertiary-tint: #dff493;
   /** success **/
   --ion-color-success: #20ca20;
   --ion-color-success-rgb: 16, 220, 96;
@@ -84,10 +83,9 @@
 
   /**=================================================================**/
   /**------------------Modifications du thème ------------------------**/
-
   ion-tab-bar {
     border-color : var(--ion-color-primary);
-    height : 48px;
+    height : 52px;
   }
 
   ion-tab-button {
@@ -98,8 +96,8 @@
   ion-toolbar {
     --background : var(--ion-color-primary);
     --color : var(--ion-color-primary-contrast);
-    --min-height : 42px;
-    height : 42px;
+    --min-height : 48px;
+    height : 48px;
   }
 
   ion-title {
@@ -114,21 +112,27 @@
 
   ion-item {
     --color : var(--ion-color-primary-contrast);
-    --border-color : var(--ion-color-secondary);
+    --inner-border-color : var(--ion-color-secondary);
     --highlight-color-focused : var(--ion-color-secondary);
     --padding-start : 0px;
   }
 
   ion-back-button {
-    --icon-padding-end : -4px;
-    --icon-padding-start : -4px;
-    --margin-end : -4px;
+    --icon-padding-end : -2px;
+    --icon-padding-start : -2px;
+    --margin-end : -2px;
   }
 
   ion-button{
-    --padding-end : 10px;
-    --padding-start : 10px;
+    --padding-end : 12px;
+    --padding-start : 12px;
+    --padding-top : 12px;
+    --padding-bottom : 12px;
+    font-size: 18px;
   }
 
-
+  ion-fab-button{
+    --background:var(--ion-color-secondary);
+    --color:var(--ion-color-secondary-contrast);
+  }
 }
