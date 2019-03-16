@@ -33,7 +33,7 @@ export class AddAreaPage {
 
     /** Checks if the result of the 2 inputs is correct. */
     getResult() {
-        return element(by.css('.helper-text')).getText();
+        return element(by.tagName('helper-text')).getText();
     }
 
     /** Opens the add area form. */

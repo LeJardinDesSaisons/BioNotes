@@ -1,7 +1,7 @@
 import { AreasArborescence } from './areas-arborescence.po';
-import { browser, Key } from 'protractor';
+import { browser } from 'protractor';
 
-describe ('Empty arboresence ', function() {
+describe ('an empty arborescence', function() {
     let page: AreasArborescence;
 
     beforeEach(() => {
@@ -11,12 +11,12 @@ describe ('Empty arboresence ', function() {
     /**
      * Show an empty arborescence
     */
-    it('should have no arborescence', () => {
+    it('should have no element', () => {
       page.navigateTo();
       browser.sleep(500);
-      expect(page.getResultTitle()).toContain('ARBORESCENCE');
+      expect(page.getResultTitle()).toContain('CONFIGURATION DES ESPACES');
       browser.sleep(500);
-      expect(page.getResultArborescence()).toContain('pas trouvé');
+      expect(page.getResultArborescence()).toContain('Aucun espace');
     });
 
 });
