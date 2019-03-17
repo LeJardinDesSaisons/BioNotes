@@ -33,7 +33,7 @@ export class AddAreaPage {
 
     /** Checks if the result of the 2 inputs is correct. */
     getResult() {
-        return element(by.css('.helper-text')).getText();
+        return element(by.tagName('helper-text')).getText();
     }
 
     /** Opens the add area form. */
@@ -44,7 +44,7 @@ export class AddAreaPage {
 
     /** Confirms the content of the form. */
     validate() {
-        element(by.css('ion-button')).click();
+        element(by.id('submit')).click();
         browser.sleep(500);
     }
 
@@ -57,4 +57,5 @@ export class AddAreaPage {
         element(by.className('mat-option-text')).click();
         browser.sleep(500);
     }
+
 }

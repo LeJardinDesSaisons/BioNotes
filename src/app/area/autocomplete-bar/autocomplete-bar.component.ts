@@ -11,18 +11,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class AutocompleteBarComponent implements OnInit {
   @Output() choosenOptionChanged = new EventEmitter<string>();
 
-  /**
-   * List of all possible suggestions that can be displayed below the field.
-   */
+  /** List of all possible suggestions that can be displayed below the field. */
   @Input() suggestions: string[];
+  /** Content of the field that was typed or selected by the user */
+  @Input() fieldContent: string;
 
-  /**
-   * Content of the field that was typed or selected by the user
-   */
-  fieldContent: string;
-  /**
-   * List of the suggestions that will be displayed below the field
-   */
+  /** List of the suggestions that will be displayed below the field  */
   filteredOptions: string[];
 
   ngOnInit() {

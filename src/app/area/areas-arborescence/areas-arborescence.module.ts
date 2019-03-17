@@ -6,7 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { AreasArborescencePage } from './areas-arborescence.page';
-
+import { AreaPopoverComponent } from './../area-popover/area-popover.component';
 
 
 const routes: Routes = [
@@ -27,6 +27,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AreasArborescencePage]
+  declarations: [AreasArborescencePage, AreaPopoverComponent],
+  entryComponents: [AreaPopoverComponent],
 })
 export class AreasArborescencePageModule {}

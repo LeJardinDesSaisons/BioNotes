@@ -1,10 +1,13 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AutocompleteBarComponent } from './../autocomplete-bar/autocomplete-bar.component';
 import { AreaDbService } from './../area-db.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FormAreaComponent } from './form-area.component';
 import { of } from 'rxjs';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 describe('FormAreaComponent', () => {
   let component: FormAreaComponent;
@@ -31,9 +34,17 @@ describe('FormAreaComponent', () => {
     // thenSpy = dbServiceStub.getTypes.then.and.returnValue( of(['a', 'b']));
 
     TestBed.configureTestingModule({
-      declarations: [ FormAreaComponent ],
+      declarations: [ FormAreaComponent, AutocompleteBarComponent ],
       providers:    [ {provide: AreaDbService, useValue: dbServiceStub } ],
-      imports: [ FormsModule, IonicModule ]
+      imports: [
+        FormsModule,
+        IonicModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule,
+      ]
     })
     .compileComponents();
   }));

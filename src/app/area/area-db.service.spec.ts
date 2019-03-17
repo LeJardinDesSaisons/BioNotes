@@ -18,7 +18,7 @@ describe('AreaDbService', () => {
 
   beforeEach(() => {
     const storageSpy = jasmine.createSpyObj('Storage', ['get', 'set']);
-    getStub = storageSpy.get;
+    getStub = storageSpy.get.and.returnValue(Promise.resolve(areas));
     setStub = storageSpy.set;
     service = new AreaDbService(storageSpy);
   });
@@ -35,7 +35,6 @@ describe('AreaDbService', () => {
   }));
 
   it('should not initialize an existing storage', fakeAsync(() => {
-    getStub = getStub.and.returnValue(Promise.resolve(areas));
     service.initAreas();
     tick();
     expect(setStub).not.toHaveBeenCalled();
@@ -52,7 +51,6 @@ describe('AreaDbService', () => {
   });
 
   it('should get an area from its id', async(() => {
-    getStub = getStub.and.returnValue(Promise.resolve(areas));
     service.getAreaById(areas[0].id).then((result) => {
       expect(getStub).toHaveBeenCalledWith('area');
       expect(result).toBe(areas[0]);
@@ -60,10 +58,16 @@ describe('AreaDbService', () => {
   }));
 
   it('should get an area\'s parent names', async(() => {
-    getStub = getStub.and.returnValue(Promise.resolve(areas));
     service.getParentNames(areas[2]).then((result) => {
       expect(getStub).toHaveBeenCalledWith('area');
       expect(result).toEqual(['Parcelle 1', 'Serre 1']);
+    });
+  }));
+
+  it('should return undefined when being asked for a root area\'s parents', async(() => {
+    service.getParentNames(areas[0]).then((result) => {
+      expect(getStub).toHaveBeenCalledWith('area');
+      expect(result).toBeUndefined();
     });
   }));
 
@@ -81,5 +85,26 @@ describe('AreaDbService', () => {
       expect(setStub).toHaveBeenCalledWith('type', types.concat(newType));
       expect(result).toEqual(newType);
     });
+  }));
+
+  it('should add an area', fakeAsync(() => {
+    service.addArea(areas[0]);
+    expect(getStub).toHaveBeenCalledWith('area');
+    tick();
+    expect(setStub).toHaveBeenCalled();
+  }));
+
+  it('should edit an area', fakeAsync(() => {
+    service.editArea(areas[0]);
+    expect(getStub).toHaveBeenCalledWith('area');
+    tick();
+    expect(setStub).toHaveBeenCalled();
+  }));
+
+  it('should not edit a non-existing area', fakeAsync(() => {
+    service.editArea({id: 99, name: '', type: types[0], number: 1, parentId: null});
+    expect(getStub).toHaveBeenCalledWith('area');
+    tick();
+    expect(setStub).not.toHaveBeenCalled();
   }));
 });

@@ -1,21 +1,24 @@
 import { browser, by, element} from 'protractor';
-import { AddAreaPage } from './add-area.po';
 
+export class AreasArborescencePage {
 
-export class AreasArborescence {
-
+    /** Navigate to the arborescence page */
     navigateTo() {
         return browser.get('/tabs/tab2/area/list');
     }
 
-
+    /** Get the title of the arborescence page */
     getResultTitle() {
-        return element(by.css('ion-title')).getText();
+        return element(by.tagName('ion-title')).getText();
     }
 
-    getResultArborescence() {
-        return element(by.css('p')).getText();
+    /** Get the text when no elements are found */
+    getEmptyResult() {
+        return element(by.tagName('p')).getText();
     }
 
-
+    /** Get the first area on the list */
+    getFirstAreaText() {
+        return element(by.tagName('ion-card-title')).getText();
+    }
 }
