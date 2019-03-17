@@ -10,6 +10,10 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+
+// Angular Material
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 
@@ -17,12 +21,14 @@ import { VirtualScrollerModule } from 'ngx-virtual-scroller';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(),
     AppRoutingModule,
-    IonicStorageModule.forRoot(),
+    BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
-    VirtualScrollerModule
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    VirtualScrollerModule,
+    ReactiveFormsModule
   ],
   providers: [
     StatusBar,

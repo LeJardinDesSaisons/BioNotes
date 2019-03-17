@@ -2,6 +2,7 @@ import { Type } from './../model/area';
 import { Injectable } from '@angular/core';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
+import * as data from '../../assets/testDb.json';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,31 @@ export class AreaDbService {
     this.storage.get('area').then((areas) => {
       if (areas === null) {
         this.storage.set('area', []);
+        // this.initTestArea();
       }
     });
     this.storage.get('type').then((types) => {
       if (types === null) {
         this.storage.set('type', []);
+        // this.initTestType();
       }
     });
   }
+
+  /**
+   * Initialise the database with type(s) contained on testDb.json
+   */
+  initTestType() {
+    this.storage.set('type', data.Types);
+  }
+
+  /**
+   * Initialise the database with area(s) contained on testDb.json
+   */
+  initTestArea() {
+    this.storage.set('area', data.Areas);
+  }
+
 
   /**
    * Get every area stored
@@ -51,26 +69,49 @@ export class AreaDbService {
   }
 
   /**
+   * Get every childs of an area
+   * @param id the id of the parent area
+   */
+  async getChildAreaById(id: number): Promise <Area[]> {
+    const areas = await this.storage.get('area');
+    return areas.filter((currArea: Area) => currArea.parentId === id );
+  }
+
+  /**
+   * Get areas without parent
+   */
+  async getRootArea(): Promise <Area[]> {
+    const areas = await this.storage.get('area');
+    return areas.filter( (currArea: Area) => !currArea.parentId );
+  }
+
+  /**
    * Fetch the names of the area ancestors, from the root to the direct parent
    * @param area the area whose parents we want to know
    */
   async getParentNames(area: Area): Promise<String[]> {
+    let parentNames: String[];
+
     const areas = await this.storage.get('area');
+    const fullArea = await this.getAreaById(area.id) || area;
+    let currParent: Area = areas.filter((currArea: Area) => currArea.id === fullArea.parentId)[0];
 
-    let currParent: Area = areas.filter((currArea: Area) => currArea.id === area.parentId)[0];
-    const parentNames: String[] = [currParent.name];
+    if (currParent) {
+      parentNames = [currParent.name];
 
-    while (currParent) {
-      currParent = areas.filter((currArea: Area) => currArea.id === currParent.parentId)[0];
-      if (currParent) {
-        parentNames.unshift(currParent.name);
+      while (currParent) {
+        currParent = areas.filter((currArea: Area) => currArea.id === currParent.parentId)[0];
+        if (currParent) {
+          parentNames.unshift(currParent.name);
+        }
       }
     }
+
     return parentNames;
   }
 
   /**
-   * Add a type to the Storage if it does not exist and retrieve its ID
+   * Add a type to the Storage if its name does not exist and retrieve its ID
    * @param typeName the name of the type to add
    */
   async addType(type: Type) {
@@ -95,6 +136,20 @@ export class AreaDbService {
       area.id = areas.length + 1;
       areas.push(area);
       this.storage.set('area', areas);
+    });
+  }
+
+  /**
+   * Edit an area from the Storage
+   * @param area the area to edit
+   */
+  editArea(area: Area) {
+    this.storage.get('area').then((areas: Area[]) => {
+      const areaIndex = areas.findIndex((currArea: Area) => currArea.id === area.id);
+      if (areaIndex !== -1) {
+        areas[areaIndex] = area;
+        this.storage.set('area', areas);
+      }
     });
   }
 

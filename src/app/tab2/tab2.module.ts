@@ -5,16 +5,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 import { AddAreaPageModule } from '../area/add-area/add-area.module';
+import { EditAreaPageModule } from '../area/edit-area/edit-area.module';
+import { AreasArborescencePageModule } from '../area/areas-arborescence/areas-arborescence.module';
 
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'area/list',
+    redirectTo: 'options',
     pathMatch: 'full',
   },
   {
-    path: 'area/list',
+    path: 'options',
     component: Tab2Page,
   },
 ];
@@ -25,6 +27,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     AddAreaPageModule,
+    EditAreaPageModule,
+    AreasArborescencePageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [Tab2Page]
