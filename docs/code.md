@@ -23,6 +23,8 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 
 `EditAreaPage` is a page similar to `AddAreaPage`. It uses the URL parameter `id` to retrieve the area to edit from the Storage, and it fills the form after that.
 
+`AreaPopoverComponent` represents the popover that is displayed when selecting the options of an area in the arborescence.
+
 `FormAreaComponent` is a generic form that can be used to add or edit an area. All information about the area is transmitted through the `area` input directive.
 
 `HelperTextComponent` is a "dumb" component that only displays an area name and a list of parent names.
