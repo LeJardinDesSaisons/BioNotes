@@ -44,16 +44,13 @@ export class PlanningComponent implements OnInit {
    * sorts all the operations by their date
    * if a date already exists, the date is set to null so an operation isn't displayed twice
    */
-  sortByDates() {
+  private sortByDates() {
     this.operationsStored.sort((op1, op2) => {
       const momop1 = moment('' + op1.date, 'YYYY-MM-DD');
       const momop2 = moment('' + op2.date, 'YYYY-MM-DD');
-      if (momop1.isBefore(momop2)) {return -1;
-      } else {
-          if (momop1.isAfter(momop2)) {return 1;
-          } else {
-            return 0;
-          }
+      if (momop1.isBefore(momop2)) { return -1; }
+      if (momop1.isAfter(momop2)) { return 1;
+        } else { return 0; }
       }
     });
   }
@@ -64,7 +61,7 @@ export class PlanningComponent implements OnInit {
    * if date of the day doesn't exist
    * then fetches the parents names of the operation
    */
-  formatDatesAndGetParentAreas() {
+  private formatDatesAndGetParentAreas() {
     let previousDate;
     this.operationsStored.forEach(operasto => {
       // date storing and formatting
