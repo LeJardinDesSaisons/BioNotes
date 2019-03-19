@@ -31,14 +31,16 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 
 `AutocompleteBarComponent` is an input field that relies on Angular Material's `mat-autocomplete` input. It needs a list of `suggestions` for the autocompletion. The default text can be modified through the `fieldContent` input. It sends the `choosenOptionChanged` to the parent component when the field has been modified.
 
+`AreasArboresencePage` is a page that display the areas list according to the URL parameter `parentid` and using `areaDBService`. With no `parentid` the page display the root level of the arboresence, otherwise it display the childs of the parent area.
+
 ## Operations
 
 `OperationDbService` is a service class that accesses the Storage database. It reads and modifies the `operation`, `label`, `vegetable` and `category` keys.
 
 ### Planning
 
-`PlanningComponent` is called from the `Tab1Page` HTML. 
+`PlanningComponent` is called from the `Tab1Page` HTML.
 
 `PlanningComponent` handles all the informations about the operations. It converts the dates, stored in "YYYY-MM-DD" into a "Do MMMM YYYY" format, more readable, and in french, using the [momentjs](https://momentjs.com/docs/) library.
 
-To scroll into the current date when the component is started, the [ngx virtual scroller](https://www.npmjs.com/package/ngx-virtual-scroller) is used. At the moment of development, Ionic virtual scroll appears to be buggy in Ionic4 and Angular virtual scroll slowed down the application. 
+To scroll into the current date when the component is started, the [ngx virtual scroller](https://www.npmjs.com/package/ngx-virtual-scroller) is used. At the moment of development, Ionic virtual scroll appears to be buggy in Ionic4 and Angular virtual scroll slowed down the application.

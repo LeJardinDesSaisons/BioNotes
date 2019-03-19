@@ -3,54 +3,7 @@ import { Operation, Label} from '../model/operation';
 import { Vegetable, Category } from '../model/vegetable';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
-
-// pas réussi à exporter depuis spec
-const defaultCategories: Category[] = [
-  {id: 1, name: 'Solanacée'},
-  {id: 2, name: 'Brassicacée'},
-  {id: 3, name: 'Alliacée'},
-  {id: 4, name: 'Apiacée'},
-  {id: 5, name: 'Curcubitacée'},
-  {id: 6, name: 'Crucifère'},
-  {id: 7, name: 'Astéracée'}
-];
-
-
-// ------------ mock : à supprimer plus tard
-const mockAreas: any[] = [
-  {id: 1, name: 'Parcelle 1' },
-  {id: 2, name: 'Serre 1', parentId: 1},
-  {id: 3, name: 'Jardin 1', parentId: 2},
-];
-
-const mockLabels: Label[] = [
-  {id: 1, name: 'Amendement'},
-  {id: 2, name: 'Semis'},
-  {id: 3, name: 'Désherbage'},
-  {id: 4, name: 'Récolte'}
-];
-
-const mockVegetables: Vegetable[] = [
-  {id: 1, variety: 'Courge Butternut', category: defaultCategories[4], name: 'Waltham'},
-  {id: 2, variety: 'Chicorée Frisée', category: defaultCategories[6], name: 'Wallone'},
-  {id: 3, variety: 'Laitue', category: defaultCategories[6], name: 'Batavia'},
-  {id: 4, variety: 'Ail', category: defaultCategories[2], name: 'Blanc'}
-];
-
-const mockOperations: Operation[] = [
-  {id: 1, date: '2019-03-10', label: mockLabels[0], vegetable: mockVegetables[0], area: mockAreas[2], observations: '', done: true},
-  {id: 2, date: '2019-03-15', label: mockLabels[1], vegetable: mockVegetables[1], area: mockAreas[2], observations: '', done: false},
-  {id: 3, date: '2019-03-20', label: mockLabels[2], vegetable: mockVegetables[2], area: mockAreas[2], observations: '', done: false},
-  {id: 4, date: '2019-03-25', label: mockLabels[3], vegetable: mockVegetables[3], area: mockAreas[2], observations: '', done: false},
-  {id: 5, date: '2019-03-9', label: mockLabels[0], vegetable: mockVegetables[0], area: mockAreas[1], observations: '', done: true},
-  {id: 6, date: '2019-03-15', label: mockLabels[1], vegetable: mockVegetables[3], area: mockAreas[1], observations: '', done: false},
-  {id: 7, date: '2019-03-20', label: mockLabels[2], vegetable: mockVegetables[0], area: mockAreas[1], observations: '', done: false},
-  {id: 8, date: '2019-03-25', label: mockLabels[3], vegetable: mockVegetables[2], area: mockAreas[1], observations: '', done: false},
-  {id: 9, date: '2019-03-16', label: mockLabels[2], vegetable: mockVegetables[1], area: mockAreas[1], observations: '', done: false},
-  {id: 10, date: '2019-03-10', label: mockLabels[3], vegetable: mockVegetables[2], area: mockAreas[1], observations: '', done: false},
-  {id: 11, date: '2019-03-7', label: mockLabels[2], vegetable: mockVegetables[1], area: mockAreas[1], observations: '', done: true},
-  {id: 12, date: '2019-03-9', label: mockLabels[3], vegetable: mockVegetables[2], area: mockAreas[1], observations: '', done: false}
-];
+import * as data from './operationsmock-db';
 
 @Injectable({
   providedIn: 'root'
@@ -60,15 +13,15 @@ export class OperationDbService {
   constructor(public storage: Storage) { }
 
   /**
-   * Initialize the operations Storage key
-   * This should be called at least on the first app launch
+   * Initalize mocks Storage keys
+   * Should be called if you want to test the app
    */
   initMocks() {
-      this.storage.set('category', defaultCategories);
-      this.storage.set('area', mockAreas);
-      this.storage.set('label', mockLabels);
-      this.storage.set('vegetable', mockVegetables);
-      this.storage.set('operation', mockOperations);
+      this.storage.set('category', data.defaultCategories);
+      this.storage.set('area', data.mockAreas);
+      this.storage.set('label', data.mockLabels);
+      this.storage.set('vegetable', data.mockVegetables);
+      this.storage.set('operation', data.mockOperations);
   }
 
   /**
@@ -78,7 +31,7 @@ export class OperationDbService {
   initOperations() {
     this.storage.get('category').then((categories) => {
       if (categories === null) {
-        this.storage.set('category', defaultCategories);
+        this.storage.set('category', data.defaultCategories);
       }
     });
     this.storage.get('label').then((labels) => {

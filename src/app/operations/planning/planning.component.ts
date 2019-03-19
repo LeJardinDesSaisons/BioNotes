@@ -51,7 +51,6 @@ export class PlanningComponent implements OnInit {
       if (momop1.isBefore(momop2)) { return -1; }
       if (momop1.isAfter(momop2)) { return 1;
         } else { return 0; }
-      }
     });
   }
 
