@@ -1,8 +1,8 @@
 {
-  "name": "BioNotes",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "bionotes",
+  "version": "2.0.0",
+  "author": "Franck Silvestre",
+  "homepage": "https://lejardindessaisons.github.io/BioNotes/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -67,7 +67,7 @@
     "tslint": "~5.12.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project",
+  "description": "Mobile app for monitoring a market garden",
   "cordova": {
     "plugins": {
       "cordova-sqlite-storage": {},
