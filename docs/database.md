@@ -16,7 +16,8 @@ Operation :
 * vegetable
 * vegetableName
 * supplier
-* category
+* category : categories of vegetables
+* done : if the operation is done or not
 
 Modalities :
 

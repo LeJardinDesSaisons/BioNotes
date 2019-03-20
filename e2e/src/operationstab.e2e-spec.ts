@@ -1,10 +1,10 @@
-import { AppPage } from './app.po';
+import { OperationsTab } from './operationstab.po';
 
-describe('new App', () => {
-  let page: AppPage;
+describe('operations tab', () => {
+  let page: OperationsTab;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new OperationsTab();
   });
 
   it('should display welcome message', () => {

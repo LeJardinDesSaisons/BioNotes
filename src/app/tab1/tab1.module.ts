@@ -5,6 +5,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 import { AddAreaPageModule } from '../area/add-area/add-area.module';
+import { PlanningComponent } from '../operations/planning/planning.component';
+
+import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 
 @NgModule({
   imports: [
@@ -12,8 +15,10 @@ import { AddAreaPageModule } from '../area/add-area/add-area.module';
     CommonModule,
     FormsModule,
     AddAreaPageModule,
+    VirtualScrollerModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  declarations: [Tab1Page]
+  exports : [PlanningComponent],
+  declarations: [Tab1Page, PlanningComponent]
 })
 export class Tab1PageModule {}

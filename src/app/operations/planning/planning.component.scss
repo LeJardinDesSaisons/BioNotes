@@ -1,0 +1,71 @@
+ion-card{
+    box-shadow:none !important;
+    border-color: var(--ion-color-secondary);
+    background-color: var(--ion-color-tertiary);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 8px 16px;
+}
+
+.done{
+    background-color: white;
+    border-color: var(--ion-color-tertiary-shade);
+    position: relative;
+}
+
+ion-card-title{
+    font-size: 16px;
+    font-weight: normal;
+    --color: var(--ion-color-secondary-contrast);
+}
+
+.donetitle{
+    --color: var(--ion-color-tertiary-shade);
+}
+
+ion-card-subtitle{
+    font-size: 10px;
+    font-weight: lighter;
+    letter-spacing: 1pt;
+    text-transform : uppercase;
+    --color: var(--ion-color-secondary-shade);
+    padding-top: 4px;
+}
+
+.donesubtitle{
+    --color: var(--ion-color-tertiary-tint);
+}
+
+.date{
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1pt;
+    color: var(--ion-color-primary-shade);
+    border-bottom: 1px solid var(--ion-color-primary);
+    width: 50%;
+    margin-left: 25%;
+}
+
+ion-icon{
+    color: var(--ion-color-tertiary-shade);
+    padding-left: 16px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 18px;
+}
+
+// necessary css for the scroll of the operations
+virtual-scroller {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+ #for {
+    display: block;
+    width: 100%;
+    height: auto;
+}
