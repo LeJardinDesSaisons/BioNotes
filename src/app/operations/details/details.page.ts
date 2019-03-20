@@ -1,8 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OperationDbService } from '../operations-db.service';
+import { AreaDbService } from '../../area/area-db.service';
 import { ActivatedRoute } from '@angular/router';
 import { Operation } from 'src/app/model/operation';
+import { Area } from '../../model/area';
 import { IonCheckbox } from '@ionic/angular';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-details',
@@ -13,10 +17,14 @@ export class DetailsPage implements OnInit {
   @ViewChild('checkbox') checkbox: IonCheckbox;
 
   operation: Operation;
+  parentAreas: String[][];
   checkboxtext: String;
+  formatDate: String;
 
-  constructor(private operationDbService: OperationDbService, private route: ActivatedRoute) {
+  constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService, private route: ActivatedRoute) {
     this.operation = new Operation();
+    this.formatDate = '';
+    this.parentAreas = [];
   }
 
   ngOnInit() {
@@ -25,13 +33,23 @@ export class DetailsPage implements OnInit {
       this.getOperationInformations(operationId);
     }
     this.loadCheckbox();
-  }
+   }
 
-  async getOperationInformations(areaId: String) {
-    this.operation.id = +areaId;
+  async getOperationInformations(operationId: String) {
+    this.operation.id = +operationId;
     this.operation = await this.operationDbService.getOperationById(this.operation.id);
+
+    const dateString = this.operation.date.toString(); // date into the string format
+    this.formatDate = moment(dateString, 'YYYY-MM-DD', 'fr').format('Do MMMM YYYY'); // date formatted for display
+    this.areaDbService.getParentNames(this.operation.area).then((names: String[]) => {
+      this.parentAreas[+this.operation.id] = names;
+    });
   }
 
+  /*
+  * loads the checkbox value according to
+  * done of the operation
+  */
   private loadCheckbox() {
     if (this.operation.done === true) {
       this.checkbox.checked = true;
@@ -42,7 +60,11 @@ export class DetailsPage implements OnInit {
     }
   }
 
-  changeCheckbox() {
+  /*
+  * change the value of done of the operation
+  * accodring to the state of the checkbox
+  */
+  private changeCheckbox() {
     if (this.checkbox.checked === true) {
       this.operation.done = true;
       this.checkboxtext = ' Opération effectuée ';

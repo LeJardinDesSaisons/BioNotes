@@ -86,7 +86,6 @@ export class PlanningComponent implements OnInit {
         this.parentAreas[+operasto.id] = names;
       });
     });
-
   }
 
   async displayActionSheet(ev: any, operation: Operation) {
