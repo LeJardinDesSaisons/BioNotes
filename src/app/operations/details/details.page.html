@@ -19,7 +19,6 @@
   </ion-item>
 
   <table>
-
     <tr class="infos">
       <td class="left"><ion-icon name="clipboard"></ion-icon></td>
       <td >{{ operation.label?.name }}</td>
@@ -46,4 +45,34 @@
     </tr>
 
   </table>
+
+  <!--between the two tables the modalities will be displayed-->
+
+  <table>
+    <tr class="otherinfos">
+      <td class="left">Fournisseur</td>
+      <td >{{ operation.supplier?.name }}</td>
+    </tr>
+
+    <tr class="otherinfos">
+      <td class="left">Catégorie</td>
+      <td >{{ operation.vegetable?.category.name }}</td>
+    </tr>
+
+  </table>
+
+  <table>
+    <tr class="otherinfos">
+      <td class="left">Temps de travail</td>
+      <td >TBA</td>
+    </tr>
+
+    <tr class="otherinfos">
+      <td class="left">Observations</td>
+      <td >{{ operation?.observations }}</td>
+    </tr>
+
+  </table>
+
+
 </ion-content>

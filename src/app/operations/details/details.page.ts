@@ -32,7 +32,6 @@ export class DetailsPage implements OnInit {
     if (operationId) {
       this.getOperationInformations(operationId);
     }
-    this.loadCheckbox();
    }
 
   async getOperationInformations(operationId: String) {
@@ -44,6 +43,7 @@ export class DetailsPage implements OnInit {
     this.areaDbService.getParentNames(this.operation.area).then((names: String[]) => {
       this.parentAreas[+this.operation.id] = names;
     });
+    this.loadCheckbox();
   }
 
   /*
@@ -51,6 +51,7 @@ export class DetailsPage implements OnInit {
   * done of the operation
   */
   private loadCheckbox() {
+
     if (this.operation.done === true) {
       this.checkbox.checked = true;
       this.checkboxtext = ' Opération effectuée ';
