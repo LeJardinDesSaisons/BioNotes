@@ -5,6 +5,8 @@ import { Operation} from '../../model/operation';
 import { Area } from '../../model/area';
 import * as moment from 'moment';
 import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
+import { Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-planning',
@@ -22,7 +24,8 @@ export class PlanningComponent implements OnInit {
   currentId = null;
   tempDate = '3000-12-12';
 
-  constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService) {
+  constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService,
+              public actionSheetController: ActionSheetController, private router: Router) {
       this.operation = new Operation();
       this.operation.area = new Area();
       this.parentAreas = [];
@@ -65,9 +68,9 @@ export class PlanningComponent implements OnInit {
     this.operationsStored.forEach(operasto => {
       // date storing and formatting
       const dateString = operasto.date.toString(); // date into the string format
-      const formatDate = moment(dateString, 'YYYY-MM-DD', 'fr').format("Do MMMM YYYY"); // date formatted for display
+      const formatDate = moment(dateString, 'YYYY-MM-DD', 'fr').format('Do MMMM YYYY'); // date formatted for display
 
-      if( formatDate !== previousDate){
+      if ( formatDate !== previousDate) {
         operasto.date = formatDate;
         previousDate = operasto.date;
       } else {
@@ -84,6 +87,28 @@ export class PlanningComponent implements OnInit {
       });
     });
 
+  }
+
+  async displayActionSheet(ev: any, operation: Operation) {
+    const actionSheet = await this.actionSheetController.create({
+      header: operation.label.name + ' ' + operation.vegetable.variety + ' ' + operation.vegetable.name,
+      buttons: [{
+        text: 'Détails',
+        icon: 'more',
+        handler: () => {
+          this.goToDetails(operation.id.toString());
+        }
+      }, {
+        text: 'Annuler',
+        icon: 'close',
+        role: 'cancel'
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  goToDetails(route: string) {
+    this.router.navigateByUrl('/tabs/tab1/operations/details/' + route);
   }
 
 }

@@ -4,18 +4,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
-import { AddAreaPageModule } from '../area/add-area/add-area.module';
 import { PlanningComponent } from '../operations/planning/planning.component';
 
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
+import { DetailsPageModule } from '../operations/details/details.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    AddAreaPageModule,
     VirtualScrollerModule,
+    DetailsPageModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
   exports : [PlanningComponent],
