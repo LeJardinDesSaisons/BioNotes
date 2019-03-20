@@ -1,0 +1,22 @@
+<ng-container *ngIf="areas && areas.length; else noArea">
+  <ion-list>
+    <div *ngFor="let item of areas">
+    <ion-card>
+      <ion-item class="arealist">
+        <div class="central-item" [routerLink]="'/tabs/tab2/area/list/' + item.id ">
+          <ion-card-header>
+            <ion-card-title>{{item.name}}</ion-card-title>
+          </ion-card-header>
+        </div>
+        <ion-button (click)="presentPopover($event, item.id)" slot="end" class="ellipsis-button">
+          <ion-icon name="more"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-list>
+</ng-container>
+
+<ng-template #noArea>
+  <p>Aucun espace n'a été trouvé</p>
+</ng-template>

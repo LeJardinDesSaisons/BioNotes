@@ -23,28 +23,7 @@
 
 <ion-content padding>
 
-    <ng-container *ngIf="childAreas && childAreas.length; else noChild">
-      <ion-list>
-        <div *ngFor="let item of childAreas">
-        <ion-card>
-          <ion-item class="arealist">
-            <div class="central-item" [routerLink]="'/tabs/tab2/area/list/' + item.id ">
-              <ion-card-header>
-                <ion-card-title>{{item.name}}</ion-card-title>
-              </ion-card-header>
-            </div>
-            <ion-button (click)="presentPopover($event, item.id)" slot="end" class="ellipsis-button">
-              <ion-icon name="more"></ion-icon>
-            </ion-button>
-          </ion-item>
-        </ion-card>
-      </div>
-    </ion-list>
-    </ng-container>
-
-    <ng-template #noChild>
-      <p>Aucun espace n'a été trouvé</p>
-    </ng-template>
+<view-areas [areas]="childAreas"></view-areas>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ng-container *ngIf="parentArea; else noParent">

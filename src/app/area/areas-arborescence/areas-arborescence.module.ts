@@ -1,3 +1,5 @@
+// import { ViewAreasComponent } from '../view-areas/view-areas.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -6,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { AreasArborescencePage } from './areas-arborescence.page';
-import { AreaPopoverComponent } from './../area-popover/area-popover.component';
+import { ViewAreasModule } from '../view-areas/view-areas.module';
 
 
 const routes: Routes = [
@@ -25,9 +27,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ViewAreasModule
   ],
-  declarations: [AreasArborescencePage, AreaPopoverComponent],
-  entryComponents: [AreaPopoverComponent],
+  declarations: [AreasArborescencePage],
 })
 export class AreasArborescencePageModule {}

@@ -45,9 +45,13 @@ export class AreasArborescencePage implements OnInit {
       });
       this.areaDBService.getChildAreaById(this.parentId).then((areas: Area[]) => {
         this.childAreas = areas;
+        console.log('areas' + this.childAreas);
       });
     } else {
-      this.areaDBService.getRootArea().then((areas: Area[]) => this.childAreas = areas);
+      this.areaDBService.getRootArea().then((areas: Area[]) => {
+        this.childAreas = areas;
+        console.log('areas' + this.childAreas);
+      });
     }
   }
 
@@ -61,22 +65,5 @@ export class AreasArborescencePage implements OnInit {
       this.init = !this.init;
     }
   }
-
-  /**
-   * Open a AreaPopoverComponent
-   * @param ev the DOM event
-   * @param areaId the ID of the selected area
-   */
-  async presentPopover(ev: any, areaId: Number) {
-    const popover = await this.popoverController.create({
-      component: AreaPopoverComponent,
-      event: ev,
-      translucent: true,
-      componentProps: { 'areaId' : areaId },
-    });
-    return await popover.present();
-  }
-
-  optionsClicked() {}
-
 }
+
