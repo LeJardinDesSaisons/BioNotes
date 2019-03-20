@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>details</ion-title>
+    <ion-title>{{ operation.label?.name }} {{ operation.vegetable?.variety }} {{ operation.vegetable?.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-item (click)=changeCheckbox()>
+        <ion-label>{{checkboxtext}}</ion-label>
+        <ion-checkbox slot="end" color="tertiary" #checkbox></ion-checkbox>
+    </ion-item>
 </ion-content>
