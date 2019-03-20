@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Area } from 'src/app/model/area';
 import { AreaPopoverComponent } from '../area-popover/area-popover.component';
+import { PopoverController } from '@ionic/angular';
+
 
 @Component({
   selector: 'view-areas',
@@ -10,15 +12,11 @@ import { AreaPopoverComponent } from '../area-popover/area-popover.component';
 export class ViewAreasComponent implements OnInit {
 
   @Input() areas: Area[];
-  popoverController: any;
+  // popoverController: any;
 
-  constructor() { }
+  constructor(public popoverController: PopoverController) { }
 
-  ngOnInit() {
-    if (!this.areas) {
-      console.log('prout');
-    }
-  }
+  ngOnInit() { }
 
     /**
    * Open a AreaPopoverComponent

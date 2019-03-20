@@ -3,7 +3,6 @@ import { Area } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
 
 
 @Component({
@@ -22,7 +21,7 @@ export class AreasArborescencePage implements OnInit {
    */
   init = true;
 
-  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute, public popoverController: PopoverController) {
+  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {
     this.title = 'Configuration des espaces';
   }
 

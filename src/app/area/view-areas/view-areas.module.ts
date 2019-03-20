@@ -25,7 +25,8 @@ const routes: Routes = [
         RouterModule.forChild(routes),
     ],
     declarations: [ViewAreasComponent, AreaPopoverComponent],
-    exports: [ViewAreasComponent, AreaPopoverComponent]
+    exports: [ViewAreasComponent],
+    entryComponents: [AreaPopoverComponent],
 })
 export class ViewAreasModule {}
 
