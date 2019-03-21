@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Operation, Label} from '../model/operation';
-import { Vegetable, Category } from '../model/vegetable';
+import { Vegetable, Category, Supplier } from '../model/vegetable';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
 import * as data from './operationsmock-db';
@@ -21,6 +21,7 @@ export class OperationDbService {
       this.storage.set('area', data.mockAreas);
       this.storage.set('label', data.mockLabels);
       this.storage.set('vegetable', data.mockVegetables);
+      this.storage.set('supplier', data.mockSuppliers);
       this.storage.set('operation', data.mockOperations);
   }
 
@@ -42,6 +43,12 @@ export class OperationDbService {
     this.storage.get('vegetable').then((vegetables) => {
       if (vegetables === null) {
         this.storage.set('vegetable', []);
+      }
+    });
+
+    this.storage.get('supplier').then((suppliers) => {
+      if (suppliers === null) {
+        this.storage.set('supplier', []);
       }
     });
 
@@ -82,6 +89,14 @@ export class OperationDbService {
   async getAreas(): Promise<Area[]> {
     return this.storage.get('area');
   }
+
+  /**
+  * Get every area stored
+  */
+  async getSuppliers(): Promise<Supplier[]> {
+    return this.storage.get('supplier');
+  }
+
 
   /**
    * Get an operation by its id

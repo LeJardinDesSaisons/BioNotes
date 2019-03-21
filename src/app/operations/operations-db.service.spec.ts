@@ -2,6 +2,7 @@ import { OperationDbService } from './operations-db.service';
 import { async, fakeAsync, tick } from '@angular/core/testing';
 import { Category, Vegetable } from '../model/vegetable';
 import { Label, Operation } from '../model/operation';
+import * as data from './operationsmock-db';
 
 
 describe('OperationDbService', () => {
@@ -9,7 +10,7 @@ describe('OperationDbService', () => {
   let getStub: any, setStub: any;
   let service: OperationDbService;
 
-  const areas: any[] = [
+  /*const areas: any[] = [
     {id: 1, name: 'Parcelle 1' },
     {id: 2, name: 'Serre 1', parentId: 1},
     {id: 3, name: 'Jardin 1', parentId: 2},
@@ -44,7 +45,7 @@ describe('OperationDbService', () => {
     {id: 2, date: '2019-03-15', label: labels[1], vegetable: vegetables[1], area: areas[2], observations: '', done: false},
     {id: 3, date: '2019-03-20', label: labels[2], vegetable: vegetables[2], area: areas[2], observations: '', done: false},
     {id: 4, date: '2019-03-25', label: labels[3], vegetable: vegetables[3], area: areas[2], observations: '', done: false}
-  ];
+  ];*/
 
   beforeEach(() => {
     const storageSpy = jasmine.createSpyObj('Storage', ['get', 'set']);
@@ -65,7 +66,7 @@ describe('OperationDbService', () => {
   }));
 
   it('should not initialize an empty operation', fakeAsync(() => {
-    getStub = getStub.and.returnValue(Promise.resolve(operations));
+    getStub = getStub.and.returnValue(Promise.resolve(data.mockOperations));
     service.initOperations();
     tick();
     expect(setStub).not.toHaveBeenCalled();
@@ -96,11 +97,17 @@ describe('OperationDbService', () => {
     expect(getStub).toHaveBeenCalledWith('area');
   });
 
+
+  it('should get the suppliers', () => {
+    service.getSuppliers();
+    expect(getStub).toHaveBeenCalledWith('supplier');
+  });
+
   it('should get an operation from its id', async(() => {
-    getStub = getStub.and.returnValue(Promise.resolve(operations));
-    service.getOperationById(operations[0].id).then((result) => {
+    getStub = getStub.and.returnValue(Promise.resolve(data.mockOperations));
+    service.getOperationById(data.mockOperations[0].id).then((result) => {
       expect(getStub).toHaveBeenCalledWith('operation');
-      expect(result).toBe(operations[0]);
+      expect(result).toBe(data.mockOperations[0]);
     });
   }));
 
