@@ -1,9 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>select-area</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+
+      <ng-container *ngIf="parentArea; else noArea">
+          <ion-title>{{ parentArea.name }}</ion-title>
+
+          <ion-buttons slot="end">
+              <ion-button (click)="selectArea()" size="large">
+                  <ion-icon name="checkbox-outline"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+
+      </ng-container>
+
+      <ng-template #noArea>
+        <ion-title>{{ title }}</ion-title>
+      </ng-template>
+
+
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+ <view-areas [areas]="childAreas" [link]="link"></view-areas>
 
 </ion-content>
