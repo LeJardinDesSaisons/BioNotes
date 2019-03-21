@@ -34,7 +34,5 @@ export class ViewAreasComponent implements OnInit {
     return await popover.present();
   }
 
-  optionsClicked() {}
-
 }
 
