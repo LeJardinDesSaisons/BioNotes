@@ -31,12 +31,13 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 
 `AutocompleteBarComponent` is an input field that relies on Angular Material's `mat-autocomplete` input. It needs a list of `suggestions` for the autocompletion. The default text can be modified through the `fieldContent` input. It sends the `choosenOptionChanged` to the parent component when the field has been modified.
 
-`ViewAreasModule` is a module that display the areas list obtained by the parameter `areas` and create a `routerlink` for each area with the parameter `link`.
+`SelectAreaService` is a service needded to pass information between `SelectAreaPage` and `CreateOperationPage` (?), it's contained an area with guetter `getArea` and setter `setArea`
 
+`ViewAreasModule` is a module that display the areas list obtained by the parameter `areas` and create a `routerlink` for each area with the parameter `link`.
 
 `AreasArboresencePage` is a page that call `ViewAreasModule` according to the URL parameter `parentid` and using `areaDBService`. With no `parentid` the page inject the root level of the arboresence on `ViewAreasModule`, otherwise it inject the childs of the parent area.
 
-`SelectAreaPage` is a page similar to `AreasArborescencePage` but can return the selected area.
+`SelectAreaPage` is a page similar to `AreasArborescencePage` but is use `SelectAreaService` to give the area validate by the user.
 
 
 ## Operations
