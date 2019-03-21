@@ -15,10 +15,10 @@
 <ion-content>
   <ion-item (click)=changeCheckbox()>
     <ion-label>{{checkboxtext}}</ion-label>
-    <ion-checkbox slot="end" color="tertiary" #checkbox></ion-checkbox>
+    <ion-checkbox slot="end" #checkbox></ion-checkbox>
   </ion-item>
 
-  <table>
+  <table id="info">
     <tr class="infos">
       <td class="left"><ion-icon name="clipboard"></ion-icon></td>
       <td >{{ operation.label?.name }}</td>
@@ -46,7 +46,7 @@
 
   </table>
 
-  <!--between the two tables the modalities will be displayed-->
+
 
   <table>
     <tr class="otherinfos">
@@ -59,13 +59,7 @@
       <td >{{ operation.vegetable?.category.name }}</td>
     </tr>
 
-  </table>
-
-  <table>
-    <tr class="otherinfos">
-      <td class="left">Temps de travail</td>
-      <td >TBA</td>
-    </tr>
+    <!--insert the the modalities here when relevant-->
 
     <tr class="otherinfos">
       <td class="left">Observations</td>
@@ -73,6 +67,5 @@
     </tr>
 
   </table>
-
 
 </ion-content>
