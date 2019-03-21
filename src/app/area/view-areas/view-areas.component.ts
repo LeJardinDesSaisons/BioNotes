@@ -12,6 +12,7 @@ import { PopoverController } from '@ionic/angular';
 export class ViewAreasComponent implements OnInit {
 
   @Input() areas: Area[];
+  @Input() link: String;
   // popoverController: any;
 
   constructor(public popoverController: PopoverController) { }

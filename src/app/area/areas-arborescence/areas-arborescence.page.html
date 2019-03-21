@@ -23,7 +23,7 @@
 
 <ion-content padding>
 
-<view-areas [areas]="childAreas"></view-areas>
+  <view-areas [areas]="childAreas" [link]="link"></view-areas>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ng-container *ngIf="parentArea; else noParent">
@@ -37,6 +37,7 @@
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
       </ng-template>
-  </ion-fab>
+    </ion-fab>
 
 </ion-content>
+

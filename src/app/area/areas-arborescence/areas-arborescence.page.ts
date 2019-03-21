@@ -16,6 +16,7 @@ export class AreasArborescencePage implements OnInit {
   parentArea: Area ;
   title: String ;
   parentId: number;
+  link: String;
   /**
    * This variable permit to check if the page is created (on Initialization) or if we return to it
    */
@@ -23,6 +24,7 @@ export class AreasArborescencePage implements OnInit {
 
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {
     this.title = 'Configuration des espaces';
+    this.link = '/tabs/tab2/area/list/';
   }
 
   ngOnInit() {

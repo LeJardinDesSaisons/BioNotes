@@ -3,7 +3,7 @@
     <div *ngFor="let item of areas">
     <ion-card>
       <ion-item class="arealist">
-        <div class="central-item" [routerLink]="'/tabs/tab2/area/list/' + item.id ">
+        <div class="central-item" [routerLink]="link + item.id ">
           <ion-card-header>
             <ion-card-title>{{item.name}}</ion-card-title>
           </ion-card-header>
