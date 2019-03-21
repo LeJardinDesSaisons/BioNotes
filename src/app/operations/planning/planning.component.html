@@ -6,7 +6,7 @@
         </p>
 
         <span *ngIf="operation.done === true; else notDone">
-            <ion-card class="done" (click)="displayActionSheet($event, operation)">
+            <ion-card class="done" (click)="displayActionSheet(operation)">
                 <ion-card-title class="donetitle">
                     {{ operation.label.name }} {{ operation.vegetable.variety }} {{ operation.vegetable.name }}
                 </ion-card-title>
@@ -21,7 +21,7 @@
         </span>
 
         <ng-template #notDone>
-            <ion-card (click)="displayActionSheet($event, operation)">
+            <ion-card (click)="displayActionSheet(operation)">
                 <ion-card-title>
                     {{ operation.label.name }} {{ operation.vegetable.variety }} {{ operation.vegetable.name }}
                 </ion-card-title>

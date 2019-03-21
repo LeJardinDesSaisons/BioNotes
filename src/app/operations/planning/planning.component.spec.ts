@@ -5,7 +5,7 @@ import { OperationDbService } from '../operations-db.service';
 import * as data from '../operationsmock-db';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AreaDbService } from 'src/app/area/area-db.service';
 import { ActionSheetController } from '@ionic/angular';
 
@@ -48,4 +48,5 @@ describe('PlanningComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

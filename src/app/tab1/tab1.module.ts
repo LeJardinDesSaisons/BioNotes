@@ -8,8 +8,6 @@ import { PlanningComponent } from '../operations/planning/planning.component';
 
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import { DetailsPageModule } from '../operations/details/details.module';
-import { DetailsPage } from '../operations/details/details.page';
-import { Storage } from '@ionic/storage';
 
 @NgModule({
   imports: [
@@ -18,10 +16,9 @@ import { Storage } from '@ionic/storage';
     FormsModule,
     VirtualScrollerModule,
     DetailsPageModule,
-    Storage,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  exports : [PlanningComponent, DetailsPageModule],
-  declarations: [Tab1Page, PlanningComponent, DetailsPageModule]
+  exports : [PlanningComponent],
+  declarations: [Tab1Page, PlanningComponent]
 })
 export class Tab1PageModule {}

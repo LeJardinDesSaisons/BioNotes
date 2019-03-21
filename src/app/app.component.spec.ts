@@ -55,4 +55,10 @@ describe('AppComponent', () => {
     await platformReadySpy;
     expect(areaDbServiceSpy.initAreas).toHaveBeenCalled();
   });
+
+  it('should initialize the operation related keys', async () => {
+    TestBed.createComponent(AppComponent);
+    await platformReadySpy;
+    expect(operationDbServiceSpy.initOperations).toHaveBeenCalled();
+  });
 });

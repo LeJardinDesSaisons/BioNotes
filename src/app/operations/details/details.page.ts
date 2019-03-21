@@ -7,7 +7,6 @@ import { Area } from '../../model/area';
 import { IonCheckbox } from '@ionic/angular';
 import * as moment from 'moment';
 
-
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
@@ -22,6 +21,7 @@ export class DetailsPage implements OnInit {
   formatDate: String;
 
   constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService, private route: ActivatedRoute) {
+    console.log("details");
     this.operation = new Operation();
     this.formatDate = '';
     this.parentAreas = [];
@@ -34,6 +34,11 @@ export class DetailsPage implements OnInit {
     }
    }
 
+  /**
+   * fetches the informations of the operation
+   * to display its details
+   * @param operationId id of the operation that we fetch the detail of
+   */
   async getOperationInformations(operationId: String) {
     this.operation.id = +operationId;
     this.operation = await this.operationDbService.getOperationById(this.operation.id);

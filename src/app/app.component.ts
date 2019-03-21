@@ -27,7 +27,7 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.areaDbService.initAreas();
-      this.operationDbService.initOperations();
+      this.operationDbService.initMocks();
     });
   }
 }

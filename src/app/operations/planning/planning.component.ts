@@ -88,14 +88,14 @@ export class PlanningComponent implements OnInit {
     });
   }
 
-  async displayActionSheet(ev: any, operation: Operation) {
+  async displayActionSheet(operation: Operation) {
     const actionSheet = await this.actionSheetController.create({
       header: operation.label.name + ' ' + operation.vegetable.variety + ' ' + operation.vegetable.name,
       buttons: [{
         text: 'Détails',
         icon: 'more',
         handler: () => {
-          this.goToDetails(operation.id.toString());
+          this.goToDetails(operation.id);
         }
       }, {
         text: 'Annuler',
@@ -106,8 +106,9 @@ export class PlanningComponent implements OnInit {
     await actionSheet.present();
   }
 
-  goToDetails(route: string) {
+  goToDetails(route: Number) {
     this.router.navigateByUrl('/tabs/tab1/operations/details/' + route);
+
   }
 
 }
