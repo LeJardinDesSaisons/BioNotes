@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, Input, Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { AreaDbService } from '../area-db.service';
 import { ActivatedRoute } from '@angular/router';
 import { Area } from 'src/app/model/area';
+import { SelectAreaService } from '../select-area.service';
 
 @Component({
   selector: 'app-select-area',
@@ -9,8 +10,6 @@ import { Area } from 'src/app/model/area';
   styleUrls: ['./select-area.page.scss'],
 })
 export class SelectAreaPage implements OnInit {
-  // @Input() area: Area;
-  @Output() areaSelected = new EventEmitter<Area>() ;
 
   childAreas: Area[] ;
   parentArea: Area ;
@@ -18,7 +17,7 @@ export class SelectAreaPage implements OnInit {
   parentId: number;
   link: String;
 
-  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {
+  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute, private selectAreaService: SelectAreaService) {
     this.title = 'SÉLECTION D\'UN ESPACE';
     this.link = '/tabs/tab2/area/select/';
    }
@@ -47,6 +46,6 @@ export class SelectAreaPage implements OnInit {
   }
 
   private selectArea() {
-    this.areaSelected.emit(this.parentArea);
+    this.selectAreaService.setArea(this.parentArea);
   }
 }
