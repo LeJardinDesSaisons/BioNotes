@@ -107,6 +107,17 @@ export class OperationDbService {
     return operations.filter((operation: Operation) => operation.id === id)[0];
   }
 
+  toggleDoneState(operation: Operation) {
+    console.log(operation.id);
+    this.storage.get('operation').then((operations) => {
+      const currOp = operations.filter((operat: Operation) => operat.id === operation.id)[0];
+      if (currOp.id === operation.id) {
+        currOp.done = !currOp.done;
+      }
+      this.storage.set('operation', operations);
+    });
+  }
+
 
 
 }

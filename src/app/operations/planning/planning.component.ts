@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, DoCheck } from '@angular/core';
 import { OperationDbService } from '../operations-db.service';
 import { AreaDbService } from '../../area/area-db.service';
 import { Operation} from '../../model/operation';
@@ -13,7 +13,7 @@ import { ActionSheetController } from '@ionic/angular';
   templateUrl: './planning.component.html',
   styleUrls: ['./planning.component.scss']
 })
-export class PlanningComponent implements OnInit {
+export class PlanningComponent implements OnInit{
 
   @ViewChild(VirtualScrollerComponent)
   private virtualScroller: VirtualScrollerComponent;
@@ -26,12 +26,19 @@ export class PlanningComponent implements OnInit {
 
   constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService,
               public actionSheetController: ActionSheetController, private router: Router) {
-      this.operation = new Operation();
-      this.operation.area = new Area();
-      this.parentAreas = [];
+    this.operation = new Operation();
+    this.operation.area = new Area();
+    this.parentAreas = [];
    }
 
   ngOnInit() {
+    this.callOnLoad();
+  }
+
+  /**
+   * methods to call on load
+   */
+  private callOnLoad() {
     this.operationDbService.getOperations().then((operations) => {
       this.operationsStored = operations;
 

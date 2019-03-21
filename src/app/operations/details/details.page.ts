@@ -21,7 +21,6 @@ export class DetailsPage implements OnInit {
   formatDate: String;
 
   constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService, private route: ActivatedRoute) {
-    console.log("details");
     this.operation = new Operation();
     this.formatDate = '';
     this.parentAreas = [];
@@ -56,8 +55,7 @@ export class DetailsPage implements OnInit {
   * done of the operation
   */
   private loadCheckbox() {
-
-    if (this.operation.done === true) {
+    if (this.operation.done) {
       this.checkbox.checked = true;
       this.checkboxtext = ' Opération effectuée ';
     } else {
@@ -71,11 +69,10 @@ export class DetailsPage implements OnInit {
   * accodring to the state of the checkbox
   */
   private changeCheckbox() {
-    if (this.checkbox.checked === true) {
-      this.operation.done = true;
+    this.operationDbService.toggleDoneState(this.operation);
+    if (this.checkbox.checked) {
       this.checkboxtext = ' Opération effectuée ';
     } else {
-      this.operation.done = false;
       this.checkboxtext = ' Opération non effectuée ';
     }
   }
