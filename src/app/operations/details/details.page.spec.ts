@@ -7,7 +7,7 @@ import * as data from '../operationsmock-db';
 import { convertToParamMap, ActivatedRoute } from '@angular/router';
 import { AreaDbService } from 'src/app/area/area-db.service';
 
-fdescribe('DetailsPage', () => {
+describe('DetailsPage', () => {
   let component: DetailsPage;
   let fixture: ComponentFixture<DetailsPage>;
 
