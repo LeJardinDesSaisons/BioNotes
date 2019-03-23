@@ -11,7 +11,7 @@ describe('DetailsPage', () => {
   let component: DetailsPage;
   let fixture: ComponentFixture<DetailsPage>;
 
-  let getOperations: any, getOperationById: any;
+  let getOperations: any, getOperationById: any, toggleDoneState: any;
   let getParentNamesSpy: any, addTypeSpy: any, addAreaSpy: any;
 
   const exArea = {
@@ -44,9 +44,10 @@ describe('DetailsPage', () => {
     addTypeSpy = areaDbServiceStub.addType.and.returnValue(Promise.resolve(exArea.type));
     addAreaSpy = areaDbServiceStub.addArea;
 
-    const operationDbServiceStub = jasmine.createSpyObj('OperationDbService', ['getOperations', 'getOperationById']);
-    getOperations = operationDbServiceStub.getOperations.and.returnValue(Promise.resolve(data.mockOperations));
+    const operationDbServiceStub = jasmine.createSpyObj('OperationDbService', ['getOperations', 'getOperationById', 'toggleDoneState']);
+    getOperations = operationDbServiceStub.getOperations.and.returnValue(Promise.resolve(operation));
     getOperationById = operationDbServiceStub.getOperationById.and.returnValue(Promise.resolve(operation));
+    toggleDoneState = operationDbServiceStub.toggleDoneState;
 
     const routeStub = {snapshot: {paramMap: convertToParamMap({'id': operation.id})}};
 
@@ -74,6 +75,13 @@ describe('DetailsPage', () => {
 
   it('should fill the details according to the id', () => {
     expect(component.operation.id).toBe(operation.id);
+  });
+
+  it('should toggle the validation state', () => {
+    component.operation = operation;
+    component.changeCheckbox();
+    expect(toggleDoneState).toHaveBeenCalledWith(operation);
+    expect(component.operation.done).toBe(operation.done);
   });
 
 });

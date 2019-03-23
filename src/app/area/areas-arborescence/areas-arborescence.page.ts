@@ -55,7 +55,6 @@ export class AreasArborescencePage implements OnInit {
    * When we enter in the tabs
    */
   ionViewDidEnter() {
-    console.log('didenter')
     if (!this.init) {
       this.checkAreas();
     } else {

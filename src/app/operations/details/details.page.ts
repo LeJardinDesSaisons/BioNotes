@@ -66,9 +66,9 @@ export class DetailsPage implements OnInit {
 
   /*
   * change the value of done of the operation
-  * accodring to the state of the checkbox
+  * according to the state of the checkbox
   */
-  private changeCheckbox() {
+  changeCheckbox() {
     this.operationDbService.toggleDoneState(this.operation);
     if (this.checkbox.checked) {
       this.checkboxtext = ' Opération effectuée ';

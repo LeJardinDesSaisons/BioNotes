@@ -13,7 +13,7 @@ import { ActionSheetController } from '@ionic/angular';
   templateUrl: './planning.component.html',
   styleUrls: ['./planning.component.scss']
 })
-export class PlanningComponent implements OnInit{
+export class PlanningComponent implements OnInit {
 
   @ViewChild(VirtualScrollerComponent)
   private virtualScroller: VirtualScrollerComponent;
@@ -95,6 +95,11 @@ export class PlanningComponent implements OnInit{
     });
   }
 
+  /**
+   * display an IonActionSheet
+   * to access option of an operation
+   * @param operation
+   */
   async displayActionSheet(operation: Operation) {
     const actionSheet = await this.actionSheetController.create({
       header: operation.label.name + ' ' + operation.vegetable.variety + ' ' + operation.vegetable.name,
@@ -113,9 +118,12 @@ export class PlanningComponent implements OnInit{
     await actionSheet.present();
   }
 
-  goToDetails(route: Number) {
-    this.router.navigateByUrl('/tabs/tab1/operations/details/' + route);
-
+  /**
+   * goes to the details page of a specific operation's page
+   * @param id of the operation page
+   */
+  goToDetails(id: Number) {
+    this.router.navigateByUrl('/tabs/tab1/operations/details/' + id);
   }
 
 }

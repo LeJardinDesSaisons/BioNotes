@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item (click)=changeCheckbox()>
+  <ion-item (click)="changeCheckbox()">
     <ion-label>{{checkboxtext}}</ion-label>
     <ion-checkbox slot="end" #checkbox></ion-checkbox>
   </ion-item>
@@ -59,7 +59,7 @@
       <td >{{ operation.vegetable?.category.name }}</td>
     </tr>
 
-    <!--insert the the modalities here when relevant-->
+    <!--insert the modalities here when relevant-->
 
     <tr class="otherinfos">
       <td class="left">Observations</td>

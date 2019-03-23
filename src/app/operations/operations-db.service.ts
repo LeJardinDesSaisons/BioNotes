@@ -97,7 +97,6 @@ export class OperationDbService {
     return this.storage.get('supplier');
   }
 
-
   /**
    * Get an operation by its id
    * @param id the id of the operation to retrieve
@@ -107,17 +106,16 @@ export class OperationDbService {
     return operations.filter((operation: Operation) => operation.id === id)[0];
   }
 
+  /**
+   * Toggles the operation done state
+   * @param operation the operation that we want to modify the done state of
+   */
   toggleDoneState(operation: Operation) {
-    console.log(operation.id);
     this.storage.get('operation').then((operations) => {
-      const currOp = operations.filter((operat: Operation) => operat.id === operation.id)[0];
-      if (currOp.id === operation.id) {
-        currOp.done = !currOp.done;
-      }
+      const storedOp = operations.filter((operat: Operation) => operat.id === operation.id)[0];
+      storedOp.done = !storedOp.done;
       this.storage.set('operation', operations);
     });
   }
-
-
 
 }
