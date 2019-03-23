@@ -13,9 +13,9 @@ describe ('areas-arborescence view', function() {
     */
     it('should have at least one element', () => {
         page.navigateTo();
-        browser.sleep(500);
+        browser.sleep(1000);
         expect(page.getResultTitle()).toContain('CONFIGURATION DES ESPACES');
-        expect(page.getFirstAreaText()).toContain('Jardin');
+        expect(page.getFirstAreaText()).toContain('Parcelle 1');
     });
 
 });

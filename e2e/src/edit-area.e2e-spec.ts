@@ -1,6 +1,7 @@
 import { AreasArborescencePage } from './areas-arborescence.po';
 import { EditAreaPage } from './edit-area.po';
 import { AddAreaPage } from './add-area.po';
+import { browser } from 'protractor';
 
 describe ('edit-area view', function() {
     let editAreaPage: EditAreaPage;
@@ -18,9 +19,8 @@ describe ('edit-area view', function() {
         editAreaPage.clickMoreOptions();
         editAreaPage.clickEdit();
 
-        expect(addAreaPage.getResult()).toContain('Jardin 1');
         editAreaPage.completeTypeField();
-        expect(addAreaPage.getResult()).toContain('JardinNew 1');
+        expect(addAreaPage.getResult()).toContain("L'espace suivant va être ajouté :\nParcelle 1");
     });
 
 });
