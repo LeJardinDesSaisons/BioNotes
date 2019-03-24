@@ -24,8 +24,12 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      if (this.platform.is('cordova')) {
+        this.statusBar.styleBlackTranslucent();
+        this.statusBar.overlaysWebView(false);
+        this.statusBar.backgroundColorByHexString('#897b66');
+        this.splashScreen.hide();
+      }
       this.areaDbService.initAreas();
       this.operationDbService.initOperations();
     });
