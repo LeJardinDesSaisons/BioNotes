@@ -44,3 +44,7 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 `PlanningComponent` handles all the informations about the operations. It converts the dates, stored in "YYYY-MM-DD" into a "Do MMMM YYYY" format, more readable, and in french, using the [momentjs](https://momentjs.com/docs/) library.
 
 To scroll into the current date when the component is started, the [ngx virtual scroller](https://www.npmjs.com/package/ngx-virtual-scroller) is used. At the moment of development, Ionic virtual scroll appears to be buggy in Ionic4 and Angular virtual scroll slowed down the application.
+
+On click on one of the operations in `PlanningComponent`, an `ActionSheet` opens, with the options: details, cancel.
+
+`DetailsPage` is a page that displays all informations of an operation according to the URL parameter `id`. It's possible to toggle the operation `done` state by accessing this page. 

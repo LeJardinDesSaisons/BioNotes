@@ -10,3 +10,8 @@ export class Category {
     name: String;
 }
 
+export class Supplier {
+    id: Number;
+    name: String;
+}
+

@@ -7,11 +7,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AreaDbService } from './area/area-db.service';
+import { OperationDbService } from './operations/operations-db.service';
 
 describe('AppComponent', () => {
 
   let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
-  let dbServiceSpy;
+  let areaDbServiceSpy, operationDbServiceSpy;
 
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
@@ -19,7 +20,8 @@ describe('AppComponent', () => {
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
 
-    dbServiceSpy = jasmine.createSpyObj('AreaDbService', ['initAreas']);
+    areaDbServiceSpy = jasmine.createSpyObj('AreaDbService', ['initAreas']);
+    operationDbServiceSpy = jasmine.createSpyObj('OperationDbService', ['initOperations']);
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -28,7 +30,8 @@ describe('AppComponent', () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
-        { provide: AreaDbService, useValue: dbServiceSpy },
+        { provide: AreaDbService, useValue: areaDbServiceSpy },
+        { provide: OperationDbService, useValue: operationDbServiceSpy },
       ],
     }).compileComponents();
   }));
@@ -50,6 +53,12 @@ describe('AppComponent', () => {
   it('should initialize the area related keys', async () => {
     TestBed.createComponent(AppComponent);
     await platformReadySpy;
-    expect(dbServiceSpy.initAreas).toHaveBeenCalled();
+    expect(areaDbServiceSpy.initAreas).toHaveBeenCalled();
+  });
+
+  it('should initialize the operation related keys', async () => {
+    TestBed.createComponent(AppComponent);
+    await platformReadySpy;
+    expect(operationDbServiceSpy.initOperations).toHaveBeenCalled();
   });
 });

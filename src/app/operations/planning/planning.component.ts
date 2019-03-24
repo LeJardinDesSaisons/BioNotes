@@ -1,10 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, DoCheck } from '@angular/core';
 import { OperationDbService } from '../operations-db.service';
 import { AreaDbService } from '../../area/area-db.service';
 import { Operation} from '../../model/operation';
 import { Area } from '../../model/area';
 import * as moment from 'moment';
 import { VirtualScrollerComponent } from 'ngx-virtual-scroller';
+import { Router } from '@angular/router';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-planning',
@@ -22,13 +24,21 @@ export class PlanningComponent implements OnInit {
   currentId = null;
   tempDate = '3000-12-12';
 
-  constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService) {
-      this.operation = new Operation();
-      this.operation.area = new Area();
-      this.parentAreas = [];
+  constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService,
+              public actionSheetController: ActionSheetController, private router: Router) {
+    this.operation = new Operation();
+    this.operation.area = new Area();
+    this.parentAreas = [];
    }
 
   ngOnInit() {
+    this.callOnLoad();
+  }
+
+  /**
+   * methods to call on load
+   */
+  private callOnLoad() {
     this.operationDbService.getOperations().then((operations) => {
       this.operationsStored = operations;
 
@@ -65,9 +75,9 @@ export class PlanningComponent implements OnInit {
     this.operationsStored.forEach(operasto => {
       // date storing and formatting
       const dateString = operasto.date.toString(); // date into the string format
-      const formatDate = moment(dateString, 'YYYY-MM-DD', 'fr').format("Do MMMM YYYY"); // date formatted for display
+      const formatDate = moment(dateString, 'YYYY-MM-DD', 'fr').format('Do MMMM YYYY'); // date formatted for display
 
-      if( formatDate !== previousDate){
+      if ( formatDate !== previousDate) {
         operasto.date = formatDate;
         previousDate = operasto.date;
       } else {
@@ -83,7 +93,37 @@ export class PlanningComponent implements OnInit {
         this.parentAreas[+operasto.id] = names;
       });
     });
+  }
 
+  /**
+   * display an IonActionSheet
+   * to access option of an operation
+   * @param operation
+   */
+  async displayActionSheet(operation: Operation) {
+    const actionSheet = await this.actionSheetController.create({
+      header: operation.label.name + ' ' + operation.vegetable.variety + ' ' + operation.vegetable.name,
+      buttons: [{
+        text: 'Détails',
+        icon: 'more',
+        handler: () => {
+          this.goToDetails(operation.id);
+        }
+      }, {
+        text: 'Annuler',
+        icon: 'close',
+        role: 'cancel'
+      }]
+    });
+    await actionSheet.present();
+  }
+
+  /**
+   * goes to the details page of a specific operation's page
+   * @param id of the operation page
+   */
+  goToDetails(id: Number) {
+    this.router.navigateByUrl('/tabs/tab1/operations/details/' + id);
   }
 
 }

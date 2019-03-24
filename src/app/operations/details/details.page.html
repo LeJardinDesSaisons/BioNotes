@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button></ion-back-button>
+      </ion-buttons>
+    <ion-title>{{ operation.label?.name }} {{ operation.vegetable?.variety }} {{ operation.vegetable?.name }}</ion-title>
+    <ion-buttons slot="end">
+        <ion-button size="large">
+            <ion-icon name="more"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item (click)="changeCheckbox()">
+    <ion-label>{{checkboxtext}}</ion-label>
+    <ion-checkbox slot="end" #checkbox></ion-checkbox>
+  </ion-item>
+
+  <table id="info">
+    <tr class="infos">
+      <td class="left"><ion-icon name="clipboard"></ion-icon></td>
+      <td >{{ operation.label?.name }}</td>
+    </tr>
+
+    <tr class="infos">
+      <td class="left"><ion-icon name="nutrition"></ion-icon></td>
+      <td >{{ operation.vegetable?.variety }} {{ operation.vegetable?.name }}</td>
+    </tr>
+
+    <tr class="infos">
+      <td class="left"><ion-icon name="pin"></ion-icon></td>
+      <td >
+        <span *ngFor="let parent of parentAreas[operation.id]">
+          {{parent}} >
+        </span>
+        {{operation.area?.name}}
+      </td>
+    </tr>
+
+    <tr class="infos">
+      <td class="left"><ion-icon name="calendar"></ion-icon></td>
+      <td >{{ formatDate }}</td>
+    </tr>
+
+  </table>
+
+
+
+  <table>
+    <tr class="otherinfos">
+      <td class="left">Fournisseur</td>
+      <td >{{ operation.supplier?.name }}</td>
+    </tr>
+
+    <tr class="otherinfos">
+      <td class="left">Catégorie</td>
+      <td >{{ operation.vegetable?.category.name }}</td>
+    </tr>
+
+    <!--insert the modalities here when relevant-->
+
+    <tr class="otherinfos">
+      <td class="left">Observations</td>
+      <td >{{ operation?.observations }}</td>
+    </tr>
+
+  </table>
+
+</ion-content>
