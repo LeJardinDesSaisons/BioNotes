@@ -1,7 +1,6 @@
 import { AreasArborescencePage } from './areas-arborescence.po';
 import { EditAreaPage } from './edit-area.po';
 import { AddAreaPage } from './add-area.po';
-import { browser } from 'protractor';
 
 describe ('edit-area view', function() {
     let editAreaPage: EditAreaPage;
