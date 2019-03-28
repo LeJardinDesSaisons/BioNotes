@@ -1,3 +1,45 @@
-<p>
-  form-operation works!
-</p>
+<form #operationForm="ngForm">
+  <ion-item>
+    <ion-label position="floating">Date</ion-label>
+    <ion-datetime
+    display-format="DDDD D MMMM YYYY"
+    month-names="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+    month-short-names="Jan, Fev, Mar, Avr, Mai, Jun, Jul, Aou, Sep, Oct, Nov, Dec"
+    day-names="Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche"
+    day-short-names="Lun, Mar, Mer, Jeu, Ven, Sam, Dim"
+    min="2000"
+    max="2100"
+    ></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Heure de début</ion-label>
+    <ion-datetime
+    display-format="HH : mm"
+    minuteValues="0,15,30,45"
+    ></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Espace</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Variété</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Nom</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Catégorie</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Fournisseur</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Libellé</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+</form>
