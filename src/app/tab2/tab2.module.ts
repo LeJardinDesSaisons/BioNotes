@@ -7,7 +7,7 @@ import { Tab2Page } from './tab2.page';
 import { AddAreaPageModule } from '../area/add-area/add-area.module';
 import { EditAreaPageModule } from '../area/edit-area/edit-area.module';
 import { AreasArborescencePageModule } from '../area/areas-arborescence/areas-arborescence.module';
-
+import { SelectAreaPageModule } from '../area/select-area/select-area.module';
 
 const routes: Routes = [
   {
@@ -29,6 +29,7 @@ const routes: Routes = [
     AddAreaPageModule,
     EditAreaPageModule,
     AreasArborescencePageModule,
+    SelectAreaPageModule,
     RouterModule.forChild(routes)
   ],
   declarations: [Tab2Page]
