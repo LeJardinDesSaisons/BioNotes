@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Operation, Label} from '../model/operation';
+import { Operation, Label, NamedDbObject} from '../model/operation';
 import { Vegetable, Category, Supplier } from '../model/vegetable';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
@@ -118,4 +118,115 @@ export class OperationDbService {
     });
   }
 
+  /**
+   * Adds a supplier to the database.
+   * @param supplier The supplier that will be added
+   */
+  async addSupplier(supplier: Supplier): Promise<Supplier> {
+    const suppliers: Supplier[] = await this.storage.get('supplier');
+    const supplierInStorage =
+      suppliers.filter((currSupplier: Supplier) => currSupplier.name = supplier.name)[0];
+    if (supplierInStorage) {
+      return supplierInStorage;
+    } else {
+      supplier.id = suppliers.length + 1;
+      suppliers.push(supplier);
+      this.storage.set('supplier', suppliers);
+      return supplier;
+    }
+  }
+
+  /**
+   * Adds a label to the database.
+   * @param label The supplier that will be added
+   */
+  async addLabel(label: Label): Promise<Label> {
+    const labels: Label[] = await this.storage.get('label');
+    const labelInStorage =
+      labels.filter((currLabel: Label) => currLabel.name = label.name)[0];
+    if (labelInStorage) {
+      return labelInStorage;
+    } else {
+      label.id = labels.length + 1;
+      labels.push(label);
+      this.storage.set('label', labels);
+      return label;
+    }
+  }
+
+/**
+   * Adds a category to the database.
+   * @param category The category that will be added
+   */
+  async addCategory(category: Category): Promise<Category> {
+    const categories: Category[] = await this.storage.get('category');
+    const categoryInStorage =
+      categories.filter((currCategory: Category) => currCategory.name = category.name)[0];
+    if (categoryInStorage) {
+      return categoryInStorage;
+    } else {
+      category.id = categories.length + 1;
+      categories.push(category);
+      this.storage.set('label', categories);
+      return category;
+    }
+  }
+
+  /**
+   * Adds an object with a name field, such as a category or a supplier, to the database.
+   * If an object of the corresponding type with the same name already exists,
+   * it gets returned.
+   * @param dbObject Object that will be added
+   * @param key Key used to identify the type of object in the database, e.g. 'supplier'
+   */
+  async addNamedDbObject(key: string, dbObject: NamedDbObject): Promise<NamedDbObject> {
+    const dbObjects: NamedDbObject[] = await this.storage.get(key);
+    const inStorage = dbObjects.filter(
+      (currObject: NamedDbObject) => currObject.name = dbObject.name)[0];
+    if (inStorage) {
+      return inStorage;
+    } else {
+      dbObject.id = dbObjects.length + 1;
+      dbObjects.push(dbObject);
+      this.storage.set(key, dbObjects);
+      return dbObject;
+    }
+  }
+
+  /**
+   * Adds a vegetable to the database unless it already exists.
+   * Returns the vegetable that's in the database.
+   * @param vegetable Vegetable that will be added
+   */
+  async addVegetable(vegetable: Vegetable): Promise<Vegetable> {
+    const vegetables: Vegetable[] = await this.storage.get('vegetable');
+    const vegetableInStorage = vegetables.filter(
+      (currVegetable: Vegetable) => (currVegetable.name = vegetable.name)
+      && (currVegetable.variety = vegetable.variety)
+      && (currVegetable.category.name = vegetable.category.name)
+    )[0];
+    if (vegetableInStorage) {
+      return vegetableInStorage;
+    } else {
+      vegetable.id = vegetables.length + 1;
+      vegetables.push(vegetable);
+      this.storage.set('vegetable', vegetables);
+      return vegetable;
+    }
+  }
+
+  /**
+   * Adds an operation to the database.
+   * @param operation Operation that will be added
+   */
+  addOperation(operation: Operation) {
+    this.storage.get('operation').then((operations: Operation[]) => {
+      operation.id = operations.length + 1;
+      this.storage.get('area').then((areas: Area[]) => {
+        operation.area = areas[0];
+        operations.push(operation);
+        this.storage.set('operation', operations);
+      })
+    });
+  }
 }

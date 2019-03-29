@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Operation } from 'src/app/model/operation';
+import { OperationDbService } from '../operations-db.service';
+import { Category } from '../../model/vegetable';
 
 @Component({
   selector: 'form-operation',
@@ -9,10 +11,12 @@ import { Operation } from 'src/app/model/operation';
 export class FormOperationComponent implements OnInit {
 
   @Input() operation: Operation;
+  categories: Category[];
 
-  constructor() { }
+  constructor(private operationsDbService: OperationDbService) { }
 
   ngOnInit() {
+    this.operationsDbService.getCategories().then((categoryList) => this.categories = categoryList);
   }
 
 }

@@ -14,7 +14,7 @@
                     <span *ngFor="let parent of parentAreas[operation.id]">
                     {{parent}} >
                     </span>
-                    {{operation.area.name}}
+                    {{operation.area?.name}}
                 </ion-card-subtitle>
                 <ion-icon name="checkmark-circle-outline"></ion-icon>
             </ion-card>
@@ -29,7 +29,7 @@
                     <span *ngFor="let parent of parentAreas[operation.id]">
                     {{parent}} >
                     </span>
-                    {{operation.area.name}}
+                    {{operation.area?.name}}
                 </ion-card-subtitle>
             </ion-card>
         </ng-template>
