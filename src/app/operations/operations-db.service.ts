@@ -119,60 +119,6 @@ export class OperationDbService {
   }
 
   /**
-   * Adds a supplier to the database.
-   * @param supplier The supplier that will be added
-   */
-  async addSupplier(supplier: Supplier): Promise<Supplier> {
-    const suppliers: Supplier[] = await this.storage.get('supplier');
-    const supplierInStorage =
-      suppliers.filter((currSupplier: Supplier) => currSupplier.name = supplier.name)[0];
-    if (supplierInStorage) {
-      return supplierInStorage;
-    } else {
-      supplier.id = suppliers.length + 1;
-      suppliers.push(supplier);
-      this.storage.set('supplier', suppliers);
-      return supplier;
-    }
-  }
-
-  /**
-   * Adds a label to the database.
-   * @param label The supplier that will be added
-   */
-  async addLabel(label: Label): Promise<Label> {
-    const labels: Label[] = await this.storage.get('label');
-    const labelInStorage =
-      labels.filter((currLabel: Label) => currLabel.name = label.name)[0];
-    if (labelInStorage) {
-      return labelInStorage;
-    } else {
-      label.id = labels.length + 1;
-      labels.push(label);
-      this.storage.set('label', labels);
-      return label;
-    }
-  }
-
-/**
-   * Adds a category to the database.
-   * @param category The category that will be added
-   */
-  async addCategory(category: Category): Promise<Category> {
-    const categories: Category[] = await this.storage.get('category');
-    const categoryInStorage =
-      categories.filter((currCategory: Category) => currCategory.name = category.name)[0];
-    if (categoryInStorage) {
-      return categoryInStorage;
-    } else {
-      category.id = categories.length + 1;
-      categories.push(category);
-      this.storage.set('label', categories);
-      return category;
-    }
-  }
-
-  /**
    * Adds an object with a name field, such as a category or a supplier, to the database.
    * If an object of the corresponding type with the same name already exists,
    * it gets returned.
@@ -226,7 +172,7 @@ export class OperationDbService {
         operation.area = areas[0];
         operations.push(operation);
         this.storage.set('operation', operations);
-      })
+      });
     });
   }
 }
