@@ -168,6 +168,8 @@ export class OperationDbService {
   addOperation(operation: Operation) {
     this.storage.get('operation').then((operations: Operation[]) => {
       operation.id = operations.length + 1;
+
+      // Remove this when areas are added to the form
       this.storage.get('area').then((areas: Area[]) => {
         operation.area = areas[0];
         operations.push(operation);

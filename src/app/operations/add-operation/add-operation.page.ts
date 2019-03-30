@@ -35,6 +35,7 @@ export class AddOperationPage implements OnInit {
             this.operation.vegetable = vegetable;
             this.operationDbService.addOperation(this.operation);
             this.navController.navigateBack('tabs/tab1');
+            // this.navController.back();
           });
       });
     }

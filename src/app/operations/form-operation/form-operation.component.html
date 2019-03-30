@@ -7,11 +7,13 @@
     month-short-names="Jan, Fev, Mar, Avr, Mai, Jun, Jul, Aou, Sep, Oct, Nov, Dec"
     day-names="Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi"
     day-short-names="Dim, Lun, Mar, Mer, Jeu, Ven, Sam"
-    min="2000"
     max="2100"
+    doneText="OK"
+    cancelText="Annuler"
     [(ngModel)]="operation.date"
     name="date"
     ></ion-datetime>
+    <ion-icon class="input-end-icon" name="calendar"></ion-icon>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Espace</ion-label>
