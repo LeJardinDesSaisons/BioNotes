@@ -104,6 +104,13 @@ export class PlanningComponent implements OnInit {
     const actionSheet = await this.actionSheetController.create({
       header: operation.label.name + ' ' + operation.vegetable.variety + ' ' + operation.vegetable.name,
       buttons: [{
+        text: 'Marquer comme ' + (operation.done ? 'non effectuée' : 'effectuée'),
+        icon: 'checkmark-circle-outline',
+        handler: () => {
+          this.operationDbService.toggleDoneState(operation);
+          operation.done = !operation.done;
+        }
+      }, {
         text: 'Détails',
         icon: 'more',
         handler: () => {
