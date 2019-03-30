@@ -71,5 +71,12 @@ describe('OperationDbService', () => {
     });
   }));
 
+  it('should delete the operation', fakeAsync(() => {
+    getStub = getStub.and.returnValue(Promise.resolve(data.mockOperations));
+    service.deleteOperation(6);
+    expect(getStub).toHaveBeenCalledWith('operation');
+    tick();
+    expect(setStub).toHaveBeenCalledWith('operation', data.mockOperations.filter((op) => op.id !== 6));
+  }));
 
 });

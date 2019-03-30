@@ -5,7 +5,7 @@
       </ion-buttons>
     <ion-title>{{ operation.label?.name }} {{ operation.vegetable?.variety }} {{ operation.vegetable?.name }}</ion-title>
     <ion-buttons slot="end">
-        <ion-button size="large">
+        <ion-button size="large" (click)="presentPopover($event)">
             <ion-icon name="more"></ion-icon>
         </ion-button>
       </ion-buttons>

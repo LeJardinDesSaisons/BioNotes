@@ -1,11 +1,11 @@
-import { NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-
+import { OperationPopoverComponent } from './../operation-popover/operation-popover.component';
 import { DetailsPage } from './details.page';
+
 
 const routes: Routes = [
   {
@@ -25,6 +25,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DetailsPage]
+  declarations: [DetailsPage, OperationPopoverComponent],
+  entryComponents: [OperationPopoverComponent]
 })
 export class DetailsPageModule {}
