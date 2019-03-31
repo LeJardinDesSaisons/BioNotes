@@ -118,4 +118,15 @@ export class OperationDbService {
     });
   }
 
+  /**
+   * Remove the operation from the Storage
+   * @param id the id of the operation to delete
+   */
+  deleteOperation(id: Number) {
+    this.storage.get('operation').then((operations: Operation[]) => {
+      operations = operations.filter((currOp: Operation) => currOp.id !== id);
+      this.storage.set('operation', operations);
+    });
+  }
+
 }
