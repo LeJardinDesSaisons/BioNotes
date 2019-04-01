@@ -10,7 +10,7 @@
                 <ion-card-title class="donetitle">
                     {{ operation.label.name }} {{ operation.vegetable.variety }} {{ operation.vegetable.name }}
                 </ion-card-title>
-                <ion-card-subtitle class="donesubtitle">
+                <ion-card-subtitle *ngIf="operation.area" class="donesubtitle">
                     <span *ngFor="let parent of parentAreas[operation.id]">
                     {{parent}} >
                     </span>
@@ -25,7 +25,7 @@
                 <ion-card-title>
                     {{ operation.label.name }} {{ operation.vegetable.variety }} {{ operation.vegetable.name }}
                 </ion-card-title>
-                <ion-card-subtitle>
+                <ion-card-subtitle *ngIf="operation.area">
                     <span *ngFor="let parent of parentAreas[operation.id]">
                     {{parent}} >
                     </span>

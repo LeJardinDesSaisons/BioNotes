@@ -39,6 +39,7 @@ export class PlanningComponent implements OnInit {
    * methods to call on load
    */
   private callOnLoad() {
+    console.log("call on load");
     this.operationDbService.getOperations().then((operations) => {
       this.operationsStored = operations;
 
@@ -89,9 +90,11 @@ export class PlanningComponent implements OnInit {
         this.currentId = operasto.id;
       }
 
-      this.areaDbService.getParentNames(operasto.area).then((names: String[]) => {
-        this.parentAreas[+operasto.id] = names;
-      });
+      if (operasto.area) {
+        this.areaDbService.getParentNames(operasto.area).then((names: String[]) => {
+          this.parentAreas[+operasto.id] = names;
+        });
+      }
     });
   }
 
