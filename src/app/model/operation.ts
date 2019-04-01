@@ -16,3 +16,8 @@ export class Label {
     id: Number;
     name: String;
 }
+
+export interface NamedDbObject {
+    id: Number;
+    name: String;
+}

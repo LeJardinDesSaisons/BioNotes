@@ -4,9 +4,14 @@
       <ion-back-button defaultHref=""></ion-back-button>
     </ion-buttons>
     <ion-title>Ajout d'une opération</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="submit()" id="submit">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <form-operation></form-operation>
+  <form-operation [operation]="operation"></form-operation>
 </ion-content>
