@@ -1,6 +1,6 @@
 import { Area, Type } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -15,7 +15,10 @@ export class AddAreaPage implements OnInit {
   parentNames: String[];
   parentId: String;
 
-  constructor(private areaDbService: AreaDbService, private route: ActivatedRoute, private navController: NavController) {
+  constructor(private areaDbService: AreaDbService,
+              private route: ActivatedRoute,
+              private navController: NavController,
+              private toastController: ToastController) {
     this.area = new Area();
     this.area.type = new Type();
   }
@@ -36,6 +39,12 @@ export class AddAreaPage implements OnInit {
       this.areaDbService.addType(this.area.type).then((type: Type) => {
         this.area.type = type;
         this.areaDbService.addArea(this.area);
+
+        this.toastController.create({
+          message: 'L\'espace ' + this.area.name + ' a été ajouté.',
+          duration: 2000
+        }).then(toast => toast.present());
+
         if (this.parentId) {
           this.navController.navigateBack('/tabs/tab2/area/list/' + this.parentId);
         } else {
