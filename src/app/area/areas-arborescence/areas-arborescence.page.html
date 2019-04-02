@@ -43,7 +43,12 @@
     </ng-container>
 
     <ng-template #noChild>
-      <p>Aucun espace n'a été trouvé</p>
+      <ion-item>
+        <ion-icon name="sad" slot="end"></ion-icon>
+        <ion-label>
+            Aucun espace n'a été trouvé.
+        </ion-label>
+      </ion-item>
     </ng-template>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
@@ -60,4 +65,9 @@
       </ng-template>
   </ion-fab>
 
+  <helper-text *ngIf="parentArea"
+    [areaName]="parentArea.name"
+    [isInArborescence]="true"
+    [parentNames]="ancestorNames">
+  </helper-text>
 </ion-content>

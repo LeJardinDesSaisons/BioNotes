@@ -1,11 +1,14 @@
-<div>
-  <p>L'espace suivant va être ajouté :</p>
-  <p>
-    <span *ngIf="parentNames">
-      <span *ngFor="let parentName of parentNames">
-        {{ parentName }} <span class="right-arrow">></span>
+<ion-card [class.fillBackground]="!isInArborescence">
+  <ion-card-content>
+    <p *ngIf="isInArborescence">Emplacement actuel :</p>
+    <p *ngIf="!isInArborescence">L'espace va être inséré à l'emplacement suivant :</p>
+    <p id="parentNames">
+      <span *ngIf="parentNames">
+        <span *ngFor="let parentName of parentNames">
+          {{ parentName }} <span class="right-arrow">></span>
+        </span>
       </span>
-    </span>
-    {{ areaName }}
-  </p>
-</div>
+      {{ areaName }}
+    </p>
+  </ion-card-content>
+</ion-card>

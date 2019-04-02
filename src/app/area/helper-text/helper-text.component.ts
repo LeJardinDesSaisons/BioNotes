@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class HelperTextComponent implements OnInit {
 
+  @Input() isInArborescence: boolean;
   @Input() areaName: String;
   @Input() parentNames: String[];
 
