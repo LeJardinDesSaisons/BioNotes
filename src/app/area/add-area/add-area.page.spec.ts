@@ -1,4 +1,4 @@
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
@@ -11,7 +11,7 @@ describe('AddAreaPage', () => {
   let fixture: ComponentFixture<AddAreaPage>;
 
   let getParentNamesSpy: any, addTypeSpy: any, addAreaSpy: any;
-  let navigateBackSpy: any;
+  let navigateBackSpy: any, createToastSpy: any;
 
   const parentId = '1';
   const area = {
@@ -33,12 +33,16 @@ describe('AddAreaPage', () => {
     const navControllerStub = jasmine.createSpyObj('NavController', ['navigateBack']);
     navigateBackSpy = navControllerStub.navigateBack;
 
+    const toastControllerStub = jasmine.createSpyObj('ToastController', ['create']);
+    createToastSpy = toastControllerStub.create.and.returnValue(Promise.resolve({present: () => null}));
+
     TestBed.configureTestingModule({
       declarations: [ AddAreaPage ],
       providers: [
         {provide: AreaDbService, useValue: dbServiceStub},
         {provide: ActivatedRoute, useValue: routeStub},
         {provide: NavController, useValue: navControllerStub},
+        {provide: ToastController, useValue: toastControllerStub}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -69,6 +73,7 @@ describe('AddAreaPage', () => {
     expect(addTypeSpy).toHaveBeenCalledWith(area.type);
     expect(component.area.type).toBe(area.type);
     expect(addAreaSpy).toHaveBeenCalledWith(area);
+    expect(createToastSpy).toHaveBeenCalled();
     expect(navigateBackSpy).toHaveBeenCalledWith('/tabs/tab2/area/list/' + area.parentId);
   }));
 
