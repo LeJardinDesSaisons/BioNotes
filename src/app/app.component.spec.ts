@@ -15,10 +15,10 @@ describe('AppComponent', () => {
   let areaDbServiceSpy, operationDbServiceSpy;
 
   beforeEach(async(() => {
-    statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
+    statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleBlackTranslucent', 'overlaysWebView', 'backgroundColorByHexString']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
-    platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+    platformSpy = jasmine.createSpyObj('Platform', { is: () => true, ready: platformReadySpy });
 
     areaDbServiceSpy = jasmine.createSpyObj('AreaDbService', ['initAreas']);
     operationDbServiceSpy = jasmine.createSpyObj('OperationDbService', ['initOperations']);
@@ -46,7 +46,7 @@ describe('AppComponent', () => {
     TestBed.createComponent(AppComponent);
     expect(platformSpy.ready).toHaveBeenCalled();
     await platformReadySpy;
-    expect(statusBarSpy.styleDefault).toHaveBeenCalled();
+    expect(statusBarSpy.styleBlackTranslucent).toHaveBeenCalled();
     expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 

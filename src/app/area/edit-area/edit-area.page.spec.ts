@@ -1,3 +1,4 @@
+import { ToastController } from '@ionic/angular';
 import { AreaDbService } from './../area-db.service';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
@@ -11,7 +12,7 @@ describe('EditAreaPage', () => {
   let fixture: ComponentFixture<EditAreaPage>;
 
   let getAreaByIdSpy: any, getParentNamesSpy: any, addTypeSpy: any, editAreaSpy: any;
-  let backSpy: any;
+  let backSpy: any, createToastSpy: any;
 
   const areaId = '2';
   const area = {
@@ -35,12 +36,16 @@ describe('EditAreaPage', () => {
     const locationStub = jasmine.createSpyObj('Location', ['back']);
     backSpy = locationStub.back;
 
+    const toastControllerStub = jasmine.createSpyObj('ToastController', ['create']);
+    createToastSpy = toastControllerStub.create.and.returnValue(Promise.resolve({present: () => null}));
+
     TestBed.configureTestingModule({
       declarations: [ EditAreaPage ],
       providers: [
         {provide: AreaDbService, useValue: dbServiceStub},
         {provide: ActivatedRoute, useValue: routeStub},
         {provide: Location, useValue: locationStub},
+        {provide: ToastController, useValue: toastControllerStub}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -70,6 +75,7 @@ describe('EditAreaPage', () => {
     expect(addTypeSpy).toHaveBeenCalledWith(area.type);
     expect(component.area.type).toBe(area.type);
     expect(editAreaSpy).toHaveBeenCalledWith(area);
+    expect(createToastSpy).toHaveBeenCalled();
     expect(backSpy).toHaveBeenCalled();
   }));
 });

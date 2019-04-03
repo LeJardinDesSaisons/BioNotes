@@ -1,3 +1,4 @@
+import { FormAreaModule } from './../form-area/form-area.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -25,6 +26,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    FormAreaModule,
     RouterModule.forChild(routes)
   ],
   declarations: [AreasArborescencePage, AreaPopoverComponent],
