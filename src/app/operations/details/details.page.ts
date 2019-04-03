@@ -44,9 +44,12 @@ export class DetailsPage implements OnInit {
 
     const dateString = this.operation.date.toString(); // date into the string format
     this.formatDate = moment(dateString, 'YYYY-MM-DD', 'fr').format('Do MMMM YYYY'); // date formatted for display
-    this.areaDbService.getParentNames(this.operation.area).then((names: String[]) => {
-      this.parentAreas[+this.operation.id] = names;
-    });
+
+    if (this.operation.area) {
+      this.areaDbService.getParentNames(this.operation.area).then((names: String[]) => {
+        this.parentAreas[+this.operation.id] = names;
+      });
+    }
     this.loadCheckbox();
   }
 

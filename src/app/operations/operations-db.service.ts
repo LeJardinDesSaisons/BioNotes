@@ -128,7 +128,7 @@ export class OperationDbService {
   async addNamedDbObject(key: string, dbObject: NamedDbObject): Promise<NamedDbObject> {
     const dbObjects: NamedDbObject[] = await this.storage.get(key);
     const inStorage = dbObjects.filter(
-      (currObject: NamedDbObject) => currObject.name = dbObject.name)[0];
+      (currObject: NamedDbObject) => currObject.name === dbObject.name)[0];
     if (inStorage) {
       return inStorage;
     } else {
@@ -147,7 +147,7 @@ export class OperationDbService {
   async addVegetable(vegetable: Vegetable): Promise<Vegetable> {
     const vegetables: Vegetable[] = await this.storage.get('vegetable');
     const vegetableInStorage = vegetables.filter(
-      (currVegetable: Vegetable) => (currVegetable.name = vegetable.name)
+      (currVegetable: Vegetable) => (currVegetable.name === vegetable.name)
       && (currVegetable.variety = vegetable.variety)
       && (currVegetable.category.name = vegetable.category.name)
     )[0];
@@ -165,11 +165,13 @@ export class OperationDbService {
    * Adds an operation to the database.
    * @param operation Operation that will be added
    */
-  addOperation(operation: Operation) {
-    this.storage.get('operation').then((operations: Operation[]) => {
-      operation.id = operations.length + 1;
-      operations.push(operation);
-      this.storage.set('operation', operations);
-    });
+  async addOperation(operation: Operation): Promise<Operation> {
+    const operations: Operation[] = await this.storage.get('operation');
+
+    operation.id = operations.length + 1;
+    operations.push(operation);
+    this.storage.set('operation', operations);
+
+    return operation;
   }
 }
