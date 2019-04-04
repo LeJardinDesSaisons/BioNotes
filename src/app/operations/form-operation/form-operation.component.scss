@@ -8,6 +8,12 @@ ion-button {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 100%;
+    font-size: 14px;
+}
+
+#areaselected {
+    --background: var(--ion-color-primary-tint);
+    --color: var(--ion-color-primary-shade);
 }
 
 .input-end-icon{

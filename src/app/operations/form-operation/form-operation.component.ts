@@ -23,6 +23,7 @@ export class FormOperationComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.operation.area = null ;
     this.selectedArea = null ;
+    this.selectAreaService.setArea(null);
     this.operationsDbService.getCategories().then((categoryList) => this.categories = categoryList);
   }
 

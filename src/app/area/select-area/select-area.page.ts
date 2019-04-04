@@ -4,6 +4,7 @@ import { AreaDbService } from '../area-db.service';
 import { ActivatedRoute } from '@angular/router';
 import { Area } from 'src/app/model/area';
 import { SelectAreaService } from '../select-area.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-select-area',
@@ -19,7 +20,7 @@ export class SelectAreaPage implements OnInit {
   link: String;
 
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute, private selectAreaService: SelectAreaService,
-     private navController: NavController ) {
+     private location: Location, private navController: NavController ) {
     this.title = 'SÉLECTION D\'UN ESPACE';
     this.link = '/tabs/tab2/area/select/';
    }
@@ -55,9 +56,10 @@ export class SelectAreaPage implements OnInit {
   private selectArea() {
     this.selectAreaService.setArea(this.parentArea);
     this.navController.navigateBack('/add-operation');
+    //this.location.go('/add-operation');
   }
 
   private goBack() {
-    this.navController.navigateBack('/add-operation')
+    this.location.back();
   }
 }
