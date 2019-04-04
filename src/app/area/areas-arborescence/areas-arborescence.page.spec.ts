@@ -61,7 +61,7 @@ describe('AreasArborescencePage with parentId', () => {
   let component: AreasArborescencePage;
   let fixture: ComponentFixture<AreasArborescencePage>;
 
-  let getAreaByIdSpy: any, getChildAreaByIdSpy: any, getRootAreaSpy: any;
+  let getAreaByIdSpy: any, getChildAreaByIdSpy: any, getRootAreaSpy: any, getParentAreasSpy: any;
 
   const parentId = '1';
   const area = data.Areas[0];
@@ -70,11 +70,11 @@ describe('AreasArborescencePage with parentId', () => {
 
 
   beforeEach(async(() => {
-    const dbServiceStub = jasmine.createSpyObj('AreaDBService', ['getAreaById', 'getChildAreaById', 'getRootArea']);
+    const dbServiceStub = jasmine.createSpyObj('AreaDBService', ['getAreaById', 'getChildAreaById', 'getRootArea', 'getParentNames']);
     getAreaByIdSpy = dbServiceStub.getAreaById.and.returnValue(Promise.resolve(area));
     getChildAreaByIdSpy = dbServiceStub.getChildAreaById.and.returnValue(Promise.resolve(child));
     getRootAreaSpy = dbServiceStub.getRootArea.and.returnValue(Promise.resolve([area, area2]));
-
+    getParentAreasSpy = dbServiceStub.getParentNames.and.returnValue(Promise.resolve(['Jardin 1']));
     const routeStub = {snapshot: {paramMap: convertToParamMap({'parentid': parentId })}};
 
 
@@ -102,8 +102,6 @@ describe('AreasArborescencePage with parentId', () => {
 
   it('should make the correct calls on initialisation', () => {
     expect(getAreaByIdSpy).toHaveBeenCalledWith(+parentId);
-    expect(getChildAreaByIdSpy).toHaveBeenCalledWith(+parentId);
-    expect(getRootAreaSpy).toHaveBeenCalledTimes(0);
   });
 
 });

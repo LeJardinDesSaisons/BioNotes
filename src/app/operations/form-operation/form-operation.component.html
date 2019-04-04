@@ -12,6 +12,8 @@
     cancelText="Annuler"
     [(ngModel)]="operation.date"
     name="date"
+    required
+    ngDefaultControl
     ></ion-datetime>
     <ion-icon class="input-end-icon" name="calendar"></ion-icon>
   </ion-item>
@@ -34,32 +36,32 @@
     <h5>Légume</h5>
     <ion-item class="vegetable">
       <ion-label position="floating">Variété</ion-label>
-      <ion-input type="text" [(ngModel)]="operation.vegetable.variety" name="variety"></ion-input>
+      <ion-input type="text" [(ngModel)]="operation.vegetable.variety" name="variety" ngDefaultControl></ion-input>
     </ion-item>
     <ion-item class="vegetable">
       <ion-label position="floating">Nom</ion-label>
-      <ion-input type="text" [(ngModel)]="operation.vegetable.name" name="name"></ion-input>
+      <ion-input type="text" [(ngModel)]="operation.vegetable.name" name="name" ngDefaultControl></ion-input>
     </ion-item>
     <ion-item class="vegetable">
       <ion-label position="floating">Catégorie</ion-label>
-      <ion-select cancelText="Annuler" [(ngModel)]="operation.vegetable.category.name" name="category">
+      <ion-select cancelText="Annuler" [(ngModel)]="operation.vegetable.category.name" name="category" ngDefaultControl>
         <ion-select-option *ngFor="let category of categories">{{category.name}}</ion-select-option>
       </ion-select>
     </ion-item>
     <!-- Replace this with autocomplete bar -->
     <ion-item class="vegetable">
       <ion-label position="floating">Fournisseur</ion-label>
-      <ion-input type="text" [(ngModel)]="operation.supplier.name" name="supplier"></ion-input>
+      <ion-input type="text" [(ngModel)]="operation.supplier.name" name="supplier" ngDefaultControl></ion-input>
     </ion-item>
   </div>
 
   <!-- Replace this with autocomplete bar -->
   <ion-item>
     <ion-label position="floating">Libellé</ion-label>
-    <ion-input type="text" [(ngModel)]="operation.label.name" name="label" required></ion-input>
+    <ion-input type="text" [(ngModel)]="operation.label.name" name="label" required ngDefaultControl></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Observations</ion-label>
-    <ion-textarea rows="5" [(ngModel)]="operation.observations" name="observations"></ion-textarea>
+    <ion-textarea rows="5" [(ngModel)]="operation.observations" name="observations" ngDefaultControl></ion-textarea>
   </ion-item>
 </form>

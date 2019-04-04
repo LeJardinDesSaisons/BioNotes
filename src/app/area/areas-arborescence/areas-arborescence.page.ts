@@ -21,6 +21,7 @@ export class AreasArborescencePage implements OnInit {
    * This variable permit to check if the page is created (on Initialization) or if we return to it
    */
   init = true;
+  ancestorNames: String[];
 
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {
     this.title = 'Configuration des espaces';
@@ -37,17 +38,13 @@ export class AreasArborescencePage implements OnInit {
    * Set the areas based on the parent's ID if it exists
    * Check if we are on the root's arborescence or not
    */
-  private checkAreas() {
+  private async checkAreas() {
     this.parentId = +this.route.snapshot.paramMap.get('parentid');
 
     if (this.parentId) {
-      this.areaDBService.getAreaById(this.parentId).then((area: Area) => {
-        this.parentArea = area;
-      });
-      this.areaDBService.getChildAreaById(this.parentId).then((areas: Area[]) => {
-        this.childAreas = areas;
-        console.log('areas' + this.childAreas);
-      });
+      this.parentArea = await this.areaDBService.getAreaById(this.parentId);
+      this.childAreas = await this.areaDBService.getChildAreaById(this.parentId);
+      this.ancestorNames = await this.areaDBService.getParentNames(this.parentArea);
     } else {
       this.areaDBService.getRootArea().then((areas: Area[]) => {
         this.childAreas = areas;

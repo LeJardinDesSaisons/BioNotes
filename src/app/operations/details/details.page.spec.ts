@@ -6,6 +6,7 @@ import { OperationDbService } from '../operations-db.service';
 import * as data from '../operationsmock-db';
 import { convertToParamMap, ActivatedRoute } from '@angular/router';
 import { AreaDbService } from 'src/app/area/area-db.service';
+import { PopoverController } from '@ionic/angular';
 
 describe('DetailsPage', () => {
   let component: DetailsPage;
@@ -13,6 +14,7 @@ describe('DetailsPage', () => {
 
   let getOperations: any, getOperationById: any, toggleDoneState: any;
   let getParentNamesSpy: any, addTypeSpy: any, addAreaSpy: any;
+  let createSpy: any;
 
   const exArea = {
     type: { id: 1, name: 'Parcelle' },
@@ -49,6 +51,10 @@ describe('DetailsPage', () => {
     getOperationById = operationDbServiceStub.getOperationById.and.returnValue(Promise.resolve(operation));
     toggleDoneState = operationDbServiceStub.toggleDoneState;
 
+    const objectToPresent = {present: () => null};
+    const popoverControllerStub = jasmine.createSpyObj('PopoverController', ['create']);
+    createSpy = popoverControllerStub.create.and.returnValue(Promise.resolve(objectToPresent));
+
     const routeStub = {snapshot: {paramMap: convertToParamMap({'id': operation.id})}};
 
     TestBed.configureTestingModule({
@@ -57,7 +63,8 @@ describe('DetailsPage', () => {
       providers : [
         {provide: AreaDbService, useValue: areaDbServiceStub},
         {provide: OperationDbService, useValue: operationDbServiceStub},
-        {provide: ActivatedRoute, useValue: routeStub}
+        {provide: ActivatedRoute, useValue: routeStub},
+        {provide: PopoverController, useValue: popoverControllerStub},
       ]
     })
     .compileComponents();
@@ -82,6 +89,11 @@ describe('DetailsPage', () => {
     component.changeCheckbox();
     expect(toggleDoneState).toHaveBeenCalledWith(operation);
     expect(component.operation.done).toBe(operation.done);
+  });
+
+  it('should present the popover', () => {
+    component.presentPopover(null);
+    expect(createSpy).toHaveBeenCalled();
   });
 
 });

@@ -1,10 +1,12 @@
+// import { Dialogs } from '@ionic-native/dialogs/ngx';
+import { OperationPopoverComponent } from './../operation-popover/operation-popover.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OperationDbService } from '../operations-db.service';
 import { AreaDbService } from '../../area/area-db.service';
 import { ActivatedRoute } from '@angular/router';
 import { Operation } from 'src/app/model/operation';
 import { Area } from '../../model/area';
-import { IonCheckbox } from '@ionic/angular';
+import { IonCheckbox, PopoverController } from '@ionic/angular';
 import * as moment from 'moment';
 
 @Component({
@@ -20,7 +22,10 @@ export class DetailsPage implements OnInit {
   checkboxtext: String;
   formatDate: String;
 
-  constructor(private operationDbService: OperationDbService, private areaDbService: AreaDbService, private route: ActivatedRoute) {
+  constructor(private operationDbService: OperationDbService,
+              private areaDbService: AreaDbService,
+              private route: ActivatedRoute,
+              public popoverController: PopoverController) {
     this.operation = new Operation();
     this.formatDate = '';
     this.parentAreas = [];
@@ -78,6 +83,20 @@ export class DetailsPage implements OnInit {
     } else {
       this.checkboxtext = ' Opération non effectuée ';
     }
+  }
+
+  /**
+   * Open an OperationPopoverComponent
+   * @param ev the DOM event
+   */
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: OperationPopoverComponent,
+      event: ev,
+      translucent: true,
+      componentProps: { 'operationId' : this.operation.id },
+    });
+    return await popover.present();
   }
 
 }

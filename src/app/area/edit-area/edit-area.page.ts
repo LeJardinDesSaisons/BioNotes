@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AreaDbService } from './../area-db.service';
 import { Area, Type } from './../../model/area';
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-edit-area',
@@ -14,7 +15,10 @@ export class EditAreaPage implements OnInit {
   area: Area;
   parentNames: String[];
 
-  constructor(private areaDbService: AreaDbService, private route: ActivatedRoute, private location: Location) {
+  constructor(private areaDbService: AreaDbService,
+              private route: ActivatedRoute,
+              private location: Location,
+              private toastController: ToastController) {
     this.area = new Area();
     this.area.type = new Type();
   }
@@ -40,6 +44,12 @@ export class EditAreaPage implements OnInit {
       this.areaDbService.addType(this.area.type).then((type: Type) => {
         this.area.type = type;
         this.areaDbService.editArea(this.area);
+
+        this.toastController.create({
+          message: 'L\'espace ' + this.area.name + ' a été édité.',
+          duration: 2000
+        }).then(toast => toast.present());
+
         this.location.back();
       });
     }

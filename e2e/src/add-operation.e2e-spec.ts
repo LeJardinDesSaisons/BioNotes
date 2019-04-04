@@ -1,5 +1,5 @@
 import { AddOperationPage } from './add-operation.po';
-fdescribe ('add-operation view', function() {
+describe ('add-operation view', function() {
     let page: AddOperationPage;
 
     beforeEach(() => {

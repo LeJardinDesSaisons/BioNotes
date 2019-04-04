@@ -42,10 +42,7 @@ export class FormOperationComponent implements OnInit, AfterViewChecked {
    * This resolve some problem in the console log
    */
   ngAfterViewChecked() {
-    console.log(this.checkView);
-    console.log(this.operation.area);
     if (this.checkView) {
-      console.log('AfterViewChecked true');
       this.operation = this.selectAreaService.getOperation();
       if (this.selectAreaService.getArea != null) {
         this.selectedArea = this.operation.area ;
@@ -61,7 +58,6 @@ export class FormOperationComponent implements OnInit, AfterViewChecked {
   saveOperation() {
     this.selectAreaService.setOperation(this.operation);
     this.checkView = true;
-    console.log(this.checkView);
   }
 
 

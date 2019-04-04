@@ -1,4 +1,5 @@
 import { ViewAreasModule } from '../view-areas/view-areas.module';
+import { FormAreaModule } from './../form-area/form-area.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +27,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    ViewAreasModule
+    ViewAreasModule,
+    FormAreaModule
   ],
   declarations: [AreasArborescencePage],
 })

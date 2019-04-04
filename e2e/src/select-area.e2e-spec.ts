@@ -14,8 +14,8 @@ describe ('select area view', function() {
     it('should have at least one element', () => {
         page.navigateTo();
         browser.sleep(500);
-        expect(page.getResultTitle()).toContain("SÉLECTION D'UN ESPACE");
-        expect(page.getFirstAreaText()).toContain("Parcelle 1");
+        expect(page.getResultTitle()).toContain('SÉLECTION D\'UN ESPACE');
+        expect(page.getFirstAreaText()).toContain('Jardin 1');
     });
 
 });
