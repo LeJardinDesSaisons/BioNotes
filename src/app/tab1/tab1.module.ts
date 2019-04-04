@@ -9,6 +9,11 @@ import { PlanningComponent } from '../operations/planning/planning.component';
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import { DetailsPageModule } from '../operations/details/details.module';
 
+const routes = [
+  { path: '', component: Tab1Page },
+  { path: ':id', component: Tab1Page }
+];
+
 @NgModule({
   imports: [
     IonicModule,
@@ -16,7 +21,7 @@ import { DetailsPageModule } from '../operations/details/details.module';
     FormsModule,
     VirtualScrollerModule,
     DetailsPageModule,
-    RouterModule.forChild([{ path: '', component: Tab1Page }])
+    RouterModule.forChild(routes)
   ],
   exports : [PlanningComponent],
   declarations: [Tab1Page, PlanningComponent]

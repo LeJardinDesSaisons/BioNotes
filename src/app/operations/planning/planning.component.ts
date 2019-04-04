@@ -13,7 +13,7 @@ import { ActionSheetController } from '@ionic/angular';
   templateUrl: './planning.component.html',
   styleUrls: ['./planning.component.scss']
 })
-export class PlanningComponent implements OnInit {
+export class PlanningComponent {
 
   @ViewChild(VirtualScrollerComponent)
   private virtualScroller: VirtualScrollerComponent;
@@ -31,15 +31,10 @@ export class PlanningComponent implements OnInit {
     this.parentAreas = [];
    }
 
-  ngOnInit() {
-    this.callOnLoad();
-  }
-
   /**
    * methods to call on load
    */
-  private callOnLoad() {
-    console.log("call on load");
+  public callOnLoad() {
     this.operationDbService.getOperations().then((operations) => {
       this.operationsStored = operations;
 

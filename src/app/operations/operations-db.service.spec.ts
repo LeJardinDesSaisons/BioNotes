@@ -71,5 +71,48 @@ describe('OperationDbService', () => {
     });
   }));
 
+  it('should add a supplier', fakeAsync(() => {
+    const newSupplier = {id: null, name: 'Example'};
+    getStub = getStub.and.returnValue(Promise.resolve(data.mockSuppliers.slice()));
+    service.addNamedDbObject('supplier', newSupplier).then((result) => {
+      expect(setStub).toHaveBeenCalledWith('supplier', data.mockSuppliers.concat(newSupplier));
+      expect(result).toEqual(newSupplier);
+    });
+  }));
+
+  it('should add a label', fakeAsync(() => {
+    const newLabel = {id: null, name: 'Example'};
+    getStub = getStub.and.returnValue(Promise.resolve(data.mockLabels.slice()));
+    service.addNamedDbObject('label', newLabel).then((result) => {
+      expect(setStub).toHaveBeenCalledWith('label', data.mockLabels.concat(newLabel));
+      expect(result).toEqual(newLabel);
+    });
+  }));
+
+  it('should add a category', fakeAsync(() => {
+    const newCategory = {id: null, name: 'Example'};
+    getStub = getStub.and.returnValue(Promise.resolve(data.defaultCategories.slice()));
+    service.addNamedDbObject('category', newCategory).then((result) => {
+      expect(setStub).toHaveBeenCalledWith('category', data.defaultCategories.concat(newCategory));
+      expect(result).toEqual(newCategory);
+    });
+  }));
+
+  it('should add a vegetable', fakeAsync(() => {
+    const newVegetable = {id: null, variety: 'aVariety', category: data.defaultCategories[0], name: 'aName'};
+    getStub = getStub.and.returnValue(Promise.resolve(data.mockVegetables.slice()));
+    service.addVegetable(newVegetable).then((result) => {
+      expect(setStub).toHaveBeenCalledWith('vegetable', data.mockVegetables.concat(newVegetable));
+      expect(result).toEqual(newVegetable);
+    });
+  }));
+
+  it('should add an operation', fakeAsync(() => {
+    getStub = getStub.and.returnValue(Promise.resolve(data.mockOperations));
+    service.addOperation(data.mockOperations[0]);
+    expect(getStub).toHaveBeenCalledWith('operation');
+    tick();
+    expect(setStub).toHaveBeenCalled();
+  }));
 
 });

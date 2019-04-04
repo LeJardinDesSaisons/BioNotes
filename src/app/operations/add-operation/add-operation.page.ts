@@ -2,7 +2,6 @@ import { Operation, Label } from '../../model/operation';
 import { Component, OnInit } from '@angular/core';
 import { Vegetable, Category, Supplier } from 'src/app/model/vegetable';
 import { OperationDbService } from '../operations-db.service';
-import { Location } from '@angular/common';
 
 import { NavController } from '@ionic/angular';
 
@@ -15,7 +14,7 @@ export class AddOperationPage implements OnInit {
 
   operation: Operation;
 
-  constructor(private operationDbService: OperationDbService, private location: Location) {
+  constructor(private operationDbService: OperationDbService, private navController: NavController) {
     this.operation = new Operation();
     this.operation.date = new Date().toISOString();
     this.operation.vegetable = new Vegetable();
@@ -30,17 +29,12 @@ export class AddOperationPage implements OnInit {
   /**
    * Submits the new operation to the database.
    */
-  submit() {
+  async submit() {
     if (this.operation.label.name) {
-      this.addDependencies().then(() => {
-        this.operationDbService.addVegetable(this.operation.vegetable).then((vegetable: Vegetable) => {
-            this.operation.vegetable = vegetable;
-            this.operationDbService.addOperation(this.operation);
-            this.location.back();
-            // this.navController.navigateForward('tabs/tab1');
-            // this.navController.back();
-          });
-      });
+      await this.addDependencies();
+      this.operation.vegetable = await this.operationDbService.addVegetable(this.operation.vegetable);
+      this.operation = await this.operationDbService.addOperation(this.operation);
+      this.navController.navigateBack('/tabs/tab1/' + this.operation.id);
     }
   }
 
