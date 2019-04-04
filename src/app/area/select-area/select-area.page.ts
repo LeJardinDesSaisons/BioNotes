@@ -56,4 +56,8 @@ export class SelectAreaPage implements OnInit {
     this.selectAreaService.setArea(this.parentArea);
     this.navController.navigateBack('/add-operation');
   }
+
+  private goBack() {
+    this.navController.navigateBack('/add-operation')
+  }
 }

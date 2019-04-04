@@ -17,11 +17,15 @@
   </ion-item>
 
   <ng-container *ngIf="selectedArea; else noSelectedArea">
-      <ion-button position="floating"  [routerLink]="'/tabs/tab2/area/select/'">{{ selectedArea.name }}</ion-button>
+    <div style="text-align: center;">
+        <ion-button position="floating"  routerLink="/tabs/tab2/area/select/" routerDirection="forward">{{ selectedArea.name }}</ion-button>
+    </div>
   </ng-container>
 
   <ng-template #noSelectedArea>
-    <ion-button position="floating"  [routerLink]="'/tabs/tab2/area/select/'">Selection d'un espace</ion-button>
+    <div style="text-align: center;">
+        <ion-button position="floating"  [routerLink]="'/tabs/tab2/area/select/'">Selection d'un espace</ion-button>
+    </div>
   </ng-template>
 
 

@@ -1,7 +1,6 @@
 import { Component, OnInit, AfterViewChecked, ViewChild, AfterViewInit, Input } from '@angular/core';
 import { SelectAreaService } from 'src/app/area/select-area.service';
 import { Area } from 'src/app/model/area';
-import { Location } from '@angular/common';
 import { IonButton } from '@ionic/angular';
 import { Operation } from 'src/app/model/operation';
 import { OperationDbService } from '../operations-db.service';
@@ -14,14 +13,15 @@ import { Category } from '../../model/vegetable';
 })
 export class FormOperationComponent implements OnInit, AfterViewChecked {
   @ViewChild(IonButton) ViewChild: IonButton;
+  @Input() operation: Operation;
+
+  categories: Category[];
   selectedArea: Area;
 
-  @Input() operation: Operation;
-  categories: Category[];
-
-  constructor(private operationsDbService: OperationDbService) { }
+  constructor(private selectAreaService: SelectAreaService, private operationsDbService: OperationDbService) { }
 
   ngOnInit() {
+    this.operation.area = null ;
     this.selectedArea = null ;
     this.operationsDbService.getCategories().then((categoryList) => this.categories = categoryList);
   }
@@ -29,6 +29,7 @@ export class FormOperationComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     console.log('AfterViewChecked');
     this.getAreaFromService();
+    this.operation.area = this.selectedArea ;
     console.log(this.selectedArea);
   }
 

@@ -1,8 +1,20 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
+      <ng-container *ngIf="parentArea; else back">
+
+          <ion-buttons slot="start">
+              <ion-back-button></ion-back-button>
+          </ion-buttons>
+      </ng-container>
+
+      <ng-template #back>
+          <ion-buttons slot="start">
+              <ion-button slot = "start" (click)="goBack()">
+                  <ion-icon name="arrow-back"></ion-icon>
+              </ion-button>>
+          </ion-buttons>
+      </ng-template>
+
 
       <ng-container *ngIf="parentArea; else noArea">
           <ion-title>{{ parentArea.name }}</ion-title>
