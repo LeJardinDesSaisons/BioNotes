@@ -24,14 +24,17 @@ export class FormOperationComponent implements OnInit, AfterViewChecked {
     this.operation.area = null ;
     this.selectedArea = null ;
     this.selectAreaService.setArea(null);
+    this.selectAreaService.setOperation(null);
     this.operationsDbService.getCategories().then((categoryList) => this.categories = categoryList);
   }
 
   ngAfterViewChecked() {
     console.log('AfterViewChecked');
     this.getAreaFromService();
-    this.operation.area = this.selectedArea ;
-    console.log(this.selectedArea);
+    this.operation = this.selectAreaService.getOperation();
+    //this.operation.area = this.selectedArea ;
+    //console.log(this.operation);
+    //console.log(this.selectedArea);
   }
 
 
@@ -41,6 +44,10 @@ export class FormOperationComponent implements OnInit, AfterViewChecked {
    */
   getAreaFromService() {
     this.selectedArea = this.selectAreaService.getArea();
+  }
+
+  saveOperation() {
+    this.selectAreaService.setOperation(this.operation);
   }
 
 
