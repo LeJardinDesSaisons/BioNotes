@@ -44,6 +44,10 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 
 `OperationDbService` is a service class that accesses the Storage database. It reads and modifies the `operation`, `label`, `vegetable` and `category` keys.
 
+`AddOperationPage` is a page that calls `FormOperationComponent` and allows the operation described in the form to be added to the database through the submit button.
+
+`FormOperationComponent` is a generic form that can be used to add or edit an operation. All information about the operation is transmitted through the `operation` input directive.
+
 ### Planning
 
 `PlanningComponent` is called from the `Tab1Page` HTML.
@@ -54,4 +58,4 @@ To scroll into the current date when the component is started, the [ngx virtual 
 
 On click on one of the operations in `PlanningComponent`, an `ActionSheet` opens, with the options: details, cancel.
 
-`DetailsPage` is a page that displays all informations of an operation according to the URL parameter `id`. It's possible to toggle the operation `done` state by accessing this page. 
+`DetailsPage` is a page that displays all informations of an operation according to the URL parameter `id`. It's possible to toggle the operation `done` state by accessing this page.
