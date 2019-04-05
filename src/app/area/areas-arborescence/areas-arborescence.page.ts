@@ -62,5 +62,11 @@ export class AreasArborescencePage implements OnInit {
       this.init = !this.init;
     }
   }
+
+  /**
+   * Futur function for clicking option
+   */
+  optionsClicked() { }
+
 }
 
