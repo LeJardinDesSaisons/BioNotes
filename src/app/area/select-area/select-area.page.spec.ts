@@ -55,9 +55,9 @@ describe('SelectAreaPage without parentID', () => {
 
   it('should make the correct calls on initialisation', () => {
     expect(getRootAreaSpy).toHaveBeenCalled();
-    expect(getAreaByIdSpy).toHaveBeenCalledTimes(0);
-    expect(getChildAreaByIdSpy).toHaveBeenCalledTimes(0);
-    expect(setParentAreaService).toHaveBeenCalledTimes(0);
+    expect(getAreaByIdSpy).not.toHaveBeenCalled();
+    expect(getChildAreaByIdSpy).not.toHaveBeenCalled();
+    expect(setParentAreaService).not.toHaveBeenCalled();
   });
 
 });

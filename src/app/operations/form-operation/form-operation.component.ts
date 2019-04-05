@@ -12,7 +12,6 @@ import { Category } from '../../model/vegetable';
   styleUrls: ['./form-operation.component.scss']
 })
 export class FormOperationComponent implements OnInit {
-  //@ViewChild(IonButton) ViewChild: IonButton;
   @Input() operation: Operation;
   @Input() selectedArea: String;
 

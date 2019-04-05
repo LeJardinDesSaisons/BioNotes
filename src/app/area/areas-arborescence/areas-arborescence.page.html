@@ -1,22 +1,22 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
 
-      <ng-container *ngIf="parentArea; else noArea">
-          <ion-title>{{ parentArea.name }}</ion-title>
-      </ng-container>
-      <ng-template #noArea>
-        <ion-title>{{ title }}</ion-title>
-      </ng-template>
+    <ng-container *ngIf="parentArea; else noArea">
+      <ion-title>{{ parentArea.name }}</ion-title>
+    </ng-container>
+    <ng-template #noArea>
+      <ion-title>{{ title }}</ion-title>
+    </ng-template>
 
 
-      <ion-buttons slot="end">
-        <ion-button (click)="optionsClicked()" size="large">
-            <ion-icon name="more"></ion-icon>
-        </ion-button>
-      </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="optionsClicked()" size="large">
+        <ion-icon name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
 
   </ion-toolbar>
 </ion-header>
@@ -34,8 +34,8 @@
       <ion-fab-button [routerLink]="'/tabs/tab2/area/add/'">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
-      </ng-template>
-    </ion-fab>
+    </ng-template>
+  </ion-fab>
 
 
 

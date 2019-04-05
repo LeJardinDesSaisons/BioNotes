@@ -52,9 +52,6 @@ describe('AreasArborescencePage without parentId', () => {
     expect(getAreaByIdSpy).toHaveBeenCalledTimes(0);
     expect(getChildAreaByIdSpy).toHaveBeenCalledTimes(0);
   });
-
-
-
 });
 
 describe('AreasArborescencePage with parentId', () => {

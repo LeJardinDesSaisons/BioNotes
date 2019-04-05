@@ -19,7 +19,9 @@ export class SelectAreaPage implements OnInit {
   parentId: number;
   link: String;
 
-  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute, private selectAreaService: SelectAreaService,
+  constructor(private areaDBService: AreaDbService,
+    private route: ActivatedRoute,
+    private selectAreaService: SelectAreaService,
     private navController: NavController) {
 
     this.title = 'SÉLECTION D\'UN ESPACE';
@@ -58,7 +60,6 @@ export class SelectAreaPage implements OnInit {
   private selectArea() {
     this.selectAreaService.setArea(this.parentArea);
     this.navController.navigateBack('/add-operation/' + this.parentArea.name);
-
   }
 
   /**

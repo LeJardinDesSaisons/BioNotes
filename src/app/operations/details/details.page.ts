@@ -1,11 +1,9 @@
-// import { Dialogs } from '@ionic-native/dialogs/ngx';
 import { OperationPopoverComponent } from './../operation-popover/operation-popover.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { OperationDbService } from '../operations-db.service';
 import { AreaDbService } from '../../area/area-db.service';
 import { ActivatedRoute } from '@angular/router';
 import { Operation } from 'src/app/model/operation';
-import { Area } from '../../model/area';
 import { IonCheckbox, PopoverController } from '@ionic/angular';
 import * as moment from 'moment';
 
@@ -18,7 +16,7 @@ export class DetailsPage implements OnInit {
   @ViewChild('checkbox') checkbox: IonCheckbox;
 
   operation: Operation;
-  parentAreas: String[][];
+  parentAreas: String[];
   checkboxtext: String;
   formatDate: String;
 
@@ -28,7 +26,6 @@ export class DetailsPage implements OnInit {
               public popoverController: PopoverController) {
     this.operation = new Operation();
     this.formatDate = '';
-    this.parentAreas = [];
   }
 
   ngOnInit() {
@@ -52,7 +49,7 @@ export class DetailsPage implements OnInit {
 
     if (this.operation.area) {
       this.areaDbService.getParentNames(this.operation.area).then((names: String[]) => {
-        this.parentAreas[+this.operation.id] = names;
+        this.parentAreas = names;
       });
     }
     this.loadCheckbox();

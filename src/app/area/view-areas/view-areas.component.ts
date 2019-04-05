@@ -13,17 +13,16 @@ export class ViewAreasComponent implements OnInit {
 
   @Input() areas: Area[];
   @Input() link: String;
-  // popoverController: any;
 
   constructor(public popoverController: PopoverController) { }
 
   ngOnInit() { }
 
-    /**
-   * Open a AreaPopoverComponent
-   * @param ev the DOM event
-   * @param areaId the ID of the selected area
-   */
+  /**
+  * Open a AreaPopoverComponent
+  * @param ev the DOM event
+  * @param areaId the ID of the selected area
+  */
   async presentPopover(ev: any, areaId: Number) {
     const popover = await this.popoverController.create({
       component: AreaPopoverComponent,

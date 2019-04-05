@@ -71,7 +71,7 @@ describe('OperationDbService', () => {
     });
   }));
 
-  it('should add a supplier', fakeAsync(() => {
+  it('should add a supplier', async(() => {
     const newSupplier = {id: null, name: 'Example'};
     getStub = getStub.and.returnValue(Promise.resolve(data.mockSuppliers.slice()));
     service.addNamedDbObject('supplier', newSupplier).then((result) => {
@@ -80,7 +80,7 @@ describe('OperationDbService', () => {
     });
   }));
 
-  it('should add a label', fakeAsync(() => {
+  it('should add a label', async(() => {
     const newLabel = {id: null, name: 'Example'};
     getStub = getStub.and.returnValue(Promise.resolve(data.mockLabels.slice()));
     service.addNamedDbObject('label', newLabel).then((result) => {
@@ -89,7 +89,7 @@ describe('OperationDbService', () => {
     });
   }));
 
-  it('should add a category', fakeAsync(() => {
+  it('should add a category', async(() => {
     const newCategory = {id: null, name: 'Example'};
     getStub = getStub.and.returnValue(Promise.resolve(data.defaultCategories.slice()));
     service.addNamedDbObject('category', newCategory).then((result) => {
@@ -98,7 +98,7 @@ describe('OperationDbService', () => {
     });
   }));
 
-  it('should add a vegetable', fakeAsync(() => {
+  it('should add a vegetable', async(() => {
     const newVegetable = {id: null, variety: 'aVariety', category: data.defaultCategories[0], name: 'aName'};
     getStub = getStub.and.returnValue(Promise.resolve(data.mockVegetables.slice()));
     service.addVegetable(newVegetable).then((result) => {

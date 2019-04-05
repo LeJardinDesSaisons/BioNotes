@@ -11,7 +11,7 @@ export class SelectAreaService {
 
   constructor() {
     this.operation = null;
-   }
+  }
 
    /**
     * Set the selectedArea we want to use and add it to the operation
