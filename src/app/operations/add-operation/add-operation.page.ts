@@ -17,9 +17,9 @@ export class AddOperationPage implements OnInit {
   operation: Operation;
   selectedArea: String;
 
-  constructor(private operationDbService: OperationDbService, private navController: NavController
-    , private route: ActivatedRoute
-    , private selectAreaService: SelectAreaService) {
+  constructor(private operationDbService: OperationDbService, private navController: NavController,
+    private route: ActivatedRoute,
+    private selectAreaService: SelectAreaService) {
     this.operation = new Operation();
     this.operation.date = new Date().toISOString();
     this.operation.vegetable = new Vegetable();
@@ -27,7 +27,7 @@ export class AddOperationPage implements OnInit {
     this.operation.supplier = new Supplier();
     this.operation.label = new Label();
     if (this.route.snapshot.paramMap.get('areaselected')) {
-      this.selectedArea = this.route.snapshot.paramMap.get('areaselected');;
+      this.selectedArea = this.route.snapshot.paramMap.get('areaselected');
     } else {
       this.selectedArea = null;
     }

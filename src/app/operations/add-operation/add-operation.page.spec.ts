@@ -5,6 +5,7 @@ import * as data from '../operationsmock-db';
 import { AddOperationPage } from './add-operation.page';
 import { OperationDbService } from '../operations-db.service';
 import { NavController } from '@ionic/angular';
+import { convertToParamMap, ActivatedRoute } from '@angular/router';
 
 describe('AddOperationPage', () => {
   let component: AddOperationPage;
@@ -15,6 +16,7 @@ describe('AddOperationPage', () => {
   let navigateBackSpy: any;
 
   const operation = data.mockOperations[0];
+  const selectedArea = '1';
 
   beforeEach(async(() => {
     const operationDbServiceStub = jasmine.createSpyObj('OperationDbService', ['addVegetable', 'addOperation', 'addNamedDbObject']);
@@ -27,10 +29,13 @@ describe('AddOperationPage', () => {
     const navControllerStub = jasmine.createSpyObj('navController', ['navigateBack']);
     navigateBackSpy = navControllerStub.navigateBack;
 
+    const routeStub = {snapshot: {paramMap: convertToParamMap({'areaselected': selectedArea})}};
+
     TestBed.configureTestingModule({
       declarations: [ AddOperationPage ],
       providers : [
         {provide: OperationDbService, useValue: operationDbServiceStub},
+        {provide: ActivatedRoute, useValue: routeStub},
         {provide: NavController, useValue: navControllerStub},
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],

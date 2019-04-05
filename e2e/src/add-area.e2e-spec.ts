@@ -20,7 +20,7 @@ describe ('add-area view', function() {
 
         page.fillType();
 
-        expect(page.getResult()).toContain('L\'espace suivant va être ajouté :\nJardin 1');
+        expect(page.getResult()).toContain('L\'espace va être inséré à l\'emplacement suivant :\nJardin 1');
       });
 
       /**
@@ -37,7 +37,7 @@ describe ('add-area view', function() {
         page.clickFab();
         page.fillNumber(2);
         page.autocompleteType();
-        expect(page.getResult()).toContain('L\'espace suivant va être ajouté :\nJardin 2');
+        expect(page.getResult()).toContain('L\'espace va être inséré à l\'emplacement suivant :\nJardin 2');
       });
 
 });
