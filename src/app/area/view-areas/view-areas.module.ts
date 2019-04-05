@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AreasArborescencePage } from '../areas-arborescence/areas-arborescence.page';
+import { FormAreaModule } from '../form-area/form-area.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { AreasArborescencePage } from '../areas-arborescence/areas-arborescence.
         IonicModule,
         CommonModule,
         RouterModule,
+        FormAreaModule,
     ],
     declarations: [ViewAreasComponent, AreaPopoverComponent],
     exports: [ViewAreasComponent],

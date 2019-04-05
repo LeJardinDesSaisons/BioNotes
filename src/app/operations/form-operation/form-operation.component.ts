@@ -11,7 +11,7 @@ import { Category } from '../../model/vegetable';
   templateUrl: './form-operation.component.html',
   styleUrls: ['./form-operation.component.scss']
 })
-export class FormOperationComponent implements OnInit, AfterViewChecked {
+export class FormOperationComponent implements OnInit {
   //@ViewChild(IonButton) ViewChild: IonButton;
   @Input() operation: Operation;
   @Input() selectedArea: String;
@@ -30,15 +30,6 @@ export class FormOperationComponent implements OnInit, AfterViewChecked {
 
   }
 
-  /**
-   * When the vue is checked
-   * If checkview is false, the component do not call selectAreaService
-   * If Checkview is true, the component retrieve the saved operation with the selected area and
-   * set CheckView at false if the area in SelectAreaService is null
-   * This resolve some problem in the console log
-   */
-  // ngAfterViewChecked() {
-  //   }
 
   /**
    * Save the current operation in selectAreaService

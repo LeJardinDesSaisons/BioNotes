@@ -48,7 +48,6 @@ export class AreasArborescencePage implements OnInit {
     } else {
       this.areaDBService.getRootArea().then((areas: Area[]) => {
         this.childAreas = areas;
-        console.log('areas' + this.childAreas);
       });
     }
   }

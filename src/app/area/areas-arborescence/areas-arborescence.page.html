@@ -22,33 +22,6 @@
 </ion-header>
 
 <ion-content padding>
-    <ng-container *ngIf="childAreas && childAreas.length; else noChild">
-      <ion-list>
-        <div *ngFor="let item of childAreas">
-        <ion-card>
-          <ion-item class="arealist">
-            <div class="central-item" [routerLink]="'/tabs/tab2/area/list/' + item.id ">
-              <ion-card-header>
-                <ion-card-title>{{item.name}}</ion-card-title>
-              </ion-card-header>
-            </div>
-            <ion-button (click)="presentPopover($event, item.id)" slot="end" class="ellipsis-button">
-              <ion-icon name="more"></ion-icon>
-            </ion-button>
-          </ion-item>
-        </ion-card>
-      </div>
-    </ion-list>
-    </ng-container>
-
-    <ng-template #noChild>
-      <ion-item>
-        <ion-icon name="sad" slot="end"></ion-icon>
-        <ion-label>
-            Aucun espace n'a été trouvé.
-        </ion-label>
-      </ion-item>
-    </ng-template>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ng-container *ngIf="parentArea; else noParent">
@@ -64,9 +37,13 @@
       </ng-template>
     </ion-fab>
 
+
+
+  <view-areas [areas]="childAreas" [link]="link"></view-areas>
   <helper-text *ngIf="parentArea"
     [areaName]="parentArea.name"
     [isInArborescence]="true"
     [parentNames]="ancestorNames">
   </helper-text>
+
 </ion-content>
