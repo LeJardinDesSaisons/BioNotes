@@ -31,7 +31,7 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 
 `AutocompleteBarComponent` is an input field that relies on Angular Material's `mat-autocomplete` input. It needs a list of `suggestions` for the autocompletion. The default text can be modified through the `fieldContent` input. It sends the `choosenOptionChanged` to the parent component when the field has been modified.
 
-`SelectAreaService` is a service needded to pass information between `SelectAreaPage` and `CreateOperationPage` (?), it's contained an area with guetter `getArea` and setter `setArea`
+`SelectAreaService` is a service needed to pass information between `SelectAreaPage`, `CreateOperationPage` and `EditOperationPage`(?), it's contained an `Operation` access with `getOperation` `setOperation(operation)` `getArea` and `setArea(area)` . the two `Area` function interract with the `Operation` given .
 
 `ViewAreasModule` is a module that display the areas list obtained by the parameter `areas` and create a `routerlink` for each area with the parameter `link`.
 
@@ -44,9 +44,9 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 
 `OperationDbService` is a service class that accesses the Storage database. It reads and modifies the `operation`, `label`, `vegetable` and `category` keys.
 
-`AddOperationPage` is a page that calls `FormOperationComponent` and allows the operation described in the form to be added to the database through the submit button.
+`AddOperationPage` is a page that calls `FormOperationComponent` and allows the operation described in the form to be added to the database through the submit button.It's use the service of `SelectAreaService` to retrieve information in the operation if an area is selected
 
-`FormOperationComponent` is a generic form that can be used to add or edit an operation. All information about the operation is transmitted through the `operation` input directive.
+`FormOperationComponent` is a generic form that can be used to add or edit an operation. All information about the operation is transmitted through the `operation` input directive. if we select an area, we use `SelectAreaService` to save the information of the operation .
 
 ### Planning
 

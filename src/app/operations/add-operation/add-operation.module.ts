@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: '',
     component: AddOperationPage
+  },
+  {
+    path: ':areaselected',
+    component: AddOperationPage
   }
 ];
 

@@ -7,44 +7,39 @@ import { Operation } from '../model/operation';
   providedIn: 'root'
 })
 export class SelectAreaService {
-  private area: Area;
   private operation: Operation;
 
   constructor() {
-    this.area = null;
     this.operation = null;
    }
 
    /**
-    * Set the selectedArea we want to use
+    * Set the selectedArea we want to use and add it to the operation
     * @param area the selected area
     */
   public setArea(area: Area) {
-    this.area = area;
+    this.operation.area = area;
   }
 
   /**
-   * Return the selectedArea
+   * Return the selectedArea in the operation
    */
   public getArea(): Area {
-    return this.area;
+    return this.operation.area;
   }
 
   /**
    * Save the operation in SelectAreaService
-   * @param operation The opereation we want to save
+   * @param operation The operation we want to save
    */
   public setOperation(operation: Operation) {
     this.operation = operation;
   }
 
   /**
-   * Return an Operation with the updated area selected
-   * and set at null the old area attribut
+   * Return the saved Operation
    */
   public getOperation() {
-    this.operation.area = this.area;
-    this.area = null ;
     return this.operation;
   }
 }

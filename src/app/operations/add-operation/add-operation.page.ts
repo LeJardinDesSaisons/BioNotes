@@ -4,6 +4,8 @@ import { Vegetable, Category, Supplier } from 'src/app/model/vegetable';
 import { OperationDbService } from '../operations-db.service';
 
 import { NavController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { SelectAreaService } from 'src/app/area/select-area.service';
 
 @Component({
   selector: 'app-add-operation',
@@ -13,14 +15,22 @@ import { NavController } from '@ionic/angular';
 export class AddOperationPage implements OnInit {
 
   operation: Operation;
+  selectedArea: String;
 
-  constructor(private operationDbService: OperationDbService, private navController: NavController) {
+  constructor(private operationDbService: OperationDbService, private navController: NavController
+    , private route: ActivatedRoute
+    , private selectAreaService: SelectAreaService) {
     this.operation = new Operation();
     this.operation.date = new Date().toISOString();
     this.operation.vegetable = new Vegetable();
     this.operation.vegetable.category = new Category();
     this.operation.supplier = new Supplier();
     this.operation.label = new Label();
+    if (this.route.snapshot.paramMap.get('areaselected')) {
+      this.selectedArea = this.route.snapshot.paramMap.get('areaselected');;
+    } else {
+      this.selectedArea = null;
+    }
   }
 
   ngOnInit() {
@@ -30,10 +40,16 @@ export class AddOperationPage implements OnInit {
    * Submits the new operation to the database.
    */
   async submit() {
+
+    if (this.selectAreaService.getOperation() !== null ) {
+      this.operation = await this.selectAreaService.getOperation();
+    }
+
     if (this.operation.label.name) {
       await this.addDependencies();
       this.operation.vegetable = await this.operationDbService.addVegetable(this.operation.vegetable);
       this.operation = await this.operationDbService.addOperation(this.operation);
+      await this.selectAreaService.setOperation(null);
       this.navController.navigateBack('/tabs/tab1/' + this.operation.id);
     }
   }

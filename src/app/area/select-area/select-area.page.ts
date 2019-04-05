@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Area } from 'src/app/model/area';
 import { SelectAreaService } from '../select-area.service';
 
+
 @Component({
   selector: 'app-select-area',
   templateUrl: './select-area.page.html',
@@ -19,7 +20,8 @@ export class SelectAreaPage implements OnInit {
   link: String;
 
   constructor(private areaDBService: AreaDbService, private route: ActivatedRoute, private selectAreaService: SelectAreaService,
-    private navController: NavController ) {
+    private navController: NavController) {
+
     this.title = 'SÉLECTION D\'UN ESPACE';
     this.link = '/tabs/tab2/area/select/';
    }
@@ -55,13 +57,18 @@ export class SelectAreaPage implements OnInit {
    */
   private selectArea() {
     this.selectAreaService.setArea(this.parentArea);
-    this.navController.navigateBack('/add-operation');
+    this.navController.navigateBack('/add-operation/' + this.parentArea.name);
+
   }
 
   /**
    * Return to add-operation without an selected area
    */
   private goBack() {
-    this.navController.navigateBack('/add-operation');
+    if (this.selectAreaService.getArea() ) {
+      this.navController.navigateBack('/add-operation/' + this.parentArea.name);
+    } else {
+      this.navController.navigateBack('/add-operation/');
+    }
   }
 }
