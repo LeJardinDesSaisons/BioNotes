@@ -1,5 +1,4 @@
 import { ViewAreasModule } from '../view-areas/view-areas.module';
-import { FormAreaModule } from './../form-area/form-area.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,17 +6,17 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AreasArborescencePage } from './areas-arborescence.page';
+import { SelectAreaPage } from './select-area.page';
 
 
-const routes: Routes = [
+export const routes: Routes = [
   {
-    path: 'area/list',
-    component: AreasArborescencePage
+    path: 'area/select',
+    component: SelectAreaPage
   },
   {
-    path: 'area/list/:parentid',
-    component: AreasArborescencePage
+    path: 'area/select/:parentid',
+    component: SelectAreaPage
   }
 ];
 
@@ -26,10 +25,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
     ViewAreasModule,
-    FormAreaModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [AreasArborescencePage],
+  declarations: [SelectAreaPage]
 })
-export class AreasArborescencePageModule {}
+export class SelectAreaPageModule {}

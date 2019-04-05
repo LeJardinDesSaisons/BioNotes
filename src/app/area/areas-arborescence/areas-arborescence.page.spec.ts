@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PopoverController } from '@ionic/angular';
 import * as data from '../../../assets/testDb.json';
 import { AreaDbService } from '../area-db.service';
 import { AreasArborescencePage } from './areas-arborescence.page';
@@ -13,7 +12,6 @@ describe('AreasArborescencePage without parentId', () => {
   let fixture: ComponentFixture<AreasArborescencePage>;
 
   let getRootAreaSpy: any, getAreaByIdSpy: any, getChildAreaByIdSpy: any;
-  let createSpy: any;
 
   const area1 = data.Areas[0];
   const area2 = data.Areas[1];
@@ -26,8 +24,6 @@ describe('AreasArborescencePage without parentId', () => {
 
     const routeStub = {snapshot: {paramMap: convertToParamMap({'parentid': '' })}};
 
-    const popoverControllerStub = jasmine.createSpyObj('PopoverController', ['create']);
-    createSpy = popoverControllerStub.create.and.returnValue(Promise.resolve({ present : () => Promise.resolve(null) }));
 
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule ],
@@ -35,7 +31,6 @@ describe('AreasArborescencePage without parentId', () => {
       providers: [
         {provide: AreaDbService, useValue: dbServiceStub },
         {provide: ActivatedRoute, useValue: routeStub},
-        {provide: PopoverController, useValue: popoverControllerStub}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
@@ -57,12 +52,6 @@ describe('AreasArborescencePage without parentId', () => {
     expect(getAreaByIdSpy).toHaveBeenCalledTimes(0);
     expect(getChildAreaByIdSpy).toHaveBeenCalledTimes(0);
   });
-
-  it('should open a popover', fakeAsync(() => {
-    component.presentPopover(null, 0);
-    expect(createSpy).toHaveBeenCalled();
-  }));
-
 });
 
 describe('AreasArborescencePage with parentId', () => {
@@ -85,7 +74,6 @@ describe('AreasArborescencePage with parentId', () => {
     getParentAreasSpy = dbServiceStub.getParentNames.and.returnValue(Promise.resolve(['Jardin 1']));
     const routeStub = {snapshot: {paramMap: convertToParamMap({'parentid': parentId })}};
 
-    const popoverControllerStub = jasmine.createSpyObj('PopoverController', ['create']);
 
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule ],
@@ -93,7 +81,6 @@ describe('AreasArborescencePage with parentId', () => {
       providers: [
         {provide: AreaDbService, useValue: dbServiceStub },
         {provide: ActivatedRoute, useValue: routeStub},
-        {provide: PopoverController, useValue: popoverControllerStub}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })

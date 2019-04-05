@@ -1,3 +1,5 @@
+import { NamedDbObject } from './operation';
+
 export class Vegetable {
     id: Number;
     variety: String; // variety
@@ -5,12 +7,12 @@ export class Vegetable {
     name: String; // specific name of the vegetable
 }
 
-export class Category {
+export class Category implements NamedDbObject {
     id: Number;
     name: String;
 }
 
-export class Supplier {
+export class Supplier implements NamedDbObject {
     id: Number;
     name: String;
 }

@@ -3,7 +3,6 @@ import { Area } from '../../model/area';
 import { AreaDbService } from '../area-db.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
 
 
 @Component({
@@ -17,14 +16,16 @@ export class AreasArborescencePage implements OnInit {
   parentArea: Area ;
   title: String ;
   parentId: number;
+  link: String;
   /**
    * This variable permit to check if the page is created (on Initialization) or if we return to it
    */
   init = true;
   ancestorNames: String[];
 
-  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute, public popoverController: PopoverController) {
+  constructor(private areaDBService: AreaDbService, private route: ActivatedRoute) {
     this.title = 'Configuration des espaces';
+    this.link = '/tabs/tab2/area/list/';
   }
 
   ngOnInit() {
@@ -45,7 +46,9 @@ export class AreasArborescencePage implements OnInit {
       this.childAreas = await this.areaDBService.getChildAreaById(this.parentId);
       this.ancestorNames = await this.areaDBService.getParentNames(this.parentArea);
     } else {
-      this.areaDBService.getRootArea().then((areas: Area[]) => this.childAreas = areas);
+      this.areaDBService.getRootArea().then((areas: Area[]) => {
+        this.childAreas = areas;
+      });
     }
   }
 
@@ -59,22 +62,5 @@ export class AreasArborescencePage implements OnInit {
       this.init = !this.init;
     }
   }
-
-  /**
-   * Open a AreaPopoverComponent
-   * @param ev the DOM event
-   * @param areaId the ID of the selected area
-   */
-  async presentPopover(ev: any, areaId: Number) {
-    const popover = await this.popoverController.create({
-      component: AreaPopoverComponent,
-      event: ev,
-      translucent: true,
-      componentProps: { 'areaId' : areaId },
-    });
-    return await popover.present();
-  }
-
-  optionsClicked() {}
-
 }
+

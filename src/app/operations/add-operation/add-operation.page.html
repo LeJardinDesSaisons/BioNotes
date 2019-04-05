@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ajout d'une opération</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="submit()" id="submit">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form-operation [operation]="operation" [selectedArea]="selectedArea"></form-operation>
+</ion-content>

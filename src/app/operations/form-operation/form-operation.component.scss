@@ -1,0 +1,40 @@
+ion-item{
+    width: 90%;
+    margin: auto;
+    font-size: 14px;
+}
+
+ion-button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 14px;
+}
+
+#areaselected {
+    --background: var(--ion-color-primary-tint);
+    --color: var(--ion-color-primary-shade);
+}
+
+.input-end-icon{
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+}
+
+h5{
+    text-align: center;
+    color: var(--ion-color-secondary-shade);
+    padding-top: 12px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.vegetable{
+    --background : var(--ion-color-tertiary);
+}
+
+#vegetable{
+    background-color: var(--ion-color-tertiary);
+    padding-bottom: 12px;
+}

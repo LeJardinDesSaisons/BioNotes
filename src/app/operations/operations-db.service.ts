@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Operation, Label} from '../model/operation';
+import { Operation, Label, NamedDbObject} from '../model/operation';
 import { Vegetable, Category, Supplier } from '../model/vegetable';
 import { Area } from '../model/area';
 import { Storage } from '@ionic/storage';
@@ -116,6 +116,63 @@ export class OperationDbService {
       storedOp.done = !storedOp.done;
       this.storage.set('operation', operations);
     });
+  }
+
+  /**
+   * Adds an object with a name field, such as a category or a supplier, to the database.
+   * If an object of the corresponding type with the same name already exists,
+   * it gets returned.
+   * @param dbObject Object that will be added
+   * @param key Key used to identify the type of object in the database, e.g. 'supplier'
+   */
+  async addNamedDbObject(key: string, dbObject: NamedDbObject): Promise<NamedDbObject> {
+    const dbObjects: NamedDbObject[] = await this.storage.get(key);
+    const inStorage = dbObjects.filter(
+      (currObject: NamedDbObject) => currObject.name === dbObject.name)[0];
+    if (inStorage) {
+      return inStorage;
+    } else {
+      dbObject.id = dbObjects.length + 1;
+      dbObjects.push(dbObject);
+      this.storage.set(key, dbObjects);
+      return dbObject;
+    }
+  }
+
+  /**
+   * Adds a vegetable to the database unless it already exists.
+   * Returns the vegetable that's in the database.
+   * @param vegetable Vegetable that will be added
+   */
+  async addVegetable(vegetable: Vegetable): Promise<Vegetable> {
+    const vegetables: Vegetable[] = await this.storage.get('vegetable');
+    const vegetableInStorage = vegetables.filter(
+      (currVegetable: Vegetable) => (currVegetable.name === vegetable.name)
+      && (currVegetable.variety = vegetable.variety)
+      && (currVegetable.category.name = vegetable.category.name)
+    )[0];
+    if (vegetableInStorage) {
+      return vegetableInStorage;
+    } else {
+      vegetable.id = vegetables.length + 1;
+      vegetables.push(vegetable);
+      this.storage.set('vegetable', vegetables);
+      return vegetable;
+    }
+  }
+
+  /**
+   * Adds an operation to the database.
+   * @param operation Operation that will be added
+   */
+  async addOperation(operation: Operation): Promise<Operation> {
+    const operations: Operation[] = await this.storage.get('operation');
+
+    operation.id = operations.length + 1;
+    operations.push(operation);
+    this.storage.set('operation', operations);
+
+    return operation;
   }
 
   /**

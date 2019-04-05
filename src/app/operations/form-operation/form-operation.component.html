@@ -1,0 +1,63 @@
+<form #operationForm="ngForm">
+  <ion-item>
+    <ion-label position="floating">Date</ion-label>
+    <ion-datetime
+    display-format="DDDD D MMMM YYYY"
+    month-names="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+    month-short-names="Jan, Fev, Mar, Avr, Mai, Jun, Jul, Aou, Sep, Oct, Nov, Dec"
+    day-names="Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi"
+    day-short-names="Dim, Lun, Mar, Mer, Jeu, Ven, Sam"
+    max="2100"
+    doneText="OK"
+    cancelText="Annuler"
+    [(ngModel)]="operation.date"
+    name="date"
+    required
+    ngDefaultControl
+    ></ion-datetime>
+    <ion-icon class="input-end-icon" name="calendar"></ion-icon>
+  </ion-item>
+
+  <ng-container *ngIf="selectedArea; else noSelectedArea">
+    <ion-button (click)="saveOperation()" id="areaselected" position="floating"  routerLink="/tabs/tab2/area/select/">{{ selectedArea }}</ion-button>
+  </ng-container>
+
+  <ng-template #noSelectedArea>
+    <ion-button (click)="saveOperation()" position="floating"  [routerLink]="'/tabs/tab2/area/select/'">Sélection d'un espace</ion-button>
+  </ng-template>
+
+
+
+  <div id="vegetable">
+    <h5>Légume</h5>
+    <ion-item class="vegetable">
+      <ion-label position="floating">Variété</ion-label>
+      <ion-input type="text" [(ngModel)]="operation.vegetable.variety" name="variety" ngDefaultControl></ion-input>
+    </ion-item>
+    <ion-item class="vegetable">
+      <ion-label position="floating">Nom</ion-label>
+      <ion-input type="text" [(ngModel)]="operation.vegetable.name" name="name" ngDefaultControl></ion-input>
+    </ion-item>
+    <ion-item class="vegetable">
+      <ion-label position="floating">Catégorie</ion-label>
+      <ion-select cancelText="Annuler" [(ngModel)]="operation.vegetable.category.name" name="category" ngDefaultControl>
+        <ion-select-option *ngFor="let category of categories">{{category.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!-- Replace this with autocomplete bar -->
+    <ion-item class="vegetable">
+      <ion-label position="floating">Fournisseur</ion-label>
+      <ion-input type="text" [(ngModel)]="operation.supplier.name" name="supplier" ngDefaultControl></ion-input>
+    </ion-item>
+  </div>
+
+  <!-- Replace this with autocomplete bar -->
+  <ion-item>
+    <ion-label position="floating">Libellé</ion-label>
+    <ion-input type="text" [(ngModel)]="operation.label.name" name="label" required ngDefaultControl></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Observations</ion-label>
+    <ion-textarea rows="5" [(ngModel)]="operation.observations" name="observations" ngDefaultControl></ion-textarea>
+  </ion-item>
+</form>

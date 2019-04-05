@@ -12,7 +12,12 @@ export class Operation {
     done: Boolean;
 }
 
-export class Label {
+export interface NamedDbObject {
+    id: Number;
+    name: String;
+}
+
+export class Label implements NamedDbObject {
     id: Number;
     name: String;
 }
