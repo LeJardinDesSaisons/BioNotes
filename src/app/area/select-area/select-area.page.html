@@ -32,4 +32,11 @@
 
 <ion-content padding>
   <view-areas [areas]="childAreas" [link]="link"></view-areas>
+
+  <helper-text *ngIf="parentArea"
+    [areaName]="parentArea.name"
+    [isInArborescence]="true"
+    [parentNames]="ancestorNames">
+  </helper-text>
+
 </ion-content>

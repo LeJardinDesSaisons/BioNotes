@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { SelectAreaPage } from './select-area.page';
+import { FormAreaModule } from '../form-area/form-area.module';
 
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
     FormsModule,
     IonicModule,
     ViewAreasModule,
+    FormAreaModule,
     RouterModule.forChild(routes)
   ],
   declarations: [SelectAreaPage]
