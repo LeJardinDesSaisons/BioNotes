@@ -64,7 +64,7 @@ export class AreasArborescencePage implements OnInit {
   }
 
   /**
-   * Futur function for clicking option
+   * Unimplemented function called when the options button is clicked
    */
   optionsClicked() { }
 
