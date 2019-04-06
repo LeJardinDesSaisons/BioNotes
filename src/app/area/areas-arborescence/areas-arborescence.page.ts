@@ -62,5 +62,11 @@ export class AreasArborescencePage implements OnInit {
       this.init = !this.init;
     }
   }
+
+  /**
+   * Unimplemented function called when the options button is clicked
+   */
+  optionsClicked() { }
+
 }
 

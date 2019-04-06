@@ -18,12 +18,12 @@
 </ng-container>
 
 <ng-template #noArea>
-  <p>Aucun espace n'a été trouvé</p>
+
+  <ion-item>
+    <ion-icon name="sad" slot="end"></ion-icon>
+    <ion-label>
+        Aucun espace n'a été trouvé.
+    </ion-label>
+  </ion-item>
+
 </ng-template>
-
-
-<helper-text *ngIf="parentArea"
-  [areaName]="parentArea.name"
-  [isInArborescence]="true"
-  [parentNames]="ancestorNames">
-</helper-text>

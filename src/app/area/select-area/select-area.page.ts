@@ -13,9 +13,11 @@ import { SelectAreaService } from '../select-area.service';
 })
 export class SelectAreaPage implements OnInit {
 
-  childAreas: Area[] ;
-  parentArea: Area ;
-  title: String ;
+  childAreas: Area[];
+  parentArea: Area;
+  ancestorNames: String[];
+
+  title: String;
   parentId: number;
   link: String;
 
@@ -36,16 +38,13 @@ export class SelectAreaPage implements OnInit {
    * Set the areas based on the parent's ID if it exists
    * Check if we are on the root's arborescence or not
    */
-  private checkAreas() {
+  private async checkAreas() {
     this.parentId = +this.route.snapshot.paramMap.get('parentid');
 
     if (this.parentId) {
-      this.areaDBService.getAreaById(this.parentId).then((area: Area) => {
-        this.parentArea = area;
-      });
-      this.areaDBService.getChildAreaById(this.parentId).then((areas: Area[]) => {
-        this.childAreas = areas;
-      });
+      this.parentArea = await this.areaDBService.getAreaById(this.parentId);
+      this.childAreas = await this.areaDBService.getChildAreaById(this.parentId);
+      this.ancestorNames = await this.areaDBService.getParentNames(this.parentArea);
     } else {
       this.areaDBService.getRootArea().then((areas: Area[]) => {
         this.childAreas = areas;
@@ -57,7 +56,7 @@ export class SelectAreaPage implements OnInit {
    * Get the selected area,update area of SelectAreaService
    * and return to the add-operation view
    */
-  private selectArea() {
+  selectArea() {
     this.selectAreaService.setArea(this.parentArea);
     this.navController.navigateBack('/add-operation/' + this.parentArea.name);
   }
@@ -65,7 +64,7 @@ export class SelectAreaPage implements OnInit {
   /**
    * Return to add-operation without an selected area
    */
-  private goBack() {
+  goBack() {
     if (this.selectAreaService.getArea() ) {
       this.navController.navigateBack('/add-operation/' + this.parentArea.name);
     } else {
