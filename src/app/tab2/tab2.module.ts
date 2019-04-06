@@ -12,12 +12,8 @@ import { SelectAreaPageModule } from '../area/select-area/select-area.module';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'options',
+    redirectTo: 'area/list',
     pathMatch: 'full',
-  },
-  {
-    path: 'options',
-    component: Tab2Page,
   },
 ];
 
