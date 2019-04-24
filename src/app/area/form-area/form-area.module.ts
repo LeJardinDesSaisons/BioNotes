@@ -19,9 +19,9 @@ import { FormAreaComponent } from '../form-area/form-area.component';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ],
-  declarations: [FormAreaComponent, AutocompleteBarComponent, HelperTextComponent],
-  exports: [FormAreaComponent, AutocompleteBarComponent, HelperTextComponent],
+  declarations: [FormAreaComponent,  AutocompleteBarComponent, HelperTextComponent],
+  exports: [FormAreaComponent,  AutocompleteBarComponent, HelperTextComponent],
 })
 export class FormAreaModule {}

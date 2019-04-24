@@ -1,5 +1,5 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AutocompleteBarComponent } from './../autocomplete-bar/autocomplete-bar.component';
+import { AutocompleteBarComponent } from '../../autocomplete-bar/autocomplete-bar.component';
 import { AreaDbService } from './../area-db.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
