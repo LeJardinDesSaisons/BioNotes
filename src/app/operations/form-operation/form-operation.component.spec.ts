@@ -11,10 +11,16 @@ describe('FormOperationComponent', () => {
   let fixture: ComponentFixture<FormOperationComponent>;
 
   let getCategoriesSpy: any;
+  let getVegetablesSpy: any;
+  let getSuppliersSpy: any;
+  let getLabelsSpy: any;
 
   beforeEach(async(() => {
-    const operationDbServiceStub = jasmine.createSpyObj('OperationDbService', ['getCategories']);
+    const operationDbServiceStub = jasmine.createSpyObj('OperationDbService', ['getCategories', 'getVegetables', 'getSuppliers', 'getLabels']);
     getCategoriesSpy = operationDbServiceStub.getCategories.and.returnValue(Promise.resolve(data.defaultCategories));
+    getVegetablesSpy = operationDbServiceStub.getVegetables.and.returnValue(Promise.resolve(data.mockVegetables));
+    getSuppliersSpy = operationDbServiceStub.getSuppliers.and.returnValue(Promise.resolve(data.mockSuppliers));
+    getLabelsSpy = operationDbServiceStub.getLabels.and.returnValue(Promise.resolve(data.mockLabels));
 
     TestBed.configureTestingModule({
       declarations: [ FormOperationComponent ],
