@@ -48,6 +48,8 @@ It uses the URL parameter `parentid` to guess where to put the new area.
 
 `FormOperationComponent` is a generic form that can be used to add or edit an operation. All information about the operation is transmitted through the `operation` input directive. if we select an area, we use `SelectAreaService` to save the information of the operation .
 
+There is also an `AutocompleteBarComponent` that works in the same way as in `Area`, however one more input for the placeholder text is added. Here we need autosuggestion for the vegetables' varieties, names, suppliers and label fields.
+
 ### Planning
 
 `PlanningComponent` is called from the `Tab1Page` HTML.
