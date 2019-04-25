@@ -106,18 +106,6 @@ export class OperationDbService {
     return operations.filter((operation: Operation) => operation.id === id)[0];
   }
 
-    /**
-   * Get an operation by its id
-   */
-  async getVarieties(): Promise<String[]> {
-    const vegetables = await this.storage.get('vegetable');
-    let varieties: String[];
-    for (let index = 0; index < vegetables.length; index++) {
-      vegetables.filter((vegetable: Vegetable) =>  varieties[index] = vegetable.variety);
-    }
-    return varieties;
-  }
-
   /**
    * Toggles the operation done state
    * @param operation the operation that we want to modify the done state of

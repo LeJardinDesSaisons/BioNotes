@@ -35,14 +35,16 @@
     [suggestions]="varieties"
     [fieldContent]="operation.vegetable.variety"
     [placeholderContent]="placeholderVariety"
-    class="vegetable">
+    class="vegetable"
+    name="variety">
     </app-autocomplete-bar>
     <app-autocomplete-bar
     (choosenOptionChanged)="choosenOptionChangedName($event)"
     [suggestions]="names"
     [fieldContent]="operation.vegetable.name"
     [placeholderContent]="placeholderName"
-    class="vegetable">
+    class="vegetable"
+    name="name">
     </app-autocomplete-bar>
     <ion-item class="vegetable">
       <ion-label position="floating">Catégorie</ion-label>
@@ -55,7 +57,8 @@
     [suggestions]="suppliers"
     [fieldContent]="operation.vegetable.supplier"
     [placeholderContent]="placeholderSupplier"
-    class="vegetable">
+    class="vegetable"
+    name="supplier">
     </app-autocomplete-bar>
   </div>
 
@@ -64,7 +67,8 @@
   (choosenOptionChanged)="choosenOptionChangedLabel($event)"
   [suggestions]="labels"
   [fieldContent]="operation.vegetable.label"
-  [placeholderContent]="placeholderLabel">
+  [placeholderContent]="placeholderLabel"
+  name="label">
   </app-autocomplete-bar>
   <ion-item>
     <ion-label position="floating">Observations</ion-label>
