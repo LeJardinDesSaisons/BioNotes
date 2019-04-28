@@ -55,7 +55,7 @@
     <app-autocomplete-bar
     (choosenOptionChanged)="choosenOptionChangedSupplier($event)"
     [suggestions]="suppliers"
-    [fieldContent]="operation.vegetable.supplier"
+    [fieldContent]="operation.supplier.name"
     [placeholderContent]="placeholderSupplier"
     class="vegetable"
     name="supplier">
@@ -66,7 +66,7 @@
   <app-autocomplete-bar
   (choosenOptionChanged)="choosenOptionChangedLabel($event)"
   [suggestions]="labels"
-  [fieldContent]="operation.vegetable.label"
+  [fieldContent]="operation.label.name"
   [placeholderContent]="placeholderLabel"
   name="label">
   </app-autocomplete-bar>
