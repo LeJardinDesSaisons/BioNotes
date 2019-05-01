@@ -1,15 +1,11 @@
-import { HelperTextComponent } from './../helper-text/helper-text.component';
-import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-
-import { AutocompleteBarComponent } from '../autocomplete-bar/autocomplete-bar.component';
+import { IonicModule } from '@ionic/angular';
 import { FormAreaComponent } from '../form-area/form-area.component';
+import { AutocompleteBarModule } from './../../autocomplete-bar/autocomplete-bar.module';
+import { HelperTextComponent } from './../helper-text/helper-text.component';
+
 
 @NgModule({
   imports: [
@@ -17,11 +13,9 @@ import { FormAreaComponent } from '../form-area/form-area.component';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule,
+    AutocompleteBarModule,
   ],
-  declarations: [FormAreaComponent,  AutocompleteBarComponent, HelperTextComponent],
-  exports: [FormAreaComponent,  AutocompleteBarComponent, HelperTextComponent],
+  declarations: [FormAreaComponent, HelperTextComponent],
+  exports: [FormAreaComponent, HelperTextComponent],
 })
 export class FormAreaModule {}

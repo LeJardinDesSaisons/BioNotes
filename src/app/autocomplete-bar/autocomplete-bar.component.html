@@ -1,4 +1,4 @@
-<form class="suggestion-form">
+<form class="suggestion-form" [class.regular-size]="regularSize" >
   <mat-form-field class="suggestion-full-width" [hideRequiredMarker]="true">
     <input type="text" [placeholder]="placeholderContent" required
     [(ngModel)]="fieldContent" name="fieldContent" (ngModelChange)="modelChanged()"

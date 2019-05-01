@@ -17,6 +17,8 @@ export class AutocompleteBarComponent implements OnInit {
   @Input() fieldContent: string;
   /** Content of the placeholder */
   @Input() placeholderContent: string;
+  /** True iif the input field takes the entire width of its container */
+  @Input() regularSize = false;
 
   /** List of the suggestions that will be displayed below the field  */
   filteredOptions: string[];
@@ -26,7 +28,7 @@ export class AutocompleteBarComponent implements OnInit {
       this.suggestions = [];
     }
     if (this.placeholderContent === undefined) {
-      this.placeholderContent = "Placeholder";
+      this.placeholderContent = 'Placeholder';
     }
   }
 
