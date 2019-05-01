@@ -22,7 +22,7 @@ export class FormOperationComponent implements OnInit {
   ngOnInit() {
     this.operation.area = null ;
 
-    if (this.selectedArea) {
+    if (this.selectedArea || this.selectAreaService.getOperation()) {
       this.operation = this.selectAreaService.getOperation();
     }
     this.operationsDbService.getCategories().then((categoryList) => this.categories = categoryList);

@@ -1,7 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { AlertController, PopoverController, ToastController } from '@ionic/angular';
+import { AlertController, PopoverController, ToastController, NavController } from '@ionic/angular';
 import { OperationDbService } from '../operations-db.service';
+import { SelectAreaService } from 'src/app/area/select-area.service';
+import { Operation } from 'src/app/model/operation';
 
 @Component({
   selector: 'app-operation-popover',
@@ -16,7 +18,9 @@ export class OperationPopoverComponent {
               private location: Location,
               private operationDbService: OperationDbService,
               private alertController: AlertController,
-              private toastController: ToastController) { }
+              private toastController: ToastController,
+              private selectAreaService: SelectAreaService,
+              private navController: NavController) { }
 
   /**
    * Dismiss the popover and open the dialog
@@ -51,6 +55,21 @@ export class OperationPopoverComponent {
     }).then(toast => toast.present());
     this.operationDbService.deleteOperation(this.operationId);
     this.location.back();
+  }
+
+  /**
+   * function for create a new operation base on the current operation
+   */
+  async duplicateFunction() {
+    this.popoverController.dismiss();
+    this.selectAreaService.setOperation(await this.operationDbService.getOperationById(this.operationId));
+
+    if (this.selectAreaService.getArea()) {
+      this.navController.navigateForward('add-operation/' + this.selectAreaService.getArea().name );
+    } else {
+      this.navController.navigateForward('add-operation/');
+    }
+
   }
 
 }
