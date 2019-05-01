@@ -1,22 +1,24 @@
-import { FormOperationComponent } from './form-operation.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { RouterModule, Routes } from '@angular/router';
 import { SelectAreaPageModule } from 'src/app/area/select-area/select-area.module';
+import { AutocompleteBarModule } from './../../autocomplete-bar/autocomplete-bar.module';
+import { FormOperationComponent } from './form-operation.component';
+
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        IonicModule,
-        SelectAreaPageModule,
-        RouterModule,
-    ],
-    declarations: [FormOperationComponent],
-    exports: [FormOperationComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule,
+    SelectAreaPageModule,
+    RouterModule,
+    AutocompleteBarModule,
+  ],
+  declarations: [FormOperationComponent],
+  exports: [FormOperationComponent]
 })
 export class FormOperationModule {}
