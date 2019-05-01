@@ -17,4 +17,11 @@ describe ('add-operation view', function() {
 
         expect(page.getResult()).toContain('Planter Fraise');
     });
+
+    it('should autocomplete', () => {
+        page.navigateTo();
+
+        expect(page.autocompleteType()).toContain('Planter');
+    });
+
 });

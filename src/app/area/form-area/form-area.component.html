@@ -2,7 +2,9 @@
   <app-autocomplete-bar
     (choosenOptionChanged)="choosenOptionChanged($event)"
     [suggestions]="areaTypes"
-    [fieldContent]="area.type.name">
+    [fieldContent]="area.type.name"
+    placeholderContent="Type"
+    regularSize="true">
   </app-autocomplete-bar>
   <ion-item>
     <ion-label position="floating">Numéro</ion-label>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 /**
  * @title Display value autocomplete
@@ -15,6 +15,10 @@ export class AutocompleteBarComponent implements OnInit {
   @Input() suggestions: string[];
   /** Content of the field that was typed or selected by the user */
   @Input() fieldContent: string;
+  /** Content of the placeholder */
+  @Input() placeholderContent: string;
+  /** True iif the input field takes the entire width of its container */
+  @Input() regularSize = false;
 
   /** List of the suggestions that will be displayed below the field  */
   filteredOptions: string[];
@@ -22,6 +26,9 @@ export class AutocompleteBarComponent implements OnInit {
   ngOnInit() {
     if (this.suggestions === undefined) {
       this.suggestions = [];
+    }
+    if (this.placeholderContent === undefined) {
+      this.placeholderContent = 'Placeholder';
     }
   }
 

@@ -31,7 +31,7 @@ export class AddOperationPage {
         browser.sleep(500);
         element(by.name('label')).click();
         browser.sleep(500);
-        element(by.css('input[name="label"]')).sendKeys('Planter');
+        element(by.css('#mat-input-3')).sendKeys('Planter');
         browser.sleep(500);
     }
 
@@ -43,7 +43,17 @@ export class AddOperationPage {
         browser.sleep(3000);
     }
 
+    /** Types a single letter, then tries to use the autocomplete feature. */
+    autocompleteType() {
+        element(by.css('#mat-input-3')).click();
+        browser.sleep(500);
+        element(by.css('#mat-input-3')).sendKeys('P');
+        browser.sleep(500);
+        return element(by.className('mat-option-text')).getText();
+    }
+
     getResult() {
         return element(by.tagName('ion-card-title')).getText();
     }
+
 }

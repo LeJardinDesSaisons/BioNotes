@@ -30,32 +30,46 @@
 
   <div id="vegetable">
     <h5>Légume</h5>
-    <ion-item class="vegetable">
-      <ion-label position="floating">Variété</ion-label>
-      <ion-input type="text" [(ngModel)]="operation.vegetable.variety" name="variety" ngDefaultControl></ion-input>
-    </ion-item>
-    <ion-item class="vegetable">
-      <ion-label position="floating">Nom</ion-label>
-      <ion-input type="text" [(ngModel)]="operation.vegetable.name" name="name" ngDefaultControl></ion-input>
-    </ion-item>
+    <app-autocomplete-bar
+    (choosenOptionChanged)="choosenOptionChangedVariety($event)"
+    [suggestions]="varieties"
+    [fieldContent]="operation.vegetable.variety"
+    placeholderContent="Variété"
+    class="vegetable"
+    name="variety">
+    </app-autocomplete-bar>
+    <app-autocomplete-bar
+    (choosenOptionChanged)="choosenOptionChangedName($event)"
+    [suggestions]="names"
+    [fieldContent]="operation.vegetable.name"
+    placeholderContent="Nom"
+    class="vegetable"
+    name="name">
+    </app-autocomplete-bar>
     <ion-item class="vegetable">
       <ion-label position="floating">Catégorie</ion-label>
       <ion-select cancelText="Annuler" [(ngModel)]="operation.vegetable.category.name" name="category" ngDefaultControl>
         <ion-select-option *ngFor="let category of categories">{{category.name}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <!-- Replace this with autocomplete bar -->
-    <ion-item class="vegetable">
-      <ion-label position="floating">Fournisseur</ion-label>
-      <ion-input type="text" [(ngModel)]="operation.supplier.name" name="supplier" ngDefaultControl></ion-input>
-    </ion-item>
+    <app-autocomplete-bar
+    (choosenOptionChanged)="choosenOptionChangedSupplier($event)"
+    [suggestions]="suppliers"
+    [fieldContent]="operation.supplier.name"
+    placeholderContent="Fournisseur"
+    class="vegetable"
+    name="supplier">
+    </app-autocomplete-bar>
   </div>
 
-  <!-- Replace this with autocomplete bar -->
-  <ion-item>
-    <ion-label position="floating">Libellé</ion-label>
-    <ion-input type="text" [(ngModel)]="operation.label.name" name="label" required ngDefaultControl></ion-input>
-  </ion-item>
+
+  <app-autocomplete-bar
+  (choosenOptionChanged)="choosenOptionChangedLabel($event)"
+  [suggestions]="labels"
+  [fieldContent]="operation.label.name"
+  placeholderContent="Libellé"
+  name="label">
+  </app-autocomplete-bar>
   <ion-item>
     <ion-label position="floating">Observations</ion-label>
     <ion-textarea rows="5" [(ngModel)]="operation.observations" name="observations" ngDefaultControl></ion-textarea>

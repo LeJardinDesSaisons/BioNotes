@@ -6,9 +6,10 @@ export const defaultCategories: Category[] = [
     {id: 2, name: 'Brassicacée'},
     {id: 3, name: 'Alliacée'},
     {id: 4, name: 'Apiacée'},
-    {id: 5, name: 'Curcubitacée'},
+    {id: 5, name: 'Cucurbitacée'},
     {id: 6, name: 'Crucifère'},
-    {id: 7, name: 'Astéracée'}
+    {id: 7, name: 'Astéracée'},
+    {id: 8, name: 'Autre'}
   ];
 
 export const mockAreas: any[] = [
