@@ -1,13 +1,11 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AutocompleteBarComponent } from '../autocomplete-bar/autocomplete-bar.component';
-import { AreaDbService } from './../area-db.service';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { FormAreaComponent } from './form-area.component';
-import { of } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IonicModule } from '@ionic/angular';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatAutocompleteModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { AutocompleteBarModule } from './../../autocomplete-bar/autocomplete-bar.module';
+import { AreaDbService } from './../area-db.service';
+import { FormAreaComponent } from './form-area.component';
+
 
 describe('FormAreaComponent', () => {
   let component: FormAreaComponent;
@@ -34,15 +32,12 @@ describe('FormAreaComponent', () => {
     // thenSpy = dbServiceStub.getTypes.then.and.returnValue( of(['a', 'b']));
 
     TestBed.configureTestingModule({
-      declarations: [ FormAreaComponent, AutocompleteBarComponent ],
+      declarations: [ FormAreaComponent ],
       providers:    [ {provide: AreaDbService, useValue: dbServiceStub } ],
       imports: [
         FormsModule,
         IonicModule,
-        ReactiveFormsModule,
-        MatAutocompleteModule,
-        MatFormFieldModule,
-        MatInputModule,
+        AutocompleteBarModule,
         BrowserAnimationsModule,
       ]
     })
