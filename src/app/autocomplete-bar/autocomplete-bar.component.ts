@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, Directive } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 /**
  * @title Display value autocomplete
