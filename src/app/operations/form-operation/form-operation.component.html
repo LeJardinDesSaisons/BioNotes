@@ -34,7 +34,7 @@
     (choosenOptionChanged)="choosenOptionChangedVariety($event)"
     [suggestions]="varieties"
     [fieldContent]="operation.vegetable.variety"
-    [placeholderContent]="placeholderVariety"
+    placeholderContent="Variété"
     class="vegetable"
     name="variety">
     </app-autocomplete-bar>
@@ -42,7 +42,7 @@
     (choosenOptionChanged)="choosenOptionChangedName($event)"
     [suggestions]="names"
     [fieldContent]="operation.vegetable.name"
-    [placeholderContent]="placeholderName"
+    placeholderContent="Nom"
     class="vegetable"
     name="name">
     </app-autocomplete-bar>
@@ -56,7 +56,7 @@
     (choosenOptionChanged)="choosenOptionChangedSupplier($event)"
     [suggestions]="suppliers"
     [fieldContent]="operation.supplier.name"
-    [placeholderContent]="placeholderSupplier"
+    placeholderContent="Fournisseur"
     class="vegetable"
     name="supplier">
     </app-autocomplete-bar>
@@ -67,7 +67,7 @@
   (choosenOptionChanged)="choosenOptionChangedLabel($event)"
   [suggestions]="labels"
   [fieldContent]="operation.label.name"
-  [placeholderContent]="placeholderLabel"
+  placeholderContent="Libellé"
   name="label">
   </app-autocomplete-bar>
   <ion-item>

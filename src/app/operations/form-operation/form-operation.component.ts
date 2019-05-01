@@ -25,12 +25,6 @@ export class FormOperationComponent implements OnInit {
   categories: Category[];
   operations: Operation[];
 
-  // variables to change the placeholder text on each autocomplete bar
-  placeholderVariety = 'Variété';
-  placeholderName = 'Nom';
-  placeholderSupplier = 'Fournisseur';
-  placeholderLabel = 'Libellé';
-
   constructor(private selectAreaService: SelectAreaService, private operationsDbService: OperationDbService) { }
 
   ngOnInit() {
@@ -46,15 +40,15 @@ export class FormOperationComponent implements OnInit {
     });
 
     this.operationsDbService.getVegetables().then((vegetableList) => {
-      this.varieties = vegetableList.map(vegetableList => vegetableList.variety);
-      this.names = vegetableList.map(vegetableList => vegetableList.name);
+      this.varieties = vegetableList.map(vegetable => vegetable.variety);
+      this.names = vegetableList.map(vegetable => vegetable.name);
     });
 
     this.operationsDbService.getSuppliers().then((supplierList) =>
-      this.suppliers = supplierList.map(supplierList => supplierList.name));
+      this.suppliers = supplierList.map(supplier => supplier.name));
 
     this.operationsDbService.getLabels().then((labelList) =>
-      this.labels = labelList.map(labelList => labelList.name));
+      this.labels = labelList.map(label => label.name));
 
   }
 
