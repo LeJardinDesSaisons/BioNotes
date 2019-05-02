@@ -62,7 +62,7 @@ export class SelectAreaPage implements OnInit {
   }
 
   /**
-   * Return to add-operation without an selected area
+   * Return to add-operation with or without an selected area
    */
   goBack() {
     if (this.selectAreaService.getArea() ) {
