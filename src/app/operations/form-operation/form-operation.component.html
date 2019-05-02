@@ -48,7 +48,7 @@
     </app-autocomplete-bar>
     <ion-item class="vegetable">
       <ion-label position="floating">Catégorie</ion-label>
-      <ion-select cancelText="Annuler" [(ngModel)]="operation.vegetable.category.name" name="category" ngDefaultControl>
+      <ion-select [selectedText]="operation.vegetable.category.name" cancelText="Annuler" [(ngModel)]="operation.vegetable.category.name" name="category" ngDefaultControl>
         <ion-select-option *ngFor="let category of categories">{{category.name}}</ion-select-option>
       </ion-select>
     </ion-item>
