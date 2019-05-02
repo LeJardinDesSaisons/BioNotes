@@ -32,9 +32,13 @@ export class FormOperationComponent implements OnInit {
 
     this.operation.area = null ;
 
-    if (this.selectedArea || this.selectAreaService.getOperation()) {
+    if (this.selectedArea || this.selectAreaService.getOperation()) { // todo faire gaffe
       this.operation = this.selectAreaService.getOperation();
+      if (this.operation.done) {
+        this.operation.done = !this.operation.done;
+      }
     }
+
     this.operationsDbService.getCategories().then((categoryList) => {
       this.categories = categoryList;
     });
