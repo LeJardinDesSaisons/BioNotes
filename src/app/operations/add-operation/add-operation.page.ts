@@ -72,4 +72,7 @@ export class AddOperationPage implements OnInit {
     }
   }
 
+  async goBack() {
+    await this.selectAreaService.setOperation(null);
+  }
 }
