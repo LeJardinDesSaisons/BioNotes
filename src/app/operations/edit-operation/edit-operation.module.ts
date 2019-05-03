@@ -9,7 +9,7 @@ import { EditOperationPage } from './edit-operation.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: EditOperationPage
   }
 ];

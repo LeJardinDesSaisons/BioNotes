@@ -115,6 +115,12 @@ export class PlanningComponent {
           this.goToDetails(operation.id);
         }
       }, {
+        text: 'Éditer',
+        icon: 'create',
+        handler: () => {
+          this.edit(operation.id);
+        }
+      }, {
         text: 'Annuler',
         icon: 'close',
         role: 'cancel'
@@ -129,6 +135,10 @@ export class PlanningComponent {
    */
   goToDetails(id: Number) {
     this.router.navigateByUrl('/tabs/tab1/operations/details/' + id);
+  }
+
+  edit(id: Number) {
+    this.router.navigateByUrl('/edit-operation/' + id);
   }
 
 }
