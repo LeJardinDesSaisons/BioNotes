@@ -19,17 +19,17 @@
   </ion-item>
 
   <table id="info">
-    <tr class="infos">
+    <tr class="infos" *ngIf="operation.label?.name">
       <td class="left"><ion-icon name="clipboard"></ion-icon></td>
       <td >{{ operation.label?.name }}</td>
     </tr>
 
-    <tr class="infos">
+    <tr class="infos" *ngIf="operation.vegetable?.variety">
       <td class="left"><ion-icon name="nutrition"></ion-icon></td>
       <td >{{ operation.vegetable?.variety }} {{ operation.vegetable?.name }}</td>
     </tr>
 
-    <tr class="infos">
+    <tr class="infos" *ngIf="operation.area?.name">
       <td class="left"><ion-icon name="pin"></ion-icon></td>
       <td >
         <span *ngFor="let parent of parentAreas">
@@ -39,7 +39,7 @@
       </td>
     </tr>
 
-    <tr class="infos">
+    <tr class="infos" *ngIf="formatDate">
       <td class="left"><ion-icon name="calendar"></ion-icon></td>
       <td >{{ formatDate }}</td>
     </tr>
@@ -49,21 +49,21 @@
 
 
   <table>
-    <tr class="otherinfos">
+    <tr class="otherinfos" *ngIf="operation.supplier?.name">
       <td class="left">Fournisseur</td>
       <td >{{ operation.supplier?.name }}</td>
     </tr>
 
-    <tr class="otherinfos">
+    <tr class="otherinfos" *ngIf="operation.vegetable?.category.name">
       <td class="left">Catégorie</td>
       <td >{{ operation.vegetable?.category.name }}</td>
     </tr>
 
     <!--insert the modalities here when relevant-->
 
-    <tr class="otherinfos">
-      <td class="left">Observations</td>
-      <td >{{ operation?.observations }}</td>
+    <tr class="otherinfos" *ngIf="operation.observations">
+      <td class="left" >Observations</td>
+      <td style="white-space:pre-wrap; word-wrap:break-word">{{ operation?.observations }}</td>
     </tr>
 
   </table>
