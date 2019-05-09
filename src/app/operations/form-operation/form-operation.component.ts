@@ -32,7 +32,7 @@ export class FormOperationComponent implements OnInit {
 
     this.operation.area = null ;
 
-    if (this.selectedArea || this.selectAreaService.getOperation()) { // todo faire gaffe
+    if (this.selectedArea || this.selectAreaService.getOperation()) {
       this.operation = this.selectAreaService.getOperation();
       if (this.operation.done) {
         this.operation.done = !this.operation.done;

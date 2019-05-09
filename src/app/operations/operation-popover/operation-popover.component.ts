@@ -58,12 +58,13 @@ export class OperationPopoverComponent {
   }
 
   /**
-   * function for create a new operation base on the current operation
+   * function for create a new operation based on the current operation
    */
   async duplicateFunction() {
     this.popoverController.dismiss();
+    console.log('before');
     this.selectAreaService.setOperation(await this.operationDbService.getOperationById(this.operationId));
-
+    console.log('after');
     if (this.selectAreaService.getArea()) {
       this.navController.navigateForward('add-operation/' + this.selectAreaService.getArea().name );
     } else {
