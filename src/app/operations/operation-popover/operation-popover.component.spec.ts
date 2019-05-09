@@ -82,7 +82,7 @@ describe('OperationPopoverComponent', () => {
     component.duplicateFunction();
     expect(dismissSpy).toHaveBeenCalled();
     expect(getOperationSpy).toHaveBeenCalled();
-    //expect(setOperationSpy).toHaveBeenCalledWith(1);
+    expect(setOperationSpy).toHaveBeenCalled();
     expect(getAreaSpy).toHaveBeenCalled();
     expect(navForwardSpy).toHaveBeenCalled();
   });
