@@ -22,7 +22,7 @@
   --ion-color-secondary-rgb: 12, 209, 232;
   --ion-color-secondary-contrast: #2c3220;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #8fad1f;
+  --ion-color-secondary-shade: #627615;
   --ion-color-secondary-tint: #abcb39;
 
   /** tertiary **/
@@ -30,8 +30,8 @@
   --ion-color-tertiary-rgb: 112, 68, 255;
   --ion-color-tertiary-contrast: #3a3d32;
   --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #c1d677;
-  --ion-color-tertiary-tint: #afbe7e;
+  --ion-color-tertiary-shade: #a1a985;
+  --ion-color-tertiary-tint: #bec6a1;
   /** success **/
   --ion-color-success: #20ca20;
   --ion-color-success-rgb: 16, 220, 96;
@@ -101,9 +101,8 @@
   }
 
   ion-title {
-    font-size : 14px;
+    font-size : 15px;
     text-transform : uppercase;
-    font-weight : bold;
   }
 
   ion-input {
@@ -121,6 +120,7 @@
     --icon-padding-end : -2px;
     --icon-padding-start : -2px;
     --margin-end : -2px;
+    --color: black;
   }
 
   ion-button{
@@ -129,6 +129,7 @@
     --padding-top : 12px;
     --padding-bottom : 12px;
     font-size: 18px;
+    --color: black;
   }
 
   ion-fab-button{
