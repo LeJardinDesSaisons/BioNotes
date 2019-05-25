@@ -6,7 +6,7 @@ export class AddOperationPage {
      * Navigates to the add operation page.
      */
     navigateTo() {
-        return browser.get('/add-operation');
+        return browser.get('/tabs/tab1/operations/add');
     }
 
     /**
@@ -24,6 +24,9 @@ export class AddOperationPage {
      */
     fillLabel() {
         const ionicLabelField = element(by.name('label')).getWebElement();
+
+        // In case the user's screen is too small,
+        // this will scroll the page down until the label field is visible
         browser.executeScript(
           `arguments[0].scrollIntoView({behavior: "smooth", block: "end"});`,
           ionicLabelField,
@@ -45,6 +48,15 @@ export class AddOperationPage {
 
     /** Types a single letter, then tries to use the autocomplete feature. */
     autocompleteType() {
+        const ionicLabelField = element(by.name('label')).getWebElement();
+
+        // In case the user's screen is too small,
+        // this will scroll the page down until the label field is visible
+        browser.executeScript(
+            `arguments[0].scrollIntoView({behavior: "smooth", block: "end"});`,
+            ionicLabelField,
+          );
+        browser.sleep(500);
         element(by.css('#mat-input-3')).click();
         browser.sleep(500);
         element(by.css('#mat-input-3')).sendKeys('P');

@@ -76,6 +76,6 @@ describe('AddOperationPage', () => {
     expect(addOperationSpy).toHaveBeenCalled();
     expect(component.operation).toBe(operation);
 
-    expect(navigateBackSpy).toHaveBeenCalledWith('/tabs/tab1/' + operation.id);
+    expect(navigateBackSpy).toHaveBeenCalledWith('/tabs/tab1');
   }));
 });

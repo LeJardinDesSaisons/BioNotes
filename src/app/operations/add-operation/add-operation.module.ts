@@ -10,11 +10,11 @@ import { FormOperationModule } from '../form-operation/form-operation.module';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'operations/add',
     component: AddOperationPage
   },
   {
-    path: ':areaselected',
+    path: 'operations/add/:areaselected',
     component: AddOperationPage
   }
 ];
