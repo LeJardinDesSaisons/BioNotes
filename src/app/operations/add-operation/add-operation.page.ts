@@ -50,7 +50,7 @@ export class AddOperationPage implements OnInit {
       this.operation.vegetable = await this.operationDbService.addVegetable(this.operation.vegetable);
       this.operation = await this.operationDbService.addOperation(this.operation);
       await this.selectAreaService.setOperation(null);
-      this.navController.navigateBack('/tabs/tab1/' + this.operation.id);
+      this.navController.navigateBack('/tabs/tab1');
     }
   }
 

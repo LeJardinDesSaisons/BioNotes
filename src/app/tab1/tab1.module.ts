@@ -15,11 +15,6 @@ const routes = [
     path: '',
     component: Tab1Page,
     pathMatch: 'full'
-  },
-  {
-    path: ':id',
-    component: Tab1Page,
-    pathMatch: 'full'
   }
 ];
 
