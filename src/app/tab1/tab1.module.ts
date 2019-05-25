@@ -8,10 +8,19 @@ import { PlanningComponent } from '../operations/planning/planning.component';
 
 import { VirtualScrollerModule } from 'ngx-virtual-scroller';
 import { DetailsPageModule } from '../operations/details/details.module';
+import { AddOperationPageModule } from './../operations/add-operation/add-operation.module';
 
 const routes = [
-  { path: '', component: Tab1Page },
-  { path: ':id', component: Tab1Page }
+  {
+    path: '',
+    component: Tab1Page,
+    pathMatch: 'full'
+  },
+  {
+    path: ':id',
+    component: Tab1Page,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
@@ -21,6 +30,7 @@ const routes = [
     FormsModule,
     VirtualScrollerModule,
     DetailsPageModule,
+    AddOperationPageModule,
     RouterModule.forChild(routes)
   ],
   exports : [PlanningComponent],
