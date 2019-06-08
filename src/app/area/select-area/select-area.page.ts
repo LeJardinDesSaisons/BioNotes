@@ -58,7 +58,7 @@ export class SelectAreaPage implements OnInit {
    */
   selectArea() {
     this.selectAreaService.setArea(this.parentArea);
-    this.navController.navigateBack('/add-operation/' + this.parentArea.name);
+    this.navController.navigateBack('/tabs/tab1/operations/add/' + this.parentArea.name);
   }
 
   /**
@@ -66,9 +66,9 @@ export class SelectAreaPage implements OnInit {
    */
   goBack() {
     if (this.selectAreaService.getArea() ) {
-      this.navController.navigateBack('/add-operation/' + this.parentArea.name);
+      this.navController.navigateBack('/tabs/tab1/operations/add/' + this.parentArea.name);
     } else {
-      this.navController.navigateBack('/add-operation/');
+      this.navController.navigateBack('/tabs/tab1/operations/add');
     }
   }
 }
